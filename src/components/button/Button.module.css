@@ -1,0 +1,27 @@
+.Button, .ButtonDisabled {
+    align-self: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-secundary);
+    background-color: var(--color-brand);
+}
+
+.Button {
+    cursor: pointer;
+    box-shadow: var(--black-shadow);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: var(--neon-efect);
+    }
+
+    &:active {
+        filter: brightness(0.7);
+    }
+}
+
+.ButtonDisabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
