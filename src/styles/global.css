@@ -13,9 +13,11 @@
 
     /* Bordas */
     --border-input: #303030;
+    --border-error-input: #ff0000;
 
     /* Efeitos */
     --neon-effect: 0 0 5px 0 var(--color-brand);
+    --error-effect: 0 0 5px 5px #ff000033;
     --black-shadow: 0 0 5px 0 #000000;
 }
 
