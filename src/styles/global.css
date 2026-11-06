@@ -1,0 +1,51 @@
+:root {
+    /* Cor de Destaque */
+    --color-brand: #FFD700FF;
+
+    /* Cores de fundo */
+    --bg-main: #121212;
+    --bg-secundary: #3e3e3e;
+    --bg-input: #606060;
+
+    /* Cores de Texto */
+    --text-primary: #FFFFFF;
+    --text-secundary: #000000;
+
+    /* Bordas */
+    --border-input: #303030;
+
+    /* Efeito */
+    --neon-efect: 0 0 2px 0 var(--color-brand);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--bg-main);
+}
+
+input[type="number"],
+input[inputmode="decimal"] {
+    text-align: right;
+}
+
+/* Para remover as setinhas de incremento/decremento dos campos de número */
+input[type=number] { /* Remove do Mozilla Firefox */
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button { /* Remove dos demais navegadores de uso comum */
+    -webkit-appearance: none;
+    margin: 0;
+}
