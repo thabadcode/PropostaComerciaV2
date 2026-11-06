@@ -15,7 +15,7 @@
     --border-input: #303030;
 
     /* Efeitos */
-    --neon-efect: 0 0 5px 0 var(--color-brand);
+    --neon-effect: 0 0 5px 0 var(--color-brand);
     --black-shadow: 0 0 5px 0 #000000;
 }
 
