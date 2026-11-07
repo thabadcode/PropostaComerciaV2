@@ -1,0 +1,63 @@
+.Input {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+    color: var(--text-primary);
+}
+
+.FieldLine {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.LabelText {
+    padding-left: 10px;
+}
+
+.Prefix {
+    position: absolute;
+    z-index: 1;
+    padding-left: 10px;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+.Field, .InvalidField, .DisabledField {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Field {
+    border-color: var(--border-input);
+
+    &:focus {
+        border-color: var(--color-brand);
+        box-shadow: var(--neon-effect);
+    }
+}
+
+.InvalidField {
+    border-color: var(--color-error);
+    box-shadow: var(--error-effect);
+}
+
+.DisabledField {
+    border-color: var(--bg-input); /* Coloca a cor de fundo para ocultar a borda */
+    opacity: 0.4;
+}
+
+.SupportingText {
+    font-size: 7px;
+    color: var(--color-error);
+    align-self: center;
+    margin-top: -2px;
+}
