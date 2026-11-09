@@ -1,0 +1,45 @@
+.Header, .HeaderActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.Header {
+    height: 70px;
+    width: 100vw;
+    position: fixed;
+    z-index: 50;
+
+    padding: 0 10px;
+
+    color: var(--text-primary);
+    background-color: var(--bg-secundary);
+
+    img {
+        width: 65px;
+        height: auto;
+    }
+
+    h1 { font-size: 20px; }
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+    outline: none;
+
+    &:hover {
+        color: var(--color-brand);
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        text-decoration: underline;
+    }
+}
+
+.HeaderActions {
+    margin-left: auto;
+}
