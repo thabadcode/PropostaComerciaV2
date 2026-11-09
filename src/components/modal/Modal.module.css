@@ -1,0 +1,50 @@
+.Backdrop {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+.Modal {
+    width: 90%;
+    max-width: 450px;
+    min-width: 280px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    color: var(--text-primary);
+    background-color: var(--bg-secundary);
+    box-shadow: var(--black-shadow);
+    gap: 10px;
+
+    h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-brand);
+        gap: 8px;
+
+        svg {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    p {
+        text-align: left;
+        line-height: 1.5;
+    }
+
+    .ModalButtons {
+        display: flex;
+        margin-left: auto;
+        gap: 10px;
+    }
+}
