@@ -1,0 +1,50 @@
+.Checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    input:checked + .Checkmark {
+        border-color: var(--color-brand);
+        svg { opacity: 1; }
+    }
+
+    input:focus-visible + .Checkmark {
+        border-color: var(--color-brand);
+    }
+
+    &:hover .Checkmark {
+        box-shadow: var(--neon-effect);
+        border-color: var(--color-brand);
+    }
+}
+
+.LabelText {
+    color: var(--text-primary);
+    user-select: none;
+}
+
+.Checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    border: 2px solid var(--border-input);
+    border-radius: 2px;
+    background-color: var(--bg-input);
+    color: var(--color-brand);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    svg {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+}
