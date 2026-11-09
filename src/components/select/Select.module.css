@@ -1,7 +1,6 @@
 .Select {
     display: flex;
     flex-direction: column;
-    padding: 10px;
     gap: 5px;
     color: var(--text-primary);
 }
