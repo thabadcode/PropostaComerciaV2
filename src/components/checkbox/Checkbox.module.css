@@ -3,6 +3,7 @@
     flex-direction: row;
     gap: 10px;
     align-items: center;
+    justify-content: center;
 
     input {
         position: absolute;
