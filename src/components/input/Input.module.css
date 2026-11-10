@@ -39,6 +39,10 @@
 .Field {
     border-color: var(--border-input);
 
+    &:hover {
+        border-color: var(--color-brand);
+    }
+
     &:focus {
         border-color: var(--color-brand);
         box-shadow: var(--neon-effect);
