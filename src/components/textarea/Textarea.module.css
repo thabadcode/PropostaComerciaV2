@@ -1,0 +1,34 @@
+.Textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--text-primary);
+}
+
+.LabelTextarea {
+    padding-left: 10px;
+    user-select: none;
+}
+
+.InputTextarea {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-color: var(--border-input);
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+
+    &:hover {
+        border-color: var(--color-brand);
+    }
+
+    &:focus {
+        border-color: var(--color-brand);
+        box-shadow: var(--neon-effect);
+    }
+}
