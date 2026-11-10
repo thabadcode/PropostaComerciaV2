@@ -11,6 +11,7 @@ interface InputProps {
     disabled?: boolean;
     isValid?: boolean;
     supportingText?: string;
+    action?: React.ReactNode;
 }
 
 export default function Input({
@@ -22,7 +23,8 @@ export default function Input({
     placeholder,
     disabled,
     isValid,
-    supportingText
+    supportingText,
+    action
 }: InputProps) {
     const [isTouched, setTouched] = useState(false);
 
@@ -49,6 +51,7 @@ export default function Input({
                     aria-invalid={!isValid}
                     aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
                 />
+                {action && (<>{action}</>)}
             </div>
             {supportingText && !isValid &&
                 <span id={`${label}-error`} className={style.SupportingText}>

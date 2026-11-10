@@ -9,6 +9,11 @@
     display: flex;
     position: relative;
     align-items: center;
+    gap: 5px;
+
+    Button {
+        height: 40px;
+    }
 }
 
 .LabelText {
