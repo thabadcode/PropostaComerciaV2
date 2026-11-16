@@ -159,7 +159,7 @@ export default function MainForm({
                 />
 
                 <Checkbox
-                    label="Exivir PS de frete"
+                    label="Exibir PS de frete"
                     checked={showPS}
                     onCheck={(e) => onShowPSChange(e.target.checked)}
                 />
