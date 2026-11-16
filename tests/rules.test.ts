@@ -1,6 +1,19 @@
 import { describe, it, expect } from 'vitest';
 import { rules } from '../src/core/utils/rules';
 
+describe('rules.required - Validação de campo obrigatório', () => {
+    it('deve retornar true quando o campo não está em branco', () => {
+        expect(rules.required("EMPRESA TESTE LTDA")).toBe(true);
+    });
+
+    it.each([
+        [''],
+        ['   ']
+    ])('deve retornar false quando o campo está em branco', (blankData) => {
+        expect(rules.required(blankData)).toBe(false);
+    });
+});
+
 describe('rules.cnpj - Validação de CNPJ', () => {
     describe('Quando o CNPJ é válido', () => {
         it('deve retornar true para CNPJ válido com máscara', () => {

@@ -1,4 +1,8 @@
 export const rules = {
+    required: (value: string): boolean => {
+        const clean = value.trim();
+        return clean !== '';
+    },
     cnpj: (value: string): boolean => {
         const clean = value.replace(/\D/g, "");
         if (clean.length !== 14) return false;
