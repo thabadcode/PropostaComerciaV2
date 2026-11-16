@@ -71,10 +71,6 @@ export default function MainForm({
 }: MainFormProps) {
     const [cnpj, setCnpj] = useState("");
     const [isCnpjValid, setIsCnpjValid] = useState(true);
-    const [cnpjsupportingText, setCnpjSupportingText] = useState(
-        "Digite um CNPJ válido",
-    );
-    const [cnpjDisabled, setCnpjDisabled] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const setToday = () => {
@@ -111,8 +107,8 @@ export default function MainForm({
                     value={cnpj}
                     onChange={(e) => setCnpj(e.target.value)}
                     isValid={isCnpjValid}
-                    disabled={cnpjDisabled}
-                    supportingText={cnpjsupportingText}
+                    disabled={isLoading}
+                    supportingText="Digite um CNPJ válido"
                     action={isLoading ? (
                         <Loading text="Pesquisando"/>
                     ) : (
