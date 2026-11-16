@@ -25,8 +25,11 @@
 .Field {
     border-color: var(--border-input);
 
-    &:focus {
+    &:hover, &:focus {
         border-color: var(--color-brand);
+    }
+    
+    &:focus {
         box-shadow: var(--neon-effect);
     }
 }
