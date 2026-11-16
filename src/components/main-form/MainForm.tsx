@@ -7,6 +7,9 @@ import Checkbox from "../checkbox/Checkbox";
 import Loading from "../loading/Loading";
 import Select from "../select/Select";
 import Textarea from "../textarea/Textarea";
+import { paymentConditions } from "../../core/constants/paymentConditions";
+import { rules } from "../../core/utils/rules";
+import { searchCnpj } from "../../core/utils/searchCnpj";
 
 interface MainFormProps {
     showModal: (value: boolean) => void;
@@ -78,9 +81,29 @@ export default function MainForm({
         onDateChange(today);
     };
 
-    const searchCNPJ = () => {
+    const handleSearchCnpj  = async () => {
+        if (isLoading) return;
+        if (!rules.cnpj(cnpj)) {
+            setIsCnpjValid(false);
+            return;
+        }
+
+        setIsCnpjValid(true);
         setIsLoading(true);
-        setCnpjDisabled(true);
+
+        const result = await searchCnpj(cnpj);
+
+        setIsLoading(false);
+
+        if ((result).hasError) {
+            setIsCnpjValid(false);
+            setModalTitle("Ocorreu um erro");
+            setModalMsg(`${result.errorMsg}`);
+            showModal(true);
+            return;
+        }
+
+        onCompanyNameChenge(result.companyName);
     };
 
     return (
@@ -115,7 +138,7 @@ export default function MainForm({
                         <Button
                             icon={Search}
                             text="Pesquisar"
-                            onClick={searchCNPJ}
+                            onClick={handleSearchCnpj}
                         />
                     )}
                 />
