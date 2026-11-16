@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import style from './Input.module.css'
 
 interface InputProps {
@@ -25,10 +26,24 @@ export default function Input({
     supportingText,
     action
 }: InputProps) {
+    const actionRef = useRef<HTMLSpanElement>(null);
 
     const getClassName = () => {
         if (disabled) return style.DisabledField;
         return isValid ? style.Field : style.InvalidField;
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key !== 'Enter' || e.nativeEvent.isComposing) return;
+
+        const target = actionRef.current?.querySelector<HTMLElement>(
+            'button, [role="button"], a[href]'
+        );
+
+        if (target) {
+            e.preventDefault();
+            target.click();
+        }
     };
     
     return (
@@ -41,12 +56,13 @@ export default function Input({
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
+                    onKeyDown={handleKeyDown}
                     disabled={disabled}
                     className={getClassName()}
                     aria-invalid={!isValid}
                     aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
                 />
-                {action && (<>{action}</>)}
+                {action && (<span ref={actionRef}>{action}</span>)}
             </div>
             {supportingText && !isValid &&
                 <span id={`${label}-error`} className={style.SupportingText}>
