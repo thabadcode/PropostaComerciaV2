@@ -77,7 +77,7 @@ export default function MainForm({
     const [isLoading, setIsLoading] = useState(false);
 
     const setToday = () => {
-        const today = new Date().toISOString().split("T")[0];
+        const today = new Date().toLocaleDateString("en-CA");
         onDateChange(today);
     };
 
