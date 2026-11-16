@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import style from './Input.module.css'
 
 interface InputProps {
@@ -26,11 +25,10 @@ export default function Input({
     supportingText,
     action
 }: InputProps) {
-    const [isTouched, setTouched] = useState(false);
 
     const getClassName = () => {
         if (disabled) return style.DisabledField;
-        return isValid && !isTouched ? style.Field : style.InvalidField;
+        return isValid ? style.Field : style.InvalidField;
     };
     
     return (
@@ -42,10 +40,7 @@ export default function Input({
                     type={type}
                     placeholder={placeholder}
                     value={value}
-                    onChange={ e => {
-                        onChange(e);
-                        setTouched(true);
-                    }}
+                    onChange={onChange}
                     disabled={disabled}
                     className={getClassName()}
                     aria-invalid={!isValid}
