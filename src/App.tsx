@@ -32,38 +32,38 @@ export default function App() {
       />
 
       <main>
-        <form>
-          <MainForm
-            showModal={(value) => setShowModal(value)}
-            setModalTitle={(value) => setModalTitle(value)}
-            setModalMsg={(value) => setModalMsg(value)}
+        <MainForm
+          showModal={(value) => setShowModal(value)}
+          setModalTitle={(value) => setModalTitle(value)}
+          setModalMsg={(value) => setModalMsg(value)}
 
-            dateValue={date}
-            onDateChange={(value) => setDate(value)}
-            isDateValid={true}
-            dateSupportingText="Campo obrigatório"
+          dateValue={date}
+          onDateChange={(value) => setDate(value)}
+          isDateValid={true}
+          dateSupportingText="Campo obrigatório"
 
-            companyName={companyName}
-            onCompanyNameChenge={(value) => setCompanyName(value)}
-            isCompanyNameValid={true}
-            companyNameSupportingText="Campo obrigatório"
+          companyName={companyName}
+          onCompanyNameChenge={(value) => setCompanyName(value)}
+          isCompanyNameValid={true}
+          companyNameSupportingText="Campo obrigatório"
 
-            representative={representative}
-            onRepresentativeChange={(value) => setRepresentative(value)}
+          representative={representative}
+          onRepresentativeChange={(value) => setRepresentative(value)}
 
-            paymentConditionSelected={paymentConditionSelected}
-            onPaymentConditionChange={(value) => setPaymentConditionSelected(value)}
+          paymentConditionSelected={paymentConditionSelected}
+          onPaymentConditionChange={(value) => setPaymentConditionSelected(value)}
 
-            observations={observations}
-            onObservationsChange={(value) => setObservations(value)}
+          observations={observations}
+          onObservationsChange={(value) => setObservations(value)}
 
-            showTotal={showTotal}
-            onShowTotalChenage={(value) => setShowTotal(value)}
+          showTotal={showTotal}
+          onShowTotalChenage={(value) => setShowTotal(value)}
 
-            showPS={showPS}
-            onShowPSChange={(value) => setShowPS(value)}
-          />
-        </form>
+          showPS={showPS}
+          onShowPSChange={(value) => setShowPS(value)}
+        />
+
+        
       </main>
     </>
   );
