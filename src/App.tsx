@@ -5,6 +5,8 @@ import MainForm from "./components/main-form/MainForm";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalMsg, setModalMsg] = useState("");
 
   const [date, setDate] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -23,8 +25,8 @@ export default function App() {
       <Header clearAll={showClearMsg} generatePDF={window.print} />
       <Modal
         show={showModal}
-        title="Ocorreu um erro"
-        message="Erro 503. O serviço de pesquisa de CNPJ não está disponível no momento. Digite a Razão Social manualmente."
+        title={modalTitle}
+        message={modalMsg}
         confirmText="Ok"
         onConfirm={() => setShowModal(false)}
       />
@@ -32,6 +34,10 @@ export default function App() {
       <main>
         <form>
           <MainForm
+            showModal={(value) => setShowModal(value)}
+            setModalTitle={(value) => setModalTitle(value)}
+            setModalMsg={(value) => setModalMsg(value)}
+
             dateValue={date}
             onDateChange={(value) => setDate(value)}
             isDateValid={true}

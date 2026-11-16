@@ -9,6 +9,10 @@ import Select from "../select/Select";
 import Textarea from "../textarea/Textarea";
 
 interface MainFormProps {
+    showModal: (value: boolean) => void;
+    setModalTitle: (value: string) => void;
+    setModalMsg: (value: string) => void;
+    
     dateValue: string;
     onDateChange: (value: string) => void;
     isDateValid: boolean;
@@ -36,6 +40,10 @@ interface MainFormProps {
 }
 
 export default function MainForm({
+    showModal,
+    setModalTitle,
+    setModalMsg,
+
     dateValue,
     onDateChange,
     isDateValid,
