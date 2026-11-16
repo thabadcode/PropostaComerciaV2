@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./MainForm.module.css";
-import { paymentConditions } from "../../constants/paymentConditions";
+import { paymentConditions } from "../../core/constants/paymentConditions";
 import { Info } from "lucide-react";
 import { Search } from "lucide-react";
 import Input from "../input/Input";
