@@ -11,7 +11,7 @@ import Textarea from "../textarea/Textarea";
 import { PAYMENT_CONDITIONS } from "../../core/constants/formOptions"; 
 import { searchCnpj } from "../../core/utils/searchCnpj";
 
-export default function MainForm2({form}: {form: MainFormState}) {
+export default function MainForm({form}: {form: MainFormState}) {
     const [isLoading, setIsLoading] = useState(false);
     const setToday = () => {
         const today = new Date().toLocaleDateString("en-CA");
