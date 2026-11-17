@@ -8,6 +8,8 @@ interface InputProps {
     value: string;
     list?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: React.FocusEventHandler<HTMLInputElement>;
+    onFocus?: React.FocusEventHandler<HTMLInputElement>;
     placeholder?: string;
     disabled?: boolean;
     isValid?: boolean;
@@ -22,6 +24,8 @@ export default function Input({
     value,
     list,
     onChange,
+    onBlur,
+    onFocus,
     placeholder,
     disabled,
     isValid,
@@ -59,6 +63,8 @@ export default function Input({
                     value={value}
                     list={list}
                     onChange={onChange}
+                    onBlur={onBlur}
+                    onFocus={onFocus}
                     onKeyDown={handleKeyDown}
                     disabled={disabled}
                     className={getClassName()}
