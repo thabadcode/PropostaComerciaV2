@@ -6,6 +6,7 @@ interface InputProps {
     type: string;
     prefix?: string;
     value: string;
+    list?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     disabled?: boolean;
@@ -19,6 +20,7 @@ export default function Input({
     type="text",
     prefix,
     value,
+    list,
     onChange,
     placeholder,
     disabled,
@@ -55,6 +57,7 @@ export default function Input({
                     type={type}
                     placeholder={placeholder}
                     value={value}
+                    list={list}
                     onChange={onChange}
                     onKeyDown={handleKeyDown}
                     disabled={disabled}
