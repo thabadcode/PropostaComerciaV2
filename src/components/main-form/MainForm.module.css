@@ -2,7 +2,6 @@
     display: flex;
     width: 90vw;
     max-width: 600px;
-    position: fixed;
     margin: 10px;
     padding: 20px 10px;
     flex-direction: column;
@@ -23,7 +22,6 @@
     label {
         flex: 1;
     }
-    
 }
 
 .InputWithAction {
