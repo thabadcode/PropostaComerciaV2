@@ -4,81 +4,23 @@ import Checkbox from '../checkbox/Checkbox';
 import Input from '../input/Input';
 import Select from '../select/Select';
 import { PackagePlus, Plus } from 'lucide-react';
-import { PRODUCT_SUGGESTIONS } from '../../core/constants/productSuggestions';
+import { FREIGHT_TYPES, PRODUCT_SUGGESTIONS, UNIT_OPTIONS } from '../../core/constants/formOptions';
+import type { ProductFormState } from '../../core/hooks/useProductForm';
 
-interface ProductFormProps {
-    description: string;
-    onDescriptionChange: (value: string) => void;
-    isDescriptionValid: boolean;
-
-    freightType: string;
-    onFreightTypeChange: (value: string) => void;
-    isFreightTypeValid: boolean;
-
-    isClientCap: boolean;
-    onClientCapChange: (value: boolean) => void;
-
-    asphaltBinderContent: string;
-    onAsphaltBinderContentChange: (value: string) => void;
-    disabledAsphaltBinderContent: boolean;
-    isAsphaltBinderContent: boolean;
-
-    unit: string;
-    onUnitChange: (value: string) => void;
-    isUnitValid: boolean;
-
-    amount: string;
-    onAmountChange: (value: string) => void;
-    isAmountValid: boolean;
-
-    price: string;
-    onPriceChange: (value: string) => void;
-    isPriceValid: boolean;
-
-    onAddClick: () => void;
-}
-
-export default function ProductForm({
-    description,
-    onDescriptionChange,
-    isDescriptionValid,
-
-    freightType,
-    onFreightTypeChange,
-    isFreightTypeValid,
-
-    isClientCap,
-    onClientCapChange,
-
-    asphaltBinderContent,
-    onAsphaltBinderContentChange,
-    disabledAsphaltBinderContent,
-    isAsphaltBinderContent,
-
-    unit,
-    onUnitChange,
-    isUnitValid,
-
-    amount,
-    onAmountChange,
-    isAmountValid,
-
-    price,
-    onPriceChange,
-    isPriceValid,
-
-    onAddClick
-}: ProductFormProps) {
+export default function ProductForm(
+    {form, onAddClick}: {form: ProductFormState, onAddClick: () => void;}) {
     return (
         <FormSection icon={PackagePlus} title="Dados produto/serviço">
             <Input
                 label="Descrição"
                 type="text"
-                value={description}
+                value={form.description.value}
                 list={"product-suggestions"}
-                onChange={(e) => onDescriptionChange(e.target.value)}
-                isValid={isDescriptionValid}
-                supportingText="Campo obrigatório"
+                onChange={(e) => form.description.setValue(e.target.value)}
+                onBlur={form.description.onBlur}
+                onFocus={form.description.onFocus}
+                isValid={!form.description.showError}
+                supportingText={form.description.errorMsg ?? ""}
             />
             <datalist id="product-suggestions">
                 {PRODUCT_SUGGESTIONS.map((o) => (
@@ -89,56 +31,64 @@ export default function ProductForm({
             <FormRow>
                 <Select
                     label="Tipo de frete"
-                    options={["FOB", "CIF"]}
-                    value={freightType}
-                    onSelected={(e) => onFreightTypeChange(e.target.value)}
-                    isValid={isFreightTypeValid}
-                    supportingText="Selecione uma opção"
+                    options={FREIGHT_TYPES}
+                    value={form.freightType.value}
+                    onSelected={(e) => form.freightType.setValue(e.target.value)}
+                    onBlur={form.freightType.onBlur}
+                    onFocus={form.freightType.onFocus}
+                    isValid={!form.freightType.showError}
+                    supportingText={form.freightType.errorMsg ?? ""}
                 />
 
                 <Checkbox
                     label="Cap do cliente"
-                    checked={isClientCap}
-                    onCheck={(e) => onClientCapChange(e.target.checked)}
+                    checked={form.isClientCap.value}
+                    onCheck={(e) => form.isClientCap.setValue(e.target.checked)}
                 />
 
                 <Input
                     label="Teor de CAP (%)"
                     type="number"
-                    value={asphaltBinderContent}
-                    onChange={(e) => onAsphaltBinderContentChange(e.target.value)}
-                    disabled={disabledAsphaltBinderContent}
-                    isValid={isAsphaltBinderContent}
-                    supportingText="Informe um valor entre 4,0 e 9,0"
+                    value={form.asphaltBinderContent.value}
+                    onChange={(e) => form.asphaltBinderContent.setValue(e.target.value)}
+                    onBlur={form.asphaltBinderContent.onBlur}
+                    onFocus={form.asphaltBinderContent.onFocus}
+                    disabled={!form.isClientCap.value}
+                    isValid={!form.asphaltBinderContent.showError}
+                    supportingText={form.asphaltBinderContent.errorMsg ?? ""}
                 />
             </FormRow>
 
             <FormRow>
                 <Select
                     label="Unidade"
-                    options={["Ton", "Un"]}
-                    value={unit}
-                    onSelected={(e) => onUnitChange(e.target.value)}
-                    isValid={isUnitValid}
-                    supportingText="Selecione uma opção"
+                    options={UNIT_OPTIONS}
+                    value={form.unit.value}
+                    onSelected={(e) => form.unit.setValue(e.target.value)}
+                    onBlur={form.unit.onBlur}
+                    onFocus={form.unit.onFocus}
+                    isValid={!form.unit.showError}
+                    supportingText={form.unit.errorMsg ?? ""}
                 />
 
                 <Input
                     label="Quantidade"
                     type="number"
-                    value={amount}
-                    onChange={(e) => onAmountChange(e.target.value)}
-                    isValid={isAmountValid}
-                    supportingText="Valor maior que 0"
+                    value={form.amount.value}
+                    onChange={(e) => form.amount.setValue(e.target.value)}
+                    onBlur={form.amount.onBlur}
+                    onFocus={form.amount.onFocus}
+                    isValid={!form.amount.showError}
+                    supportingText={form.amount.errorMsg ?? ""}
                 />
 
                 <Input
                     label="Valor unitário"
                     type="number"
-                    value={price}
-                    onChange={(e) => onPriceChange(e.target.value)}
-                    isValid={isPriceValid}
-                    supportingText="Valor maior que 0"
+                    value={form.price.value}
+                    onChange={(e) => form.price.setValue(e.target.value)}
+                    isValid={!form.price.showError}
+                    supportingText={form.price.errorMsg ?? ""}
                 />
             </FormRow>
 
