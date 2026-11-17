@@ -17,7 +17,7 @@ export function useProductForm() {
 
     const fields = [
         description, freightType, isClientCap, asphaltBinderContent, unit,
-        
+        amount, price
     ];
 
     return {
