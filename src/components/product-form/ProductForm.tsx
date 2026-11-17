@@ -1,8 +1,8 @@
+import { FormSection, FormRow } from '../form/FormSection';
 import Button from '../button/Button';
 import Checkbox from '../checkbox/Checkbox';
 import Input from '../input/Input';
 import Select from '../select/Select';
-import style from './ProductForm.module.css';
 import { PackagePlus, Plus } from 'lucide-react';
 import { PRODUCT_SUGGESTIONS } from '../../core/constants/productSuggestions';
 
@@ -70,12 +70,7 @@ export default function ProductForm({
     onAddClick
 }: ProductFormProps) {
     return (
-        <div className={style.Form}>
-            <h2>
-                <PackagePlus/>
-                Dados produto/serviço
-            </h2>
-
+        <FormSection icon={PackagePlus} title="Dados produto/serviço">
             <Input
                 label="Descrição"
                 type="text"
@@ -91,7 +86,7 @@ export default function ProductForm({
                 ))}
             </datalist>
 
-            <div className={style.RowInputs}>
+            <FormRow>
                 <Select
                     label="Tipo de frete"
                     options={["FOB", "CIF"]}
@@ -116,9 +111,9 @@ export default function ProductForm({
                     isValid={isAsphaltBinderContent}
                     supportingText="Informe um valor entre 4,0 e 9,0"
                 />
-            </div>
+            </FormRow>
 
-            <div className={style.RowInputs}>
+            <FormRow>
                 <Select
                     label="Unidade"
                     options={["Ton", "Un"]}
@@ -145,13 +140,13 @@ export default function ProductForm({
                     isValid={isPriceValid}
                     supportingText="Valor maior que 0"
                 />
-            </div>
+            </FormRow>
 
             <Button
                 icon={Plus}
                 text="Adicionar produto/serviço"
                 onClick={onAddClick}
             />
-        </div>
+        </FormSection>
     );
 }
