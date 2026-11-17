@@ -22,3 +22,6 @@ export const PRODUCT_SUGGESTIONS = [
     'TRANSPORTE DE MASSA ASFÁLTICA'
 ] as const;
 
+export const UNIT_OPTIONS = ["Ton", "Un"] as const;
+
+export const FREIGHT_TYPES = ["FOB", "CIF"] as const;
