@@ -1,6 +1,6 @@
 import { useState } from "react";
-import style from "./MainForm.module.css";
 import { Info, Search, CalendarCheck } from "lucide-react";
+import { FormSection, FormRow } from "../form/FormSection";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import Checkbox from "../checkbox/Checkbox";
@@ -107,13 +107,8 @@ export default function MainForm({
     };
 
     return (
-        <div className={style.Form}>
-            <h2>
-                <Info/>
-                Informações gerais
-            </h2>
-
-            <div className={style.RowInputs}>
+        <FormSection icon={Info} title="Informações gerais">
+            <FormRow>
                 <Input
                     label="Data"
                     type="date"
@@ -148,7 +143,7 @@ export default function MainForm({
                         />
                     )}
                 />
-            </div>
+            </FormRow>
 
             <Input
                 label="Razão social"
@@ -159,7 +154,7 @@ export default function MainForm({
                 supportingText={companyNameSupportingText}
             />
 
-            <div className={style.RowInputs}>
+            <FormRow>
                 <Input
                     label="Representante (opicional)"
                     type="text"
@@ -176,7 +171,7 @@ export default function MainForm({
                     supportingText="Campo obrigatório" 
                     isValid={true}
                 />
-            </div>
+            </FormRow>
 
             <Textarea
                 label="Observações (opcional)"
@@ -184,7 +179,7 @@ export default function MainForm({
                 onChange={(e) => onObservationsChange(e.target.value)}
             />
 
-            <div className={style.Checks}>
+            <FormRow>
                 <Checkbox
                     label="Exibir valor total"
                     checked={showTotal}
@@ -196,7 +191,7 @@ export default function MainForm({
                     checked={showPS}
                     onCheck={(e) => onShowPSChange(e.target.checked)}
                 />
-            </div>
-        </div>
+            </FormRow>
+        </FormSection>
     );
 }
