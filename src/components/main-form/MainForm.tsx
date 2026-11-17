@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { type MainFormState } from "../../core/hooks/useMainForm";
 import { Info, Search, CalendarCheck } from "lucide-react";
 import { FormSection, FormRow } from "../form/FormSection";
 import Input from "../input/Input";
@@ -8,102 +9,25 @@ import Loading from "../loading/Loading";
 import Select from "../select/Select";
 import Textarea from "../textarea/Textarea";
 import { paymentConditions } from "../../core/constants/paymentConditions";
-import { rules } from "../../core/utils/rules";
 import { searchCnpj } from "../../core/utils/searchCnpj";
 
-interface MainFormProps {
-    showModal: (value: boolean) => void;
-    setModalTitle: (value: string) => void;
-    setModalMsg: (value: string) => void;
-    
-    dateValue: string;
-    onDateChange: (value: string) => void;
-    isDateValid: boolean;
-    dateSupportingText: string;
-
-    companyName: string;
-    onCompanyNameChenge: (value: string) => void;
-    isCompanyNameValid: boolean;
-    companyNameSupportingText: string;
-
-    representative: string;
-    onRepresentativeChange: (value: string) => void;
-
-    paymentConditionSelected: string;
-    onPaymentConditionChange: (value: string) => void;
-
-    observations: string;
-    onObservationsChange: (value: string) => void;
-
-    showTotal: boolean;
-    onShowTotalChenage: (value: boolean) => void;
-
-    showPS: boolean;
-    onShowPSChange: (value: boolean) => void;
-}
-
-export default function MainForm({
-    showModal,
-    setModalTitle,
-    setModalMsg,
-
-    dateValue,
-    onDateChange,
-    isDateValid,
-    dateSupportingText,
-
-    companyName,
-    onCompanyNameChenge,
-    isCompanyNameValid,
-    companyNameSupportingText,
-
-    representative,
-    onRepresentativeChange,
-
-    paymentConditionSelected,
-    onPaymentConditionChange,
-
-    observations,
-    onObservationsChange,
-
-    showTotal,
-    onShowTotalChenage,
-
-    showPS,
-    onShowPSChange
-}: MainFormProps) {
-    const [cnpj, setCnpj] = useState("");
-    const [isCnpjValid, setIsCnpjValid] = useState(true);
+export default function MainForm2({form}: {form: MainFormState}) {
     const [isLoading, setIsLoading] = useState(false);
-
     const setToday = () => {
         const today = new Date().toLocaleDateString("en-CA");
-        onDateChange(today);
+        form.date.setValue(today);
     };
 
     const handleSearchCnpj  = async () => {
-        if (isLoading) return;
-        if (!rules.cnpj(cnpj)) {
-            setIsCnpjValid(false);
-            return;
-        }
-
-        setIsCnpjValid(true);
+        if (isLoading || !form.cnpj.isValid) return;
         setIsLoading(true);
-
-        const result = await searchCnpj(cnpj);
-
+        const result = await searchCnpj(form.cnpj.value);
         setIsLoading(false);
-
         if ((result).hasError) {
-            setIsCnpjValid(false);
-            setModalTitle("Ocorreu um erro");
-            setModalMsg(`${result.errorMsg}`);
-            showModal(true);
+            // Todo: implementar aviso modal
             return;
         }
-
-        onCompanyNameChenge(result.companyName);
+        form.companyName.setValue(result.companyName);
     };
 
     return (
@@ -112,10 +36,12 @@ export default function MainForm({
                 <Input
                     label="Data"
                     type="date"
-                    value={dateValue}
-                    onChange={(e) => onDateChange(e.target.value)}
-                    isValid={isDateValid}
-                    supportingText={dateSupportingText}
+                    value={form.date.value}
+                    onChange={(e) => form.date.setValue(e.target.value)}
+                    onBlur={form.date.onBlur}
+                    onFocus={form.date.onFocus}
+                    isValid={!form.date.showError}
+                    supportingText={form.date.errorMsg ?? ""}
                     action={
                         <Button
                             icon={CalendarCheck}
@@ -128,11 +54,13 @@ export default function MainForm({
                 <Input
                     label="Pesquisar pelo CNPJ"
                     type="text"
-                    value={cnpj}
-                    onChange={(e) => setCnpj(e.target.value)}
-                    isValid={isCnpjValid}
+                    value={form.cnpj.value}
+                    onChange={(e) => form.cnpj.setValue(e.target.value)}
+                    onBlur={form.cnpj.onBlur}
+                    onFocus={form.cnpj.onFocus}
+                    isValid={!form.cnpj.showError}
                     disabled={isLoading}
-                    supportingText="Digite um CNPJ válido"
+                    supportingText={form.cnpj.errorMsg ?? ""}
                     action={isLoading ? (
                         <Loading text="Pesquisando"/>
                     ) : (
@@ -148,48 +76,52 @@ export default function MainForm({
             <Input
                 label="Razão social"
                 type="text"
-                value={companyName}
-                onChange={(e) => onCompanyNameChenge(e.target.value)}
-                isValid={isCompanyNameValid}
-                supportingText={companyNameSupportingText}
+                value={form.companyName.value}
+                onChange={(e) => form.companyName.setValue(e.target.value)}
+                onBlur={form.companyName.onBlur}
+                onFocus={form.companyName.onFocus}
+                isValid={!form.companyName.showError}
+                supportingText={form.companyName.errorMsg ?? ""}
             />
 
             <FormRow>
                 <Input
                     label="Representante (opicional)"
                     type="text"
-                    value={representative}
-                    onChange={(e) => onRepresentativeChange(e.target.value)}
+                    value={form.representative.value}
+                    onChange={(e) => form.representative.setValue(e.target.value)}
                     isValid={true}
                 />
 
                 <Select
                     label="Condições de pagamento"
-                    value={paymentConditionSelected}
+                    value={form.paymentCondition.value}
                     options={paymentConditions}
-                    onSelected={(e) => onPaymentConditionChange(e.target.value)}
-                    supportingText="Campo obrigatório" 
-                    isValid={true}
+                    onSelected={(e) => form.paymentCondition.setValue(e.target.value)}
+                    onBlur={form.paymentCondition.onBlur}
+                    onFocus={form.paymentCondition.onFocus}
+                    supportingText={form.paymentCondition.errorMsg ?? ""}
+                    isValid={!form.paymentCondition.showError}
                 />
             </FormRow>
 
             <Textarea
                 label="Observações (opcional)"
-                value={observations}
-                onChange={(e) => onObservationsChange(e.target.value)}
+                value={form.observations.value}
+                onChange={(e) => form.observations.setValue(e.target.value)}
             />
 
             <FormRow>
                 <Checkbox
                     label="Exibir valor total"
-                    checked={showTotal}
-                    onCheck={(e) => onShowTotalChenage(e.target.checked)}
+                    checked={form.showTotal.value}
+                    onCheck={(e) => form.showTotal.setValue(e.target.checked)}
                 />
 
                 <Checkbox
                     label="Exibir PS de frete"
-                    checked={showPS}
-                    onCheck={(e) => onShowPSChange(e.target.checked)}
+                    checked={form.showPS.value}
+                    onCheck={(e) => form.showPS.setValue(e.target.checked)}
                 />
             </FormRow>
         </FormSection>
