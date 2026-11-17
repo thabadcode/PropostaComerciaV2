@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import style from './FormSection.module.css';
 
-export function FormSection( //Tem problema o default aqui?
+export function FormSection(
     {icon: Icon, title, children}:
     {icon: LucideIcon; title: string; children: React.ReactNode}) {
     return (
