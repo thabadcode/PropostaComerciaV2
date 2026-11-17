@@ -3,7 +3,7 @@ import style from './Select.module.css'
 
 interface SelectProps {
     label: string;
-    options: Array<string>;
+    options: readonly string[];
     value: string;
     onSelected: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     onBlur: React.FocusEventHandler<HTMLSelectElement>;
