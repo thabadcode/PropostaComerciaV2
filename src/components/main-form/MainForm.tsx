@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./MainForm.module.css";
-import { Info, Search } from "lucide-react";
+import { Info, Search, CalendarCheck } from "lucide-react";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import Checkbox from "../checkbox/Checkbox";
@@ -121,7 +121,13 @@ export default function MainForm({
                     onChange={(e) => onDateChange(e.target.value)}
                     isValid={isDateValid}
                     supportingText={dateSupportingText}
-                    action={<Button text="Hoje" onClick={setToday}/>}
+                    action={
+                        <Button
+                            icon={CalendarCheck}
+                            text="Hoje"
+                            onClick={setToday}
+                        />
+                    }
                 />
 
                 <Input
