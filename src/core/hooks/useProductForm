@@ -7,8 +7,10 @@ export function useProductForm() {
     const description = useFormField("", rules.required);
     const freightType = useFormField("", rules.required);
     const isClientCap = useFormField(false);
-    const asphaltBinderContent = useFormField("", isClientCap.value?
-        rules.binderContent : () => null);
+    const asphaltBinderContent = useFormField("", (value) => {
+        if(isClientCap.value) return rules.binderContent(value);
+        return null;
+    });
     const unit = useFormField("", rules.required);
     const amount = useFormField("", rules.positiveNumber);
     const price = useFormField("", rules.positiveNumber);
