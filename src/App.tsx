@@ -9,12 +9,14 @@ import { useProductForm } from "./core/hooks/useProductForm";
 export default function App() {
   const mainForm = useMainForm();
   const productForm = useProductForm();
+  const [products, setProducts] = useState([]);
+  
   const [showModal, setShowModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMsg, setModalMsg] = useState("");
 
   const showClearMsg = () => {
-    // Todo: implementar limpeza da lista de produtos;
+    setProducts([]);
     mainForm.reset();
     productForm.reset();
   };
