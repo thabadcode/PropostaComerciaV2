@@ -1,14 +1,31 @@
 export const rules = {
-    required: (value: string): boolean => {
-        const clean = value.trim();
-        return clean !== '';
-    },
-    cnpj: (value: string): boolean => {
-        const clean = value.replace(/\D/g, "");
-        if (clean.length !== 14) return false;
-        if (/^(\d)\1+$/.test(clean)) return false;
+    required: (value: string): string | null =>
+        value.trim() === ""? "Campo obrigatório" : null,
 
-        return (validateCheckDigit(clean, 12) && validateCheckDigit(clean, 13));
+    cnpj: (value: string): string | null => {
+        const clean = value.replace(/\D/g, "");
+        const isValid =
+            clean.length === 14 &&
+            !/^(\d)\1+$/.test(clean) &&
+            validateCheckDigit(clean, 12) &&
+            validateCheckDigit(clean, 13)
+        
+        return isValid? null : "Informe um CNPJ válido";
+    },
+
+    binderContent: (value: string): string | null => {
+        if (value.trim() === "") return "Campo obrigatório";
+        const number = Number(value);
+        if (Number.isNaN(number)) return "Digite apenas números";
+        if (number < 4.0 || number > 9.0) return "Informe um valor entre 4.0 e 9.0";
+        return null;
+    },
+    
+    positiveNumber: (value: string): string | null => {
+        if (value.trim() === "") return "Campo obrigatório";
+        const number = Number(value);
+        if (Number.isNaN(number)) return "Digite apenas números";
+        return number > 0 ? null : "Digite um valor maior que 0";
     }
 };
 
