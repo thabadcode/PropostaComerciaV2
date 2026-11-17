@@ -24,7 +24,7 @@ export function useProductForm() {
         description, freightType, isClientCap,
         asphaltBinderContent, unit, amount, price,
         isValid: fields.every((f) => f.isValid),
-        touchAll: fields.forEach((f) => f.touch()),
-        reset: fields.forEach((f) => f.reset())
+        touchAll: () => fields.forEach((f) => f.touch()),
+        reset: () => fields.forEach((f) => f.reset())
     };
 }
