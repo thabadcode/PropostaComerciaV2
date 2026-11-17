@@ -4,16 +4,16 @@ import { rules } from "../utils/rules";
 export type ProductFormState = ReturnType<typeof useProductForm>;
 
 export function useProductForm() {
-    const description = useFormField("", rules.required);
-    const freightType = useFormField("", rules.required);
-    const isClientCap = useFormField(false);
-    const asphaltBinderContent = useFormField("", (value) => {
+    const description = useFormField<string>("", rules.required);
+    const freightType = useFormField<string>("", rules.required);
+    const isClientCap = useFormField<boolean>(false);
+    const asphaltBinderContent = useFormField<string>("", (value) => {
         if(isClientCap.value) return rules.binderContent(value);
         return null;
     });
-    const unit = useFormField("", rules.required);
-    const amount = useFormField("", rules.positiveNumber);
-    const price = useFormField("", rules.positiveNumber);
+    const unit = useFormField<string>("", rules.required);
+    const amount = useFormField<string>("", rules.positiveNumber);
+    const price = useFormField<string>("", rules.positiveNumber);
 
     const fields = [
         description, freightType, isClientCap, asphaltBinderContent, unit,
