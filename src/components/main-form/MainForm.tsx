@@ -8,7 +8,7 @@ import Checkbox from "../checkbox/Checkbox";
 import Loading from "../loading/Loading";
 import Select from "../select/Select";
 import Textarea from "../textarea/Textarea";
-import { paymentConditions } from "../../core/constants/paymentConditions";
+import { PAYMENT_CONDITIONS } from "../../core/constants/formOptions"; 
 import { searchCnpj } from "../../core/utils/searchCnpj";
 
 export default function MainForm2({form}: {form: MainFormState}) {
@@ -96,7 +96,7 @@ export default function MainForm2({form}: {form: MainFormState}) {
                 <Select
                     label="Condições de pagamento"
                     value={form.paymentCondition.value}
-                    options={paymentConditions}
+                    options={PAYMENT_CONDITIONS}
                     onSelected={(e) => form.paymentCondition.setValue(e.target.value)}
                     onBlur={form.paymentCondition.onBlur}
                     onFocus={form.paymentCondition.onFocus}
