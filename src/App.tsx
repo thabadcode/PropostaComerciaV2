@@ -10,7 +10,7 @@ export default function App() {
   const mainForm = useMainForm();
   const productForm = useProductForm();
   const [products, setProducts] = useState([]);
-  
+
   const [showModal, setShowModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMsg, setModalMsg] = useState("");
@@ -22,7 +22,16 @@ export default function App() {
   };
 
   const tryAddProduct = () => {
-    // Todo: implementar validação e adição de produtos
+    if(!productForm.isValid) {
+      productForm.touchAll();
+      return;
+    }
+
+    const newProduct = {
+      // Todo: implementar atributos do objeto product
+    };
+
+    setProducts([...products, newProduct])
     productForm.reset();
   }
 
