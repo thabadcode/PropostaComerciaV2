@@ -14,11 +14,14 @@ export default function App() {
   const [modalMsg, setModalMsg] = useState("");
 
   const showClearMsg = () => {
-    alert("Tudo foi limpo");
+    // Todo: implementar limpeza da lista de produtos;
+    mainForm.reset();
+    productForm.reset();
   };
 
   const tryAddProduct = () => {
     // Todo: implementar validação e adição de produtos
+    productForm.reset();
   }
 
   return (
@@ -35,7 +38,6 @@ export default function App() {
       <main>
         <form>
           <MainForm form={mainForm}/>
-
           <ProductForm form={productForm} onAddClick={tryAddProduct}/>
         </form>
       </main>
