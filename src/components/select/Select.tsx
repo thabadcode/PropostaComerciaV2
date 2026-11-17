@@ -6,6 +6,8 @@ interface SelectProps {
     options: Array<string>;
     value: string;
     onSelected: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    onBlur: React.FocusEventHandler<HTMLSelectElement>;
+    onFocus: React.FocusEventHandler<HTMLSelectElement>;
     isValid: boolean;
     supportingText?: string;
     disabled?: boolean;
