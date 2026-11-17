@@ -8,6 +8,7 @@
     border-radius: 10px;
     color: var(--text-secundary);
     background-color: var(--color-brand);
+    align-self: center;
 }
 
 .Button {
