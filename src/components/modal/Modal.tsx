@@ -39,10 +39,8 @@ export default function Modal({
         };
     }, [show, onConfirm, onDismiss]);
 
-    if (!show) return null;
-
     return (
-        <div className={style.Backdrop}>
+        <div className={`${style.Backdrop} ${show ? style.show : ""}`}>
             <div className={style.Modal}>
                 <h2><Info className={style.Icon}/>{title}</h2>
                 <p>{message}</p>
