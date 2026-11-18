@@ -27,31 +27,33 @@ export function Table({
         return items.map((p, index) => (
             <tr key={index}>
                 <td>
-                    <ActionButton
-                        icon={ChevronUp}
-                        label="Mover para cima"
-                        disabled={index === 0}
-                        onClick={() => onMoveUp(index)}
-                    />
+                    <div className={style.Actions}>
+                        <ActionButton
+                            icon={ChevronUp}
+                            label="Mover para cima"
+                            disabled={index === 0}
+                            onClick={() => onMoveUp(index)}
+                        />
 
-                    <ActionButton
-                        icon={ChevronDown}
-                        label="Mover para baixo"
-                        disabled={index === length - 1}
-                        onClick={() => onMoveDown(index)}
-                    />
+                        <ActionButton
+                            icon={ChevronDown}
+                            label="Mover para baixo"
+                            disabled={index === length - 1}
+                            onClick={() => onMoveDown(index)}
+                        />
 
-                    <ActionButton
-                        icon={SquarePen}
-                        label="Editar"
-                        onClick={() => onEdit(index)}
-                    />
+                        <ActionButton
+                            icon={SquarePen}
+                            label="Editar"
+                            onClick={() => onEdit(index)}
+                        />
 
-                    <ActionButton
-                        icon={Trash}
-                        label="Excluir"
-                        onClick={() => onDelete(index)}
-                    />
+                        <ActionButton
+                            icon={Trash}
+                            label="Excluir"
+                            onClick={() => onDelete(index)}
+                        />
+                    </div>
                 </td>
                 <td>{p.description}</td>
                 <td>{p.unit}</td>
