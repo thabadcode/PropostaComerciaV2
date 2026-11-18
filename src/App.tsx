@@ -35,9 +35,19 @@ export default function App() {
     productForm.reset();
   }
 
+  const tryGeneratePdf = () => {
+    if (!mainForm.isValid || !productForm.isValid) {
+      mainForm.touchAll();
+      productForm.touchAll();
+      return;
+    }
+
+    window.print();
+  };
+
   return (
     <>
-      <Header clearAll={clearAll} generatePDF={window.print} />
+      <Header clearAll={clearAll} generatePDF={tryGeneratePdf} />
       <Modal
         show={showModal}
         title={modalTitle}
