@@ -33,6 +33,10 @@ export default function App() {
   const tryAddProduct = () => {
     if (!productForm.isValid) {
       productForm.touchAll();
+      modal.showModal(
+        "Campos inválidos",
+        "Confira os dados do produto antes de adicioná-lo."
+      );
       return;
     }
 
