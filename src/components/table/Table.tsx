@@ -109,7 +109,7 @@ function ActionButton({
             disabled={disabled}
             onClick={onClick}
             aria-label={label}
-            className={style.ActionButton}
+            className={disabled ? style.DisabledActionButton : style.ActionButton}
         >
             <Icon size={20}/>
         </button>
