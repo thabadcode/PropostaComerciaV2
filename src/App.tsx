@@ -59,7 +59,10 @@ export default function App() {
     }
 
     if (products.products.length === 0) {
-      // Todo: avisar com o modal que falta adicionar produtos
+      modal.showModal(
+        "Nenhum produto adicionado",
+        "Adicione ao menos um produto para gerar o documento."
+      );
       return;
     }
 
