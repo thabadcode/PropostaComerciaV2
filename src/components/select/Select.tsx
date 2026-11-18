@@ -23,7 +23,6 @@ export default function Select({
 }: SelectProps) {
     return (
         <label className={style.Select}>
-
             <span className={style.LabelText}>{label}</span>
             <select 
                 value={value}
