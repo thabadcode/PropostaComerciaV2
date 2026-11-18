@@ -22,7 +22,7 @@ export default function App() {
   };
 
   const tryAddProduct = () => {
-    if(!productForm.isValid) {
+    if (!productForm.isValid) {
       productForm.touchAll();
       return;
     }
