@@ -16,9 +16,10 @@ export default function Select({
     options,
     value,
     onSelected,
+    onBlur,
+    onFocus,
     isValid,
-    supportingText,
-    disabled=false
+    supportingText
 }: SelectProps) {
     return (
         <label className={style.Select}>
@@ -27,6 +28,8 @@ export default function Select({
             <select 
                 value={value}
                 onChange={onSelected}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 className={!isValid ? style.InvalidField : style.Field}
                 aria-invalid={!isValid}
                 aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
