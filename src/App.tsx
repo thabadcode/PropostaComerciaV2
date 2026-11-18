@@ -56,6 +56,11 @@ export default function App() {
       return;
     }
 
+    if (products.products.length === 0) {
+      // Todo: avisar com o modal que falta adicionar produtos
+      return;
+    }
+
     window.print();
   };
 
