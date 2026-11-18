@@ -5,20 +5,23 @@ import MainForm from "./components/main-form/MainForm";
 import ProductForm from "./components/product-form/ProductForm";
 import { useMainForm } from "./core/hooks/useMainForm";
 import { useProductForm } from "./core/hooks/useProductForm";
+import { useProducts, type Product } from "./core/hooks/useProducts";
 
 export default function App() {
   const mainForm = useMainForm();
   const productForm = useProductForm();
-  const [products, setProducts] = useState([]);
+  const products = useProducts();
 
   const [showModal, setShowModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMsg, setModalMsg] = useState("");
 
   const clearAll = () => {
-    setProducts([]);
+    // Todo: Implementar confirmação com modal
+
     mainForm.reset();
     productForm.reset();
+    products.reset();
   };
 
   const buildFinalDescription = () => {
