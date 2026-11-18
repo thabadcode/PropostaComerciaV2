@@ -54,7 +54,10 @@ export default function App() {
   const tryGeneratePdf = () => {
     if (!mainForm.isValid) {
       mainForm.touchAll();
-      productForm.touchAll();
+      modal.showModal(
+        "Campos inválidos",
+        "Preencha corretamente os dados do cabeçalho antes de gerar o documento."
+      );
       return;
     }
 
