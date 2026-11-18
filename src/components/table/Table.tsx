@@ -63,7 +63,7 @@ export function Table({
     };
 
     return(
-        <div className={style.CardTable}>
+        <div id="products-table" className={style.CardTable}>
             <h2><Sheet/>Tabela de produtos/serviços</h2>
             <hr className={style.Divider}/>
             
