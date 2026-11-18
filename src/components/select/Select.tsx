@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import style from './Select.module.css'
 
 interface SelectProps {
@@ -21,8 +20,6 @@ export default function Select({
     supportingText,
     disabled=false
 }: SelectProps) {
-    const [isTouched, setTouched] = useState(false);
-
     const getClassName = () => {
         if (disabled) return style.DisabledField;
         return !isValid ? style.InvalidField : style.Field;
@@ -34,10 +31,7 @@ export default function Select({
             <span className={style.LabelText}>{label}</span>
             <select 
                 value={value}
-                onChange={ (e) => {
-                    onSelected(e);
-                    setTouched(true);
-                }}
+                onChange={onSelected}
                 className={getClassName()}
                 disabled={disabled}
                 aria-invalid={!isValid}
