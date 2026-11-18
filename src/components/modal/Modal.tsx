@@ -29,7 +29,10 @@ export default function Modal({
                 if (onDismiss) onDismiss();
                 else onConfirm();
             }
-            else if (event.key === 'Enter') onConfirm();
+            else if (event.key === 'Enter'&& !event.isComposing) {
+                event.preventDefault();
+                onConfirm();
+            }
         };
 
         window.addEventListener('keydown', handleKeyDown);
