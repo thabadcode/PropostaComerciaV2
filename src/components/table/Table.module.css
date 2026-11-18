@@ -71,3 +71,29 @@
     th:nth-child(3) { width: 80px;  }
     th:nth-child(4) { width: 120px; }
 }
+
+.ActionButton, .DisabledActionButton {
+    padding: 0;
+    display: inline-flex;
+    border: none;
+    background: none;
+    color: var(--text-primary);
+}
+
+.ActionButton {
+    transition: color 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color-brand);
+    }
+}
+
+.DisabledActionButton {
+    opacity: 0.3;
+}
+
+.Actions {
+    display: flex;
+    justify-content: space-around;
+}
