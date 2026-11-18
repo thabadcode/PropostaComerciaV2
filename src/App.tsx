@@ -38,13 +38,16 @@ export default function App() {
       return;
     }
 
-    const newProduct = {
-      // Todo: implementar atributos do objeto product
+    const newProduct: Product = {
+      description: buildFinalDescription(),
+      unit: productForm.unit.value,
+      quantity: Number(productForm.amount.value),
+      price: Number(productForm.price.value)
     };
 
-    setProducts([...products, newProduct])
+    products.insertProduct(newProduct);
     productForm.reset();
-  }
+  };
 
   const tryGeneratePdf = () => {
     if (!mainForm.isValid || !productForm.isValid) {
