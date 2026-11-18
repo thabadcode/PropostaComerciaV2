@@ -36,7 +36,7 @@ export default function Select({
                 aria-invalid={!isValid}
                 aria-describedby={supportingText && !isValid ? errorId : undefined}
             >
-                {value === "" ? <option value="">Selecione...</option> : undefined}
+                {value === "" && <option value="">Selecione...</option>}
                 {options.map((option) => (
                     <option key={option} value={option}>{option}</option>
                 ))}
