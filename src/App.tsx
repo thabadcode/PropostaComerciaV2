@@ -6,6 +6,7 @@ import { useMainForm } from "./core/hooks/useMainForm";
 import { useProductForm } from "./core/hooks/useProductForm";
 import { useProducts, type Product } from "./core/hooks/useProducts";
 import { useModal } from "./core/hooks/useModal";
+import { Table } from "./components/table/Table";
 
 export default function App() {
   const modal = useModal();
@@ -94,10 +95,18 @@ export default function App() {
       />
 
       <main>
-        <form>
+        <div className="Forms">
           <MainForm form={mainForm}/>
           <ProductForm form={productForm} onAddClick={tryAddProduct}/>
-        </form>
+        </div>
+
+        <Table
+          products={products}
+          onMoveUp={(index) => products.reorderProducts(index, -1)}
+          onMoveDown={(index) => products.reorderProducts(index, 1)}
+          onEdit={(index) => alert("Todo: Implementar lógica de edição")}
+          onDelete={(index) => products.removeProduct(index)}
+        />
       </main>
     </>
   );
