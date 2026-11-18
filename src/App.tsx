@@ -79,8 +79,10 @@ export default function App() {
         show={modal.state.show}
         title={modal.state.title}
         message={modal.state.message}
-        confirmText="Ok"
-        onConfirm={modal.close}
+        confirmText={modal.state.confirmText ?? "Ok"}
+        dismissText={modal.state.dismissText}
+        onConfirm={modal.confirm}
+        onDismiss={modal.dismiss}
       />
 
       <main>
