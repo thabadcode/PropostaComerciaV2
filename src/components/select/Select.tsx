@@ -1,4 +1,5 @@
-import style from './Select.module.css'
+import { useId } from 'react';
+import style from './Select.module.css';
 
 interface SelectProps {
     label: string;
@@ -21,6 +22,8 @@ export default function Select({
     isValid,
     supportingText
 }: SelectProps) {
+    const errorId = useId();
+
     return (
         <label className={style.Select}>
             <span className={style.LabelText}>{label}</span>
@@ -31,7 +34,7 @@ export default function Select({
                 onFocus={onFocus}
                 className={!isValid ? style.InvalidField : style.Field}
                 aria-invalid={!isValid}
-                aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
+                aria-describedby={supportingText && !isValid ? errorId : undefined}
             >
                 {value === "" ? <option value="">Selecione...</option> : undefined}
                 {options.map((option) => (
@@ -39,7 +42,7 @@ export default function Select({
                 ))}
             </select>
             {supportingText && !isValid &&
-                <span id={`${label}-error`} className={style.SupportingText}>
+                <span id={errorId} className={style.SupportingText}>
                     {supportingText}
                 </span>
             }
