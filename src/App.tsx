@@ -50,7 +50,7 @@ export default function App() {
   };
 
   const tryGeneratePdf = () => {
-    if (!mainForm.isValid || !productForm.isValid) {
+    if (!mainForm.isValid) {
       mainForm.touchAll();
       productForm.touchAll();
       return;
