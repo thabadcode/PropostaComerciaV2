@@ -43,7 +43,7 @@ export default function Select({
                 aria-invalid={!isValid}
                 aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
             >
-                {!isTouched ? <option key={0} value="">Selecione...</option> : undefined}
+                {value === "" ? <option key={0} value="">Selecione...</option> : undefined}
                 {options.map((option, index) => (
                     <option key={index+1} value={option}>{option}</option>
                 ))}
