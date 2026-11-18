@@ -21,6 +21,14 @@ export default function App() {
     productForm.reset();
   };
 
+  const buildFinalDescription = () => {
+    let finalDescription = `${productForm.description.value} - ${productForm.freightType.value}`;
+    if (productForm.isClientCap) {
+      finalDescription += ` - CAP por conta do cliente - Teor ${productForm.asphaltBinderContent.value}%`;
+    }
+    return finalDescription;
+  };
+
   const tryAddProduct = () => {
     if (!productForm.isValid) {
       productForm.touchAll();
