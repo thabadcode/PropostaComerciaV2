@@ -20,10 +20,6 @@ export default function Select({
     supportingText,
     disabled=false
 }: SelectProps) {
-    const getClassName = () => {
-        return !isValid ? style.InvalidField : style.Field;
-    };
-
     return (
         <label className={style.Select}>
 
@@ -31,7 +27,7 @@ export default function Select({
             <select 
                 value={value}
                 onChange={onSelected}
-                className={getClassName()}
+                className={!isValid ? style.InvalidField : style.Field}
                 aria-invalid={!isValid}
                 aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
             >
