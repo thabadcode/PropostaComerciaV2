@@ -32,7 +32,7 @@ export default function App() {
 
   const buildFinalDescription = () => {
     let finalDescription = `${productForm.description.value} - ${productForm.freightType.value}`;
-    if (productForm.isClientCap) {
+    if (productForm.isClientCap.value) {
       finalDescription += ` - CAP por conta do cliente - Teor ${productForm.asphaltBinderContent.value}%`;
     }
     return finalDescription;
