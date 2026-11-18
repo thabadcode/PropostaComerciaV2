@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Modal from "./components/modal/Modal";
 import Header from "./components/header/Header";
 import MainForm from "./components/main-form/MainForm";
@@ -6,15 +5,14 @@ import ProductForm from "./components/product-form/ProductForm";
 import { useMainForm } from "./core/hooks/useMainForm";
 import { useProductForm } from "./core/hooks/useProductForm";
 import { useProducts, type Product } from "./core/hooks/useProducts";
+import { useModal } from "./core/hooks/useModal";
 
 export default function App() {
+  const modal = useModal();
+
   const mainForm = useMainForm();
   const productForm = useProductForm();
   const products = useProducts();
-
-  const [showModal, setShowModal] = useState(false);
-  const [modalTitle, setModalTitle] = useState("");
-  const [modalMsg, setModalMsg] = useState("");
 
   const clearAll = () => {
     // Todo: Implementar confirmação com modal
@@ -68,11 +66,11 @@ export default function App() {
     <>
       <Header clearAll={clearAll} generatePDF={tryGeneratePdf} />
       <Modal
-        show={showModal}
-        title={modalTitle}
-        message={modalMsg}
+        show={modal.modal.show}
+        title={modal.modal.title}
+        message={modal.modal.message}
         confirmText="Ok"
-        onConfirm={() => setShowModal(false)}
+        onConfirm={modal.close}
       />
 
       <main>
