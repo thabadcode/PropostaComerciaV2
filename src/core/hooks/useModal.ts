@@ -7,16 +7,16 @@ export interface ModalState {
 }
 
 export function useModal() {
-    const [modal, setModal] = useState<ModalState>({
+    const [state, setState] = useState<ModalState>({
         show: false,
         title: "",
         message: ""
     });
 
     return {
-        modal,
+        state,
         showModal: (title: string, message: string) => 
-            setModal({show: true, title: title, message: message}),
-        close: () => setModal({show: false, title: "", message: ""})
+            setState({show: true, title: title, message: message}),
+        close: () => setState({show: false, title: "", message: ""})
     };
 }

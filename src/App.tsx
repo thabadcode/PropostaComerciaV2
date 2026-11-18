@@ -66,9 +66,9 @@ export default function App() {
     <>
       <Header clearAll={clearAll} generatePDF={tryGeneratePdf} />
       <Modal
-        show={modal.modal.show}
-        title={modal.modal.title}
-        message={modal.modal.message}
+        show={modal.state.show}
+        title={modal.state.title}
+        message={modal.state.message}
         confirmText="Ok"
         onConfirm={modal.close}
       />
