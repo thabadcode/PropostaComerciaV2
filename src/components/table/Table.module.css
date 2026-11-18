@@ -46,6 +46,7 @@
         background-color: var(--color-brand);
         color: var(--text-secundary);
         text-transform: uppercase;
+        border-bottom: 3px solid var(--bg-secundary);
     }
 
     tbody {
