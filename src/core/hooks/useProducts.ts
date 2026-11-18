@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+export type ProductsState = ReturnType<typeof useProducts>;
 export interface Product {
     description: string;
     unit: string;
