@@ -95,18 +95,22 @@ export default function App() {
       />
 
       <main>
-        <div className="Forms">
+        <div className="forms">
           <MainForm form={mainForm}/>
           <ProductForm form={productForm} onAddClick={tryAddProduct}/>
         </div>
 
-        <Table
-          products={products}
-          onMoveUp={(index) => products.reorderProducts(index, -1)}
-          onMoveDown={(index) => products.reorderProducts(index, 1)}
-          onEdit={(index) => alert("Todo: Implementar lógica de edição")}
-          onDelete={(index) => products.removeProduct(index)}
-        />
+        <div className="previews">
+          <Table
+            products={products}
+            onMoveUp={(index) => products.reorderProducts(index, -1)}
+            onMoveDown={(index) => products.reorderProducts(index, 1)}
+            onEdit={(index) => alert("Todo: Implementar lógica de edição")}
+            onDelete={(index) => products.removeProduct(index)}
+          />
+
+          {/* Todo: Implementar preview PDF */}
+        </div>
       </main>
     </>
   );
