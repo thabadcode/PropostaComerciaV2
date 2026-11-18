@@ -9,6 +9,19 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 100;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+
+        .Modal {
+            transform: scale(1);
+        }
+    }
 }
 
 .Modal {
@@ -23,6 +36,9 @@
     background-color: var(--bg-secundary);
     box-shadow: var(--black-shadow);
     gap: 10px;
+
+    transform: scale(0.9);
+    transition: transform 0.2s ease;
 
     h2 {
         display: flex;
