@@ -23,6 +23,7 @@ export default function Select({
     supportingText
 }: SelectProps) {
     const errorId = useId();
+    const showError = Boolean(supportingText) && !isValid
 
     return (
         <label className={style.Select}>
@@ -34,14 +35,14 @@ export default function Select({
                 onFocus={onFocus}
                 className={!isValid ? style.InvalidField : style.Field}
                 aria-invalid={!isValid}
-                aria-describedby={supportingText && !isValid ? errorId : undefined}
+                aria-describedby={showError ? errorId : undefined}
             >
                 {value === "" && <option value="">Selecione...</option>}
                 {options.map((option) => (
                     <option key={option} value={option}>{option}</option>
                 ))}
             </select>
-            {supportingText && !isValid &&
+            {showError &&
                 <span id={errorId} className={style.SupportingText}>
                     {supportingText}
                 </span>
