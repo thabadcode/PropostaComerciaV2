@@ -15,11 +15,19 @@ export default function App() {
   const products = useProducts();
 
   const clearAll = () => {
-    // Todo: Implementar confirmação com modal
-
-    mainForm.reset();
-    productForm.reset();
-    products.reset();
+    modal.showModal(
+      "Limpar tudo",
+      "Isso apaga todas as informações e todos os produtos. Deseja continuar?",
+      {
+        confirmText: "Limpar",
+        dismissText: "Cancelar",
+        onConfirm: () => {
+          mainForm.reset();
+          productForm.reset();
+          products.reset();
+        }
+      }
+    )
   };
 
   const buildFinalDescription = () => {
