@@ -15,7 +15,7 @@ export default function App() {
   const [modalTitle, setModalTitle] = useState("");
   const [modalMsg, setModalMsg] = useState("");
 
-  const showClearMsg = () => {
+  const clearAll = () => {
     setProducts([]);
     mainForm.reset();
     productForm.reset();
@@ -37,7 +37,7 @@ export default function App() {
 
   return (
     <>
-      <Header clearAll={showClearMsg} generatePDF={window.print} />
+      <Header clearAll={clearAll} generatePDF={window.print} />
       <Modal
         show={showModal}
         title={modalTitle}
