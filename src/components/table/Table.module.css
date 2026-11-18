@@ -1,0 +1,72 @@
+.CardTable {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: fit-content;
+    margin: 10px;
+    padding: 20px 10px;
+    gap: 10px;
+    border-radius: 15px;
+    background-color: var(--bg-secundary);
+    color: var(--text-primary);
+
+    h2 {
+        display: flex;
+        gap: 5px;
+        font-size: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.Divider {
+    align-self: center;
+    width: 100%;
+    background-color: var(--bg-input);
+}
+
+.Table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 15px;
+
+    th, td {
+        padding: 10px;
+        font-size: 11pt;
+        text-align: center;
+        vertical-align: middle;
+        border-right: 3px solid var(--bg-secundary);
+
+        &:last-child { border-right: none; }
+    }
+
+    thead {
+        background-color: var(--color-brand);
+        color: var(--text-secundary);
+        text-transform: uppercase;
+    }
+
+    tbody {
+        background-color: var(--bg-input);
+
+        tr {
+            border-bottom: 3px solid var(--bg-secundary);
+            transition: background-color 0.3s ease;
+
+            &:hover { background-color: rgba(0, 0, 0, 0.2); }
+        }
+    }
+
+    tfoot {
+        background-color: var(--color-brand);
+        color: var(--text-secundary);
+
+        th, td { text-align: right; }
+    }
+
+    th:nth-child(1), th:nth-child(5), th:nth-child(6) { width: 150px; }
+    th:nth-child(3) { width: 80px;  }
+    th:nth-child(4) { width: 120px; }
+}
