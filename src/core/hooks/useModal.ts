@@ -17,6 +17,6 @@ export function useModal() {
         state,
         showModal: (title: string, message: string) => 
             setState({show: true, title: title, message: message}),
-        close: () => setState({show: false, title: "", message: ""})
+        close: () => setState((prev) => ({...prev, show: false}))
     };
 }
