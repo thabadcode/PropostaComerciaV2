@@ -9,8 +9,7 @@ interface SelectProps {
     onBlur: React.FocusEventHandler<HTMLSelectElement>;
     onFocus: React.FocusEventHandler<HTMLSelectElement>;
     isValid: boolean;
-    supportingText?: string;
-    disabled?: boolean;
+    supportingText: string;
 }
 
 export default function Select({
