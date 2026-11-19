@@ -12,6 +12,7 @@ export const PROVIDER_INFO = {
             landmark: "Após o Parque Atheneu",
             urlLocation: "https://maps.app.goo.gl/FEBxwr9ejb5bVtj96"
         },
+        urlSite: "toliverasfaltos.com.br"
     },
     representative: {
         name: "Eng.º Rafael Alves Guerra",
