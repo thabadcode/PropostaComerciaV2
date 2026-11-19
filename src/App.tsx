@@ -7,6 +7,7 @@ import { useProductForm } from "./core/hooks/useProductForm";
 import { useProducts, type Product } from "./core/hooks/useProducts";
 import { useModal } from "./core/hooks/useModal";
 import { Table } from "./components/table/Table";
+import { Preview } from "./components/preview/Preview";
 
 export default function App() {
   const modal = useModal();
@@ -109,7 +110,7 @@ export default function App() {
             onDelete={(index) => products.removeProduct(index)}
           />
 
-          {/* Todo: Implementar preview PDF */}
+          <Preview mainForm={mainForm} products={products}/>
         </div>
       </main>
     </>
