@@ -16,9 +16,9 @@ export default function App() {
   const mainForm = useMainForm();
   const productForm = useProductForm();
   const products = useProducts();
-  const companyNome = mainForm.companyName.value.trim().toUpperCase();
+  const companyName = mainForm.companyName.value.trim().toUpperCase();
 
-  useDocumentTitle(companyNome ? `Proposta Comercial - ${companyNome}` : "Proposta Comercial");
+  useDocumentTitle(companyName ? `Proposta Comercial - ${companyName}` : "Proposta Comercial");
 
   const clearAll = () => {
     modal.showModal(
