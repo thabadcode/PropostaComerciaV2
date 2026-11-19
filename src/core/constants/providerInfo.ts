@@ -17,7 +17,10 @@ export const PROVIDER_INFO = {
         name: "Eng.º Rafael Alves Guerra",
         creaNumber: "CREA 1022759892 D-GO",
         department: "Departamento Comercial - T Oliver Asfaltos",
-        tel: "(62) 99424111 (Vivo)",
+        tel: {
+            number: 6299424111,
+            operator: "Vivo"
+        },
         email: "comercial@toliverasfaltos.com.br",
     },
     proposal: {
