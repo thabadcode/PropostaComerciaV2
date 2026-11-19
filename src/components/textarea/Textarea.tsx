@@ -15,11 +15,12 @@ export default function Textarea({
         <label className={style.Textarea}>
             <span className={style.LabelTextarea}>{label}</span>
             <textarea
+                value={value}
                 className={style.InputTextarea}
                 onChange={onChange}
                 rows={3}
                 wrap="hard"
-            >{value}</textarea>
+            />
         </label>
     );
 }
