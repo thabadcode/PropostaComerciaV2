@@ -18,7 +18,7 @@ export const PROVIDER_INFO = {
         creaNumber: "CREA 1022759892 D-GO",
         department: "Departamento Comercial - T Oliver Asfaltos",
         tel: {
-            number: 6299424111,
+            number: "(62) 9942-4111",
             operator: "Vivo"
         },
         email: "comercial@toliverasfaltos.com.br",
