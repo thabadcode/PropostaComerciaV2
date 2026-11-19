@@ -4,7 +4,7 @@ import MainForm from "./components/main-form/MainForm";
 import ProductForm from "./components/product-form/ProductForm";
 import { useMainForm } from "./core/hooks/useMainForm";
 import { useProductForm } from "./core/hooks/useProductForm";
-import { useProducts, type Product } from "./core/hooks/useProducts";
+import { useProducts } from "./core/hooks/useProducts";
 import { useModal } from "./core/hooks/useModal";
 import { Table } from "./components/table/Table";
 import { Preview } from "./components/preview/Preview";
