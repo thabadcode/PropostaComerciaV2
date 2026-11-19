@@ -8,6 +8,7 @@ import { useProducts, type Product } from "./core/hooks/useProducts";
 import { useModal } from "./core/hooks/useModal";
 import { Table } from "./components/table/Table";
 import { Preview } from "./components/preview/Preview";
+import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 
 export default function App() {
   const modal = useModal();
@@ -15,6 +16,9 @@ export default function App() {
   const mainForm = useMainForm();
   const productForm = useProductForm();
   const products = useProducts();
+  const companyNome = mainForm.companyName.value.trim().toUpperCase();
+
+  useDocumentTitle(companyNome ? `Proposta Comercial - ${companyNome}` : "Proposta Comercial");
 
   const clearAll = () => {
     modal.showModal(
