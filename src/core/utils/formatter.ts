@@ -13,8 +13,10 @@ const moneyFormatter = new Intl.NumberFormat("pt-BR", {
 });
 
 export const formatter = {
-    longDate: (value: Date): string => longDateFormatter.format(value),
-    shortDate: (value: Date): string => shortDateFormatter.format(value),
+    longDate: (value: Date): string => 
+        Number.isNaN(value.getTime()) ? "" : longDateFormatter.format(value),
+    shortDate: (value: Date): string => 
+        Number.isNaN(value.getTime()) ? "" : shortDateFormatter.format(value),
     quantity: (value: number): string => quantityFormatter.format(value),
     money: (value: number): string => moneyFormatter.format(value)
 };
