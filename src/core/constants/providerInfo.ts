@@ -9,7 +9,8 @@ export const PROVIDER_INFO = {
             kilometer: "km-11",
             city: "Aparecida de Goiânia",
             state: "GO",
-            landmark: "Após o Parque Atheneu"
+            landmark: "Após o Parque Atheneu",
+            urlLocation: "https://maps.app.goo.gl/FEBxwr9ejb5bVtj96"
         },
     },
     representative: {
