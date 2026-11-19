@@ -36,14 +36,6 @@ export default function App() {
     )
   };
 
-  const buildFinalDescription = () => {
-    let finalDescription = `${productForm.description.value} - ${productForm.freightType.value}`;
-    if (productForm.isClientCap.value) {
-      finalDescription += ` - CAP por conta do cliente - Teor ${productForm.asphaltBinderContent.value}%`;
-    }
-    return finalDescription;
-  };
-
   const tryAddProduct = () => {
     if (!productForm.isValid) {
       productForm.touchAll();
@@ -54,14 +46,7 @@ export default function App() {
       return;
     }
 
-    const newProduct: Product = {
-      description: buildFinalDescription(),
-      unit: productForm.unit.value,
-      quantity: Number(productForm.amount.value),
-      price: Number(productForm.price.value)
-    };
-
-    products.insertProduct(newProduct);
+    products.insertProduct(productForm.toProduct());
     productForm.reset();
   };
 
