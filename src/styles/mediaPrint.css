@@ -1,0 +1,24 @@
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #preview-pdf, #preview-pdf * {
+        visibility: visible;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #preview-pdf {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: none;
+        box-shadow: none;
+    }
+}
