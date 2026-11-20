@@ -1,7 +1,7 @@
 import Modal from "./components/modal/Modal";
 import Header from "./components/header/Header";
-import MainForm from "./components/main-form/MainForm";
-import ProductForm from "./components/product-form/ProductForm";
+import MainForm from "./components/Forms/MainForm";
+import ProductForm from "./components/Forms/ProductForm";
 import { useMainForm } from "./core/hooks/useMainForm";
 import { useProductForm } from "./core/hooks/useProductForm";
 import { useProducts } from "./core/hooks/useProducts";
