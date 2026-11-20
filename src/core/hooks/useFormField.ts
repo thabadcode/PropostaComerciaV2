@@ -4,9 +4,10 @@ export type Validator<T> = (value: T) => string | null;
 
 export function useFormField<T>(
     initial: T,
-    validate: Validator<T> = () => null
+    validate: Validator<T> = () => null,
+    restored?: T
 ) {
-    const [value, setValue] = useState<T>(initial);
+    const [value, setValue] = useState<T>(restored ?? initial);
     const [isTouched, setIsTouched] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
