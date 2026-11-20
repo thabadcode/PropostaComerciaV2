@@ -2,10 +2,10 @@ import type { LucideIcon } from "lucide-react";
 import style from './Card.module.css';
 
 export function Card(
-    {icon: Icon, title, children}:
-    {icon: LucideIcon; title: string; children: React.ReactNode}) {
+    {id, icon: Icon, title, children}:
+    {id?: string, icon: LucideIcon; title: string; children: React.ReactNode}) {
     return (
-        <div className={style.Form}>
+        <div id={id} className={style.Form}>
             <h2><Icon/>{title}</h2>
             <hr className={style.Divider}/>
             {children}

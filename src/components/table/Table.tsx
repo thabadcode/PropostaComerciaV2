@@ -66,7 +66,7 @@ export function Table({
     };
 
     return(
-        <Card icon={Sheet} title="Tabela de produtos/serviços">
+        <Card id="products-table" icon={Sheet} title="Tabela de produtos/serviços">
             <table className={style.Table}>
                 <thead>
                     <tr>
