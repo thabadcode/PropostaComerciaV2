@@ -3,8 +3,7 @@ import type { ProductsState } from '../../../core/hooks/useProducts';
 import type { ElementType } from 'react';
 import style from './Table.module.css';
 import { ChevronDown, ChevronUp, Sheet, SquarePen, Trash } from 'lucide-react';
-
-const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+import { formatter } from '../../../core/utils/formatter';
 
 interface TableProps {
     products: ProductsState;
@@ -59,8 +58,8 @@ export function Table({
                 <td>{p.description}</td>
                 <td>{p.unit}</td>
                 <td>{p.quantity}</td>
-                <td className={style.RightAlign}>{brl.format(p.price)}</td>
-                <td className={style.RightAlign}>{brl.format(p.quantity * p.price)}</td>
+                <td className={style.RightAlign}>{formatter.money(p.price)}</td>
+                <td className={style.RightAlign}>{formatter.money(p.quantity * p.price)}</td>
             </tr>
         ));
     };
@@ -84,7 +83,7 @@ export function Table({
                 <tfoot>
                     <tr>
                         <th colSpan={5}>Total</th>
-                        <td>{brl.format(getTotal())}</td>
+                        <td>{formatter.money(getTotal())}</td>
                     </tr>
                 </tfoot>
             </table>
