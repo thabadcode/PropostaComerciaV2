@@ -1,5 +1,5 @@
 import style from "./Header.module.css";
-import Button from "../button/Button";
+import Button from "../ui/button/Button";
 import { BrushCleaning, FileText } from "lucide-react";
 
 interface HeaderProps {

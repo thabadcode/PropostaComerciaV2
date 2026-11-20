@@ -1,4 +1,4 @@
-import { Card } from '../card/Card';
+import { Card } from '../ui/card/Card';
 import type { ProductsState } from '../../core/hooks/useProducts';
 import type { ElementType } from 'react';
 import style from './Table.module.css';
