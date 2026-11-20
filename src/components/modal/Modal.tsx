@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Info } from 'lucide-react';
-import Button from '../ui/button/Button';
+import Button from '../ui/Button/Button';
 import style from './Modal.module.css';
 
 interface ModalProps {

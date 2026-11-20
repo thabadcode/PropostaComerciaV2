@@ -1,8 +1,8 @@
-import { Card, FormRow } from '../ui/card/Card';
-import Button from '../ui/button/Button';
-import Checkbox from '../ui/checkbox/Checkbox';
-import Input from '../ui/input/Input';
-import Select from '../ui/select/Select';
+import { Card, FormRow } from '../ui/Card/Card';
+import Button from '../ui/Button/Button';
+import Checkbox from '../ui/Checkbox/Checkbox';
+import Input from '../ui/Input/Input';
+import Select from '../ui/Select/Select';
 import { PackagePlus, Plus } from 'lucide-react';
 import { FREIGHT_TYPES, PRODUCT_SUGGESTIONS, UNIT_OPTIONS } from '../../core/constants/formOptions';
 import type { ProductFormState } from '../../core/hooks/useProductForm';
