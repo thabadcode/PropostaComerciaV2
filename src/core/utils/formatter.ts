@@ -18,9 +18,20 @@ export const formatter = {
     shortDate: (value: Date): string => 
         Number.isNaN(value.getTime()) ? "" : shortDateFormatter.format(value),
     cnpj: (value: string): string =>  {
-        const digits = value.replace(/\D/g, "");
-        if (digits.length !== 14) return value;
-        return `${digits.substring(0, 2)}.${digits.substring(2, 5)}.${digits.substring(5, 8)}/${digits.substring(8, 12)}-${digits.substring(12, 14)}`;
+        const d = value.replace(/\D/g, "").slice(0, 14);
+        const parts = [
+            d.slice(0, 2),
+            d.slice(2, 5),
+            d.slice(5, 8),
+            d.slice(8, 12),
+            d.slice(12, 14),
+        ];
+        let out = parts[0];
+        if (parts[1]) out += `.${parts[1]}`;
+        if (parts[2]) out += `.${parts[2]}`;
+        if (parts[3]) out += `/${parts[3]}`;
+        if (parts[4]) out += `-${parts[4]}`;
+        return out;
     },
     quantity: (value: number): string => quantityFormatter.format(value),
     money: (value: number): string => moneyFormatter.format(value)
