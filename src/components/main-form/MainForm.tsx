@@ -10,6 +10,7 @@ import Select from "../select/Select";
 import Textarea from "../textarea/Textarea";
 import { PAYMENT_CONDITIONS } from "../../core/constants/formOptions"; 
 import { searchCnpj } from "../../core/utils/searchCnpj";
+import { formatter } from "../../core/utils/formatter";
 
 export default function MainForm({form}: {form: MainFormState}) {
     const [isLoading, setIsLoading] = useState(false);
@@ -53,8 +54,8 @@ export default function MainForm({form}: {form: MainFormState}) {
 
                 <Input
                     label="Pesquisar pelo CNPJ"
-                    value={form.cnpj.value}
-                    onChange={(e) => form.cnpj.setValue(e.target.value)}
+                    value={formatter.cnpj(form.cnpj.value)}
+                    onChange={(e) => form.cnpj.setValue(e.target.value.replace(/\D/g, "").slice(0, 14))}
                     onBlur={form.cnpj.onBlur}
                     onFocus={form.cnpj.onFocus}
                     isValid={!form.cnpj.showError}
