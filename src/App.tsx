@@ -9,14 +9,19 @@ import { useModal } from "./core/hooks/useModal";
 import { Table } from "./components/table/Table";
 import { Preview } from "./components/preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
+import { loadSnapshot, usePersistentState } from "./core/hooks/usePersistentState";
+import { useState } from "react";
 
 export default function App() {
-  const modal = useModal();
+  const [snapshot] = useState(loadSnapshot);
 
-  const mainForm = useMainForm();
+  const modal = useModal();
+  const mainForm = useMainForm(snapshot?.mainForm);
   const productForm = useProductForm();
-  const products = useProducts();
+  const products = useProducts(snapshot?.products);
   const companyName = mainForm.companyName.value.trim().toUpperCase();
+
+  usePersistentState(mainForm, products.products, modal.showModal);
 
   useDocumentTitle(companyName ? `Proposta Comercial - ${companyName}` : "Proposta Comercial");
 

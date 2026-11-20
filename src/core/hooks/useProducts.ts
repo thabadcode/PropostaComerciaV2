@@ -22,8 +22,8 @@ function reorderProducts(
     return newArray;
 }
 
-export function useProducts() {
-    const [products, setProducts] = useState<Product[]>([]);
+export function useProducts(saved?: Product[]) {
+    const [products, setProducts] = useState<Product[]>(saved ?? []);
 
     return {
         products,
