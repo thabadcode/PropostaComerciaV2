@@ -1,5 +1,5 @@
-import Modal from "./components/modal/Modal";
-import Header from "./components/header/Header";
+import Modal from "./components/ui/Modal/Modal";
+import Header from "./components/Header/Header";
 import MainForm from "./components/Forms/MainForm";
 import ProductForm from "./components/Forms/ProductForm";
 import { useMainForm } from "./core/hooks/useMainForm";
@@ -7,7 +7,7 @@ import { useProductForm } from "./core/hooks/useProductForm";
 import { useProducts } from "./core/hooks/useProducts";
 import { useModal } from "./core/hooks/useModal";
 import { Table } from "./components/ui/Table/Table";
-import { Preview } from "./components/preview/Preview";
+import { Preview } from "./components/Preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 import { loadSnapshot } from "./core/utils/snapshot";
 import { usePersistentState } from "./core/hooks/usePersistentState";
