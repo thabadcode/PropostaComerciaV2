@@ -3,7 +3,7 @@ import style from './Input.module.css'
 
 interface InputProps {
     label: string;
-    type: string;
+    type?: string;
     prefix?: string;
     value: string;
     list?: string;
