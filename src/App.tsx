@@ -6,7 +6,7 @@ import { useMainForm } from "./core/hooks/useMainForm";
 import { useProductForm } from "./core/hooks/useProductForm";
 import { useProducts } from "./core/hooks/useProducts";
 import { useModal } from "./core/hooks/useModal";
-import { Table } from "./components/table/Table";
+import { Table } from "./components/ui/Table/Table";
 import { Preview } from "./components/preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 import { loadSnapshot } from "./core/utils/snapshot";

@@ -1,5 +1,5 @@
-import { Card } from '../ui/card/Card';
-import type { ProductsState } from '../../core/hooks/useProducts';
+import { Card } from '../card/Card';
+import type { ProductsState } from '../../../core/hooks/useProducts';
 import type { ElementType } from 'react';
 import style from './Table.module.css';
 import { ChevronDown, ChevronUp, Sheet, SquarePen, Trash } from 'lucide-react';
