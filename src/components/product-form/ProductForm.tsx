@@ -1,4 +1,4 @@
-import { FormSection, FormRow } from '../card/Card';
+import { Card, FormRow } from '../card/Card';
 import Button from '../button/Button';
 import Checkbox from '../checkbox/Checkbox';
 import Input from '../input/Input';
@@ -10,7 +10,7 @@ import type { ProductFormState } from '../../core/hooks/useProductForm';
 export default function ProductForm(
     {form, onAddClick}: {form: ProductFormState, onAddClick: () => void;}) {
     return (
-        <FormSection icon={PackagePlus} title="Dados produto/serviço">
+        <Card icon={PackagePlus} title="Dados produto/serviço">
             <Input
                 label="Descrição"
                 value={form.description.value}
@@ -84,6 +84,7 @@ export default function ProductForm(
                 <Input
                     label="Valor unitário"
                     inputMode="decimal"
+                    prefix="R$"
                     value={form.price.value}
                     onChange={(e) => form.price.setValue(e.target.value)}
                     isValid={!form.price.showError}
@@ -96,6 +97,6 @@ export default function ProductForm(
                 text="Adicionar produto/serviço"
                 onClick={onAddClick}
             />
-        </FormSection>
+        </Card>
     );
 }
