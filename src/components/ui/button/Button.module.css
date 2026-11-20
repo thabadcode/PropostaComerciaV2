@@ -17,7 +17,7 @@
     transition: box-shadow 0.3s ease;
 
     &:hover {
-        box-shadow: var(--neon-efect);
+        box-shadow: var(--neon-effect);
     }
 
     &:active {
