@@ -47,7 +47,7 @@ export default function ProductForm(
 
                 <Input
                     label="Teor de CAP (%)"
-                    type="number"
+                    inputMode="decimal"
                     value={form.asphaltBinderContent.value}
                     onChange={(e) => form.asphaltBinderContent.setValue(e.target.value)}
                     onBlur={form.asphaltBinderContent.onBlur}
@@ -72,7 +72,7 @@ export default function ProductForm(
 
                 <Input
                     label="Quantidade"
-                    type="number"
+                    inputMode="decimal"
                     value={form.amount.value}
                     onChange={(e) => form.amount.setValue(e.target.value)}
                     onBlur={form.amount.onBlur}
@@ -83,7 +83,7 @@ export default function ProductForm(
 
                 <Input
                     label="Valor unitário"
-                    type="number"
+                    inputMode="decimal"
                     value={form.price.value}
                     onChange={(e) => form.price.setValue(e.target.value)}
                     isValid={!form.price.showError}
