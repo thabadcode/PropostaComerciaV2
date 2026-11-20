@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useId, useRef } from 'react';
 import style from './Input.module.css'
 
 interface InputProps {
@@ -34,6 +34,8 @@ export default function Input({
     supportingText,
     action
 }: InputProps) {
+    const errorId = useId();
+    const showError = Boolean(supportingText) && !isValid
     const actionRef = useRef<HTMLSpanElement>(null);
 
     const getClassName = () => {
@@ -72,12 +74,12 @@ export default function Input({
                     disabled={disabled}
                     className={getClassName()}
                     aria-invalid={!isValid}
-                    aria-describedby={supportingText && !isValid ? `${label}-error` : undefined}
+                    aria-describedby={showError ? errorId : undefined}
                 />
                 {action && (<span ref={actionRef}>{action}</span>)}
             </div>
             {supportingText && !isValid &&
-                <span id={`${label}-error`} className={style.SupportingText}>
+                <span id={errorId} className={style.SupportingText}>
                     {supportingText}
                 </span>
             }
