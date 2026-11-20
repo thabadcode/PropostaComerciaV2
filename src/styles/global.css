@@ -41,8 +41,10 @@ body {
 main {
     display: flex;
     flex-direction: row;
-    height: 100dvh;
-    padding-top: 70px;
+    height: 100svh;
+    padding-top: 80px;
+    margin-inline: 10px;
+    gap: 10px;
 }
 
 input[type="number"],
@@ -63,12 +65,20 @@ input::-webkit-inner-spin-button { /* Remove dos demais navegadores de uso comum
 }
 
 .forms {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    max-width: 600px;
+    gap: 10px;
     min-height: 0;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .previews {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     min-height: 0;
-    overflow-y: auto;
+    gap: 10px;
+    overflow: auto;
 }
