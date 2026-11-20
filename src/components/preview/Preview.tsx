@@ -41,6 +41,9 @@ export function Preview(
                                 <p><b>Data:</b>{formatter.shortDate(date)}</p>
                                 <p><b>Validade:</b>{PROVIDER_INFO.proposal.validityDays} dias</p>
                                 <p><b>Pagamento:</b>{mainForm.paymentCondition.value}</p>
+                                {mainForm.showPS.value &&
+                                    <p><b>Ps:</b>Produto retirado "in loco"</p>
+                                }
                             </div>
                         </div>
                     </div>
