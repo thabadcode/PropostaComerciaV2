@@ -1,4 +1,4 @@
-import { FormSection } from '../form/FormSection';
+import { Card } from '../card/Card';
 import type { ProductsState } from '../../core/hooks/useProducts';
 import type { ElementType } from 'react';
 import style from './Table.module.css';
@@ -66,7 +66,7 @@ export function Table({
     };
 
     return(
-        <FormSection icon={Sheet} title="Tabela de produtos/serviços">
+        <Card icon={Sheet} title="Tabela de produtos/serviços">
             <table className={style.Table}>
                 <thead>
                     <tr>
@@ -88,7 +88,7 @@ export function Table({
                     </tr>
                 </tfoot>
             </table>
-        </FormSection>
+        </Card>
     );
 }
 

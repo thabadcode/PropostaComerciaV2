@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
-import style from './FormSection.module.css';
+import style from './Card.module.css';
 
-export function FormSection(
+export function Card(
     {icon: Icon, title, children}:
     {icon: LucideIcon; title: string; children: React.ReactNode}) {
     return (

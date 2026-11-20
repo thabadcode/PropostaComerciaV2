@@ -1,4 +1,4 @@
-import { FormSection, FormRow } from '../form/FormSection';
+import { FormSection, FormRow } from '../card/Card';
 import Button from '../button/Button';
 import Checkbox from '../checkbox/Checkbox';
 import Input from '../input/Input';

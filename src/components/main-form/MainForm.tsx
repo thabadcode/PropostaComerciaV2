@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { type MainFormState } from "../../core/hooks/useMainForm";
 import { Info, Search, CalendarCheck } from "lucide-react";
-import { FormSection, FormRow } from "../form/FormSection";
+import { Card, FormRow } from "../card/Card";
 import Input from "../input/Input";
 import Button from "../button/Button";
 import Checkbox from "../checkbox/Checkbox";
@@ -32,7 +32,7 @@ export default function MainForm({form}: {form: MainFormState}) {
     };
 
     return (
-        <FormSection icon={Info} title="Informações gerais">
+        <Card icon={Info} title="Informações gerais">
             <FormRow>
                 <Input
                     label="Data"
@@ -122,6 +122,6 @@ export default function MainForm({form}: {form: MainFormState}) {
                     onCheck={(e) => form.showPS.setValue(e.target.checked)}
                 />
             </FormRow>
-        </FormSection>
+        </Card>
     );
 }
