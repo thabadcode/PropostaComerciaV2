@@ -78,7 +78,7 @@ export default function Input({
                 />
                 {action && (<span ref={actionRef}>{action}</span>)}
             </div>
-            {supportingText && !isValid &&
+            {showError &&
                 <span id={errorId} className={style.SupportingText}>
                     {supportingText}
                 </span>
