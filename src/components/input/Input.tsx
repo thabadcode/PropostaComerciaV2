@@ -4,6 +4,7 @@ import style from './Input.module.css'
 interface InputProps {
     label: string;
     type?: string;
+    inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
     prefix?: string;
     value: string;
     list?: string;
@@ -20,6 +21,7 @@ interface InputProps {
 export default function Input({
     label,
     type="text",
+    inputMode='text',
     prefix,
     value,
     list,
@@ -59,6 +61,7 @@ export default function Input({
                 <span className={style.Prefix}>{prefix}</span>
                 <input
                     type={type}
+                    inputMode={inputMode}
                     placeholder={placeholder}
                     value={value}
                     list={list}
