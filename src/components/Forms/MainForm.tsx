@@ -12,7 +12,10 @@ import { PAYMENT_CONDITIONS } from "../../core/constants/formOptions";
 import { searchCnpj } from "../../core/utils/searchCnpj";
 import { formatter } from "../../core/utils/formatter";
 
-export default function MainForm({form}: {form: MainFormState}) {
+export default function MainForm(
+    {form, onShowModal}:
+    {form: MainFormState, onShowModal: (title: string, message: string) => void}
+) {
     const [isLoading, setIsLoading] = useState(false);
     const setToday = () => {
         const today = new Date().toLocaleDateString("en-CA");
@@ -25,7 +28,10 @@ export default function MainForm({form}: {form: MainFormState}) {
         const result = await searchCnpj(form.cnpj.value);
         setIsLoading(false);
         if ((result).hasError) {
-            // Todo: implementar aviso modal
+            onShowModal(
+                "Erro ao pesquisar CNPJ",
+                result.errorMsg ?? "Não foi possível pesquisar pelo CNPJ. Tente novamente mais tarde."
+            );
             return;
         }
         form.companyName.setValue(result.companyName);

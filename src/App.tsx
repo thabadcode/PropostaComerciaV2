@@ -92,7 +92,7 @@ export default function App() {
 
       <main>
         <div className="forms">
-          <MainForm form={mainForm}/>
+          <MainForm form={mainForm} onShowModal={modal.showModal}/>
           <ProductForm form={productForm} onAddClick={tryAddProduct}/>
         </div>
 
