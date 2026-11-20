@@ -1,7 +1,7 @@
 import type { MainFormState } from '../../core/hooks/useMainForm';
 import type { ProductsState } from '../../core/hooks/useProducts';
 import { PROVIDER_INFO } from '../../core/constants/providerInfo';
-import { Globe, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import bg_pdf from '../../assets/bg_pdf.jpg';
 import style from './Preview.module.css';
 import { formatter } from '../../core/utils/formatter';
@@ -163,7 +163,7 @@ function FooterPDF() {
                     </span>
 
                     <span>
-                        <Globe/>
+                        <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
                         {PROVIDER_INFO.company.urlSite}
                     </span>
                 </div>
