@@ -9,7 +9,8 @@ import { useModal } from "./core/hooks/useModal";
 import { Table } from "./components/table/Table";
 import { Preview } from "./components/preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
-import { loadSnapshot, usePersistentState } from "./core/hooks/usePersistentState";
+import { loadSnapshot } from "./core/utils/snapshot";
+import { usePersistentState } from "./core/hooks/usePersistentState";
 import { useState } from "react";
 
 export default function App() {

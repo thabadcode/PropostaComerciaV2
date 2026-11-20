@@ -1,5 +1,5 @@
 import { useFormField, type Validator } from "./useFormField";
-import type { Snapshot } from "./usePersistentState";
+import type { Snapshot } from "../utils/snapshot";
 import { rules } from "../utils/rules";
 
 export type MainFormState = ReturnType<typeof useMainForm>;
