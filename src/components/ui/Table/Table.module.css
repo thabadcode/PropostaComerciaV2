@@ -1,29 +1,3 @@
-.CardTable {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: fit-content;
-    padding: 20px 10px;
-    gap: 10px;
-    border-radius: 15px;
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-
-    h2 {
-        display: flex;
-        gap: 5px;
-        font-size: 20px;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-.Divider {
-    align-self: center;
-    width: 100%;
-    background-color: var(--bg-input);
-}
-
 .Table {
     width: 100%;
     table-layout: fixed;
