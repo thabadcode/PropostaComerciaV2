@@ -3,7 +3,7 @@ import type { Product } from "./useProducts";
 import type { MainFormState } from "./useMainForm";
 import { describeStorageError, saveSnapshot, type Snapshot} from "../utils/snapshot";
 
-export function usePersistentState(
+export function useAutoSave(
     mainForm: MainFormState,
     products: Product[],
     showModalError: (title: string, message: string) => void

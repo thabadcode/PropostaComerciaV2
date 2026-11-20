@@ -10,7 +10,7 @@ import { Table } from "./components/ui/Table/Table";
 import { Preview } from "./components/Preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 import { loadSnapshot } from "./core/utils/snapshot";
-import { usePersistentState } from "./core/hooks/usePersistentState";
+import { useAutoSave } from "./core/hooks/useAutoSave";
 import { useState } from "react";
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
   const products = useProducts(snapshot?.products);
   const companyName = mainForm.companyName.value.trim().toUpperCase();
 
-  usePersistentState(mainForm, products.products, modal.showModal);
+  useAutoSave(mainForm, products.products, modal.showModal);
 
   useDocumentTitle(companyName ? `Proposta Comercial - ${companyName}` : "Proposta Comercial");
 
