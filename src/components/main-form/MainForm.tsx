@@ -53,7 +53,6 @@ export default function MainForm({form}: {form: MainFormState}) {
 
                 <Input
                     label="Pesquisar pelo CNPJ"
-                    type="text"
                     value={form.cnpj.value}
                     onChange={(e) => form.cnpj.setValue(e.target.value)}
                     onBlur={form.cnpj.onBlur}
@@ -75,7 +74,6 @@ export default function MainForm({form}: {form: MainFormState}) {
 
             <Input
                 label="Razão social"
-                type="text"
                 value={form.companyName.value}
                 onChange={(e) => form.companyName.setValue(e.target.value)}
                 onBlur={form.companyName.onBlur}
@@ -87,7 +85,6 @@ export default function MainForm({form}: {form: MainFormState}) {
             <FormRow>
                 <Input
                     label="Representante (opicional)"
-                    type="text"
                     value={form.representative.value}
                     onChange={(e) => form.representative.setValue(e.target.value)}
                     isValid={true}

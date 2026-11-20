@@ -13,7 +13,6 @@ export default function ProductForm(
         <FormSection icon={PackagePlus} title="Dados produto/serviço">
             <Input
                 label="Descrição"
-                type="text"
                 value={form.description.value}
                 list={"product-suggestions"}
                 onChange={(e) => form.description.setValue(e.target.value)}
