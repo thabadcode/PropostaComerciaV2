@@ -24,7 +24,7 @@ export function Preview(
                             <div>
                                 <h2>{mainForm.companyName.value || "Nome da empresa"}</h2>
                                 {mainForm.cnpj.value && (
-                                    <p><b>CNPJ.:</b>{mainForm.cnpj.value}</p>
+                                    <p><b>CNPJ.:</b>{formatter.cnpj(mainForm.cnpj.value)}</p>
                                 )}
                                 {mainForm.representative.value && (
                                     <p><b>A/C.:</b>{mainForm.representative.value}</p>
