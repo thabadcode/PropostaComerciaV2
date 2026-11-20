@@ -47,7 +47,7 @@ export function Preview(
 
                     <p className={style.Instruction}>{PROVIDER_INFO.proposal.instruction}</p>
 
-                    <TablePdf products={products}/>
+                    <TablePdf mainForm={mainForm} products={products}/>
                 </div>
 
                 <FooterPDF/>
@@ -74,7 +74,7 @@ function HeaderPdf({date} : {date: Date}) {
     );
 }
 
-function TablePdf({products} : {products: ProductsState}) {
+function TablePdf({mainForm, products} : {mainForm: MainFormState,products: ProductsState}) {
     const { products: items, getTotal } = products;
     const renderProducts = () => {
         const length = items.length;
@@ -109,10 +109,13 @@ function TablePdf({products} : {products: ProductsState}) {
                     {renderProducts()}
                 </tbody>
             </table>
-            <div className={style.TableTotal}>
-                <span>VALOR TOTAL DA PROPOSTA</span>
-                <b>{formatter.money(getTotal())}</b>
-            </div>
+            {mainForm.showTotal.value &&
+                <div className={style.TableTotal}>
+                    <span>VALOR TOTAL DA PROPOSTA</span>
+                    <b>{formatter.money(getTotal())}</b>
+                </div>
+            }
+            
         </div>
     );
 }
