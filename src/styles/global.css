@@ -4,12 +4,12 @@
 
     /* Cores de fundo */
     --bg-main: #121212;
-    --bg-secundary: #3e3e3e;
+    --bg-secondary: #3e3e3e;
     --bg-input: #606060;
 
     /* Cores de Texto */
     --text-primary: #FFFFFF;
-    --text-secundary: #000000;
+    --text-secondary: #000000;
 
     /* Bordas */
     --border-input: #303030;

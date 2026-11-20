@@ -6,7 +6,7 @@
     padding: 20px 10px;
     gap: 10px;
     border-radius: 15px;
-    background-color: var(--bg-secundary);
+    background-color: var(--bg-secondary);
     color: var(--text-primary);
 
     h2 {
@@ -36,23 +36,23 @@
         font-size: 11pt;
         text-align: center;
         vertical-align: middle;
-        border-right: 3px solid var(--bg-secundary);
+        border-right: 3px solid var(--bg-secondary);
 
         &:last-child { border-right: none; }
     }
 
     thead {
         background-color: var(--color-brand);
-        color: var(--text-secundary);
+        color: var(--text-secondary);
         text-transform: uppercase;
-        border-bottom: 3px solid var(--bg-secundary);
+        border-bottom: 3px solid var(--bg-secondary);
     }
 
     tbody {
         background-color: var(--bg-input);
 
         tr {
-            border-bottom: 3px solid var(--bg-secundary);
+            border-bottom: 3px solid var(--bg-secondary);
             transition: background-color 0.3s ease;
 
             &:hover { background-color: rgba(0, 0, 0, 0.2); }
@@ -61,7 +61,7 @@
 
     tfoot {
         background-color: var(--color-brand);
-        color: var(--text-secundary);
+        color: var(--text-secondary);
 
         th, td { text-align: right; }
     }

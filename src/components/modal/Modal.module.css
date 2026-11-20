@@ -33,7 +33,7 @@
     flex-direction: column;
     border-radius: 15px;
     color: var(--text-primary);
-    background-color: var(--bg-secundary);
+    background-color: var(--bg-secondary);
     box-shadow: var(--black-shadow);
     gap: 10px;
 
