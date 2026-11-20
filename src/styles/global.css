@@ -21,6 +21,9 @@
     --neon-effect: 0 0 5px 0 var(--color-brand);
     --error-effect: 0 0 5px 5px #ff000033;
     --black-shadow: 0 0 5px 0 #000000;
+
+    /* Header */
+    --height-header: 70px;
 }
 
 * {
@@ -37,8 +40,8 @@ body {
 main {
     display: flex;
     flex-direction: row;
-    height: 100svh;
-    padding-top: 80px;
+    height: calc(100svh - var(--height-header) - 10px);
+    margin-top: 80px;
     margin-inline: 10px;
     gap: 10px;
 }
