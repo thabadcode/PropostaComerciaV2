@@ -1,8 +1,25 @@
 .Input {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    color: var(--text-primary);
+    composes: Root from '../../../styles/FormFields.module.css';
+}
+
+.LabelText {
+    composes: Label from '../../../styles/FormFields.module.css';
+}
+
+.Field {
+    composes: Field from '../../../styles/FormFields.module.css';
+}
+
+.InvalidField {
+    composes: Invalid from '../../../styles/FormFields.module.css';
+}
+
+.DisabledField {
+    composes: Disabled from '../../../styles/FormFields.module.css';
+}
+
+.SupportingText {
+    composes: SupportingText from '../../../styles/FormFields.module.css';
 }
 
 .FieldLine {
@@ -11,14 +28,7 @@
     align-items: center;
     gap: 5px;
 
-    Button {
-        height: 40px;
-    }
-}
-
-.LabelText {
-    padding-left: 10px;
-    user-select: none;
+    Button { height: 40px; }
 }
 
 .Prefix {
@@ -27,46 +37,4 @@
     padding-left: 10px;
     pointer-events: none;
     font-size: 14px;
-}
-
-.Field, .InvalidField, .DisabledField {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border-style: solid;
-    background-color: var(--bg-input);
-    color: var(--text-primary);
-    outline: none;
-    transition: all 0.3s ease;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.Field {
-    border-color: var(--border-input);
-
-    &:hover {
-        border-color: var(--color-brand);
-    }
-
-    &:focus {
-        border-color: var(--color-brand);
-        box-shadow: var(--neon-effect);
-    }
-}
-
-.InvalidField {
-    border-color: var(--color-error);
-    box-shadow: var(--error-effect);
-}
-
-.DisabledField {
-    border-color: var(--bg-input); /* Coloca a cor de fundo para ocultar a borda */
-    opacity: 0.4;
-}
-
-.SupportingText {
-    font-size: 15px;
-    color: var(--color-error);
-    align-self: center;
-    margin-top: -2px;
 }

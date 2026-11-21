@@ -1,0 +1,53 @@
+.Root {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--text-primary);
+}
+
+.Label {
+    padding-left: 10px;
+    user-select: none;
+}
+
+.Base {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.Field {
+    composes: Base;
+    border-color: var(--border-input);
+
+    &:hover, &:focus { border-color: var(--color-brand); }
+
+    &:focus { box-shadow: var(--neon-effect); }
+}
+
+.Invalid {
+    composes: Base;
+    border-color: var(--color-error);
+    box-shadow: var(--error-effect);
+
+    &:hover { border-color: var(--color-brand); }
+}
+
+.Disabled {
+    composes: Base;
+    border-color: var(--bg-input); /* Coloca a cor de fundo para ocultar a borda */
+    opacity: 0.4;
+}
+
+.SupportingText {
+    margin-top: -2px;
+    align-self: center;
+    font-size: 15px;
+    color: var(--color-error);
+}
