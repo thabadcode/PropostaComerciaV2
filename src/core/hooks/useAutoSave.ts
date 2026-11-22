@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Product } from "./useProducts";
 import type { MainFormState } from "./useMainForm";
-import { describeStorageError, saveSnapshot, type Snapshot} from "../utils/snapshot";
+import { buildSnapshot, describeStorageError, saveSnapshot} from "../utils/snapshot";
 
 export function useAutoSave(
     mainForm: MainFormState,
@@ -16,22 +16,8 @@ export function useAutoSave(
     }, [showModalError])
 
     useEffect(() => {
-        const proposalData: Snapshot = {
-            mainForm: {
-                date: mainForm.date.value,
-                cnpj: mainForm.cnpj.value,
-                companyName: mainForm.companyName.value,
-                representative: mainForm.representative.value,
-                paymentCondition: mainForm.paymentCondition.value,
-                observations: mainForm.observations.value,
-                showTotal: mainForm.showTotal.value,
-                showPS: mainForm.showPS.value
-            },
-            products: products,
-        };
-
         try {
-            saveSnapshot(proposalData);
+            saveSnapshot(buildSnapshot(mainForm, products));
             warnedRef.current = false;
         } catch (error) {
             console.error("Ocorreu um erro e não foi possível salvar", error);
@@ -44,14 +30,7 @@ export function useAutoSave(
             }
         }
     }, [
-        mainForm.date.value,
-        mainForm.cnpj.value,
-        mainForm.companyName.value,
-        mainForm.representative.value,
-        mainForm.paymentCondition.value,
-        mainForm.observations.value,
-        mainForm.showTotal.value,
-        mainForm.showPS.value,
+        mainForm,
         products
     ]);
 }

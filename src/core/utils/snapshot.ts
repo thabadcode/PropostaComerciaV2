@@ -1,3 +1,4 @@
+import type { MainFormState } from "../hooks/useMainForm";
 import type { Product } from "../hooks/useProducts";
 
 const STORAGE_KEY = "proposal:v1";
@@ -40,4 +41,23 @@ export function describeStorageError(error: unknown): string {
         }
     }
     return "Não foi possível salvar o rascunho automaticamente.";
+}
+
+export function buildSnapshot(
+    mainForm: MainFormState,
+    products: Product[]
+): Snapshot {
+    return {
+        mainForm: {
+            date: mainForm.date.value,
+            cnpj: mainForm.cnpj.value,
+            companyName: mainForm.companyName.value,
+            representative: mainForm.representative.value,
+            paymentCondition: mainForm.paymentCondition.value,
+            observations: mainForm.observations.value,
+            showTotal: mainForm.showTotal.value,
+            showPS: mainForm.showPS.value
+        },
+        products: products
+    };
 }
