@@ -1,10 +1,10 @@
 import type { MainFormState } from "../hooks/useMainForm";
-import type { ProductsState } from "../hooks/useProducts";
+import type { Product } from "../hooks/useProducts";
 import type { Snapshot } from "./snapshot";
 
 export function exportJson(
     mainForm: MainFormState,
-    products: ProductsState,
+    products: Product[],
     showModal: (title: string, message: string) => void
 ) {
     if (!mainForm.isValid) {
@@ -14,7 +14,7 @@ export function exportJson(
         );
         return;
     }
-    if (products.products.length === 0) {
+    if (products.length === 0) {
         showModal(
             "Nenhum produto adicionado",
             "Adicione ao menos um produto para exportar."
@@ -33,7 +33,7 @@ export function exportJson(
             showTotal: mainForm.showTotal.value,
             showPS: mainForm.showPS.value
         },
-        products: products.products
+        products: products
     };
 
     const jsonToExport = JSON.stringify(snapshot, null, 2);

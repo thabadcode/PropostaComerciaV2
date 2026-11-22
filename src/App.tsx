@@ -82,7 +82,7 @@ export default function App() {
     <>
       <Header
         clearAll={clearAll}
-        exportJson={() => exportJson(mainForm, products, modal.showModal)}
+        exportJson={() => exportJson(mainForm, products.products, modal.showModal)}
         generatePDF={tryGeneratePdf}
       />
       <Modal
