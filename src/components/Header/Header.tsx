@@ -1,13 +1,14 @@
 import style from "./Header.module.css";
 import Button from "../ui/Button/Button";
-import { BrushCleaning, FileText } from "lucide-react";
+import { BrushCleaning, Download, FileText } from "lucide-react";
 
 interface HeaderProps {
     clearAll: () => void;
+    exportJson: () => void;
     generatePDF: () => void;
 }
 
-export default function Header({ clearAll, generatePDF }: HeaderProps) {
+export default function Header({ clearAll, exportJson, generatePDF }: HeaderProps) {
     return (
         <header className={style.Header}>
             <img src="/logo-t-oliver.webp" alt="Company logo" />
@@ -19,6 +20,11 @@ export default function Header({ clearAll, generatePDF }: HeaderProps) {
                     icon={BrushCleaning}
                     text="Limpar tudo"
                     onClick={clearAll}
+                />
+                <Button
+                    icon={Download}
+                    text="Exportar JSON"
+                    onClick={exportJson}
                 />
                 <Button
                     icon={FileText}

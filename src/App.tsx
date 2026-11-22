@@ -12,6 +12,7 @@ import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 import { loadSnapshot } from "./core/utils/snapshot";
 import { useAutoSave } from "./core/hooks/useAutoSave";
 import { useState } from "react";
+import { exportJson } from "./core/utils/exportImport";
 
 export default function App() {
   const [snapshot] = useState(loadSnapshot);
@@ -79,7 +80,11 @@ export default function App() {
 
   return (
     <>
-      <Header clearAll={clearAll} generatePDF={tryGeneratePdf} />
+      <Header
+        clearAll={clearAll}
+        exportJson={() => exportJson(mainForm, products, modal.showModal)}
+        generatePDF={tryGeneratePdf}
+      />
       <Modal
         show={modal.state.show}
         title={modal.state.title}
