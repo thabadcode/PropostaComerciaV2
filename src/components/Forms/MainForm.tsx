@@ -34,6 +34,12 @@ export default function MainForm(
             );
             return;
         }
+        if (!result.isActive) {
+            onShowModal(
+                "CNPJ baixado",
+                "Este CNPJ está baixado (inativo) na base da Receita Federal. Você pode gerar a proposta mesmo assim, mas recomenda-se confirmar com o cliente os dados de faturamento antes de fechar negócio."
+            );
+        }
         form.companyName.setValue(result.companyName);
     };
 
