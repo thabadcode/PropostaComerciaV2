@@ -8,6 +8,7 @@ export function exportJson(
     showModal: (title: string, message: string) => void
 ) {
     if (!mainForm.isValid) {
+        mainForm.touchAll();
         showModal(
             "Campos inválidos",
             "Preencha corretamente os dados do cabeçalho antes de exportar."
