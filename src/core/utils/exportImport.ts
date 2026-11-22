@@ -1,6 +1,6 @@
 import type { MainFormState } from "../hooks/useMainForm";
-import type { Product } from "../hooks/useProducts";
-import { buildSnapshot } from "./snapshot";
+import type { Product, ProductsState } from "../hooks/useProducts";
+import { buildSnapshot, type Snapshot } from "./snapshot";
 
 export function exportJson(
     mainForm: MainFormState,
@@ -36,4 +36,45 @@ export function exportJson(
     a.remove();
 
     URL.revokeObjectURL(url);
+}
+
+export async function importJson(
+    mainForm: MainFormState,
+    products: ProductsState,
+    event: React.ChangeEvent<HTMLInputElement>,
+    showModal: (title: string, message: string) => void
+) {
+    const input = event.target;
+    const file: File | undefined = input.files?.[0];
+    if (!file) {
+        showModal(
+            "Nenhum arquivo selecionado",
+            "Seleciona um arquivo JSON para realizar a importação."
+        );
+        return;
+    }
+    
+    try {
+        const data = JSON.parse(await file.text()) as Snapshot;
+        const { mainForm: form, products: items } = data;
+        
+        mainForm.date.setValue(form.date);
+        mainForm.cnpj.setValue(form.cnpj);
+        mainForm.companyName.setValue(form.companyName);
+        mainForm.representative.setValue(form.representative);
+        mainForm.paymentCondition.setValue(form.paymentCondition);
+        mainForm.observations.setValue(form.observations);
+        mainForm.showTotal.setValue(form.showTotal);
+        mainForm.showPS.setValue(form.showPS);
+
+        products.reset();
+        items.forEach((p) => products.insertProduct(p));
+    } catch (_) {
+        showModal(
+            "Arquivo inválido",
+            "Não foi possível importar. Verifique se o arquivo é um JSON válido e exportado por este sistema."
+        );
+    } finally {
+        input.value = "";
+    }
 }
