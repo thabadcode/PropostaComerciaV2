@@ -2,6 +2,7 @@ import style from "./Header.module.css";
 import Button from "../ui/Button/Button";
 import { BrushCleaning, Download, FileText, Import } from "lucide-react";
 import { useRef } from "react";
+import { PROVIDER_INFO } from "../../core/constants/providerInfo";
 
 interface HeaderProps {
     clearAll: () => void;
@@ -14,7 +15,7 @@ export default function Header({ clearAll, exportJson, importJson, generatePDF }
     const inputRef = useRef<HTMLInputElement>(null);
     return (
         <header className={style.Header}>
-            <img src="/logo-t-oliver.webp" alt="Company logo" />
+            <img src="/logo-t-oliver.webp" alt={PROVIDER_INFO.company.name} />
             <h1>Proposta Comercial</h1>
             <a href="#products-table">Tabela</a>
             <a href="#preview-pdf">Pré-Visualização</a>
