@@ -1,14 +1,17 @@
 import style from "./Header.module.css";
 import Button from "../ui/Button/Button";
-import { BrushCleaning, Download, FileText } from "lucide-react";
+import { BrushCleaning, Download, FileText, Import } from "lucide-react";
+import { useRef } from "react";
 
 interface HeaderProps {
     clearAll: () => void;
     exportJson: () => void;
+    importJson: (e: React.ChangeEvent<HTMLInputElement>) => void;
     generatePDF: () => void;
 }
 
-export default function Header({ clearAll, exportJson, generatePDF }: HeaderProps) {
+export default function Header({ clearAll, exportJson, importJson, generatePDF }: HeaderProps) {
+    const inputRef = useRef<HTMLInputElement>(null);
     return (
         <header className={style.Header}>
             <img src="/logo-t-oliver.webp" alt="Company logo" />
@@ -27,11 +30,23 @@ export default function Header({ clearAll, exportJson, generatePDF }: HeaderProp
                     onClick={exportJson}
                 />
                 <Button
+                    icon={Import}
+                    text="Importar JSON"
+                    onClick={() => inputRef.current?.click()}
+                />
+                <Button
                     icon={FileText}
                     text="Gerar PDF"
                     onClick={generatePDF}
                 />
             </div>
+            <input
+                ref={inputRef}
+                type="file"
+                accept=".json,application/json"
+                style={{ display: "none" }}
+                onChange={importJson}
+            />
         </header>
     );
 }
