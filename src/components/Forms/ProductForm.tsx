@@ -3,12 +3,13 @@ import Button from '../ui/Button/Button';
 import Checkbox from '../ui/Checkbox/Checkbox';
 import Input from '../ui/Input/Input';
 import Select from '../ui/Select/Select';
-import { PackagePlus, Plus } from 'lucide-react';
+import { Edit, PackagePlus, Plus } from 'lucide-react';
 import { FREIGHT_TYPES, PRODUCT_SUGGESTIONS, UNIT_OPTIONS } from '../../core/constants/formOptions';
 import type { ProductFormState } from '../../core/hooks/useProductForm';
 
 export default function ProductForm(
-    {form, onAddClick}: {form: ProductFormState, onAddClick: () => void;}) {
+    {form, onClick}: {form: ProductFormState, onClick: () => void}
+) {
     return (
         <Card icon={PackagePlus} title="Dados produto/serviço">
             <Input
@@ -91,12 +92,23 @@ export default function ProductForm(
                     supportingText={form.price.errorMsg ?? ""}
                 />
             </FormRow>
-
-            <Button
-                icon={Plus}
-                text="Adicionar produto/serviço"
-                onClick={onAddClick}
-            />
+            
+            {form.isEditing ?
+                (
+                    <Button
+                        icon={Edit}
+                        text="Editar produto/serviço"
+                        onClick={onClick}
+                    />
+                ) : (
+                    <Button
+                        icon={Plus}
+                        text="Adicionar produto/serviço"
+                        onClick={onClick}
+                    />
+                )
+            }
+            
         </Card>
     );
 }
