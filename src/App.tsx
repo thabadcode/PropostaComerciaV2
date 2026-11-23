@@ -13,11 +13,15 @@ import { loadSnapshot } from "./core/utils/snapshot";
 import { useAutoSave } from "./core/hooks/useAutoSave";
 import { useState } from "react";
 import { exportJson, importJson } from "./core/utils/exportImport";
+import { useToast } from "./core/hooks/useToast";
+import { Toast } from "./components/ui/Toast/Toast";
+import { Plus, RefreshCcw, Trash } from "lucide-react";
 
 export default function App() {
   const [snapshot] = useState(loadSnapshot);
 
   const modal = useModal();
+  const toast = useToast();
   const mainForm = useMainForm(snapshot?.mainForm);
   const productForm = useProductForm();
   const products = useProducts(snapshot?.products);
@@ -57,7 +61,11 @@ export default function App() {
 
     if (productForm.isEditing) {
       products.updateProduct(product.id, product);
-    } else products.insertProduct(product);
+      toast.show(RefreshCcw, "Produto atualizado");
+    } else {
+      products.insertProduct(product);
+      toast.show(Plus, "Produto adicionado");
+    }
 
     productForm.reset();
   };
@@ -98,6 +106,7 @@ export default function App() {
         }}
         generatePDF={tryGeneratePdf}
       />
+
       <Modal
         show={modal.state.show}
         title={modal.state.title}
@@ -106,6 +115,12 @@ export default function App() {
         dismissText={modal.state.dismissText}
         onConfirm={modal.confirm}
         onDismiss={modal.dismiss}
+      />
+
+      <Toast
+        show={toast.state.show}
+        icon={toast.state.icon}
+        message={toast.state.message}
       />
 
       <main>
@@ -120,7 +135,10 @@ export default function App() {
             onMoveUp={(index) => products.reorderProducts(index, -1)}
             onMoveDown={(index) => products.reorderProducts(index, 1)}
             onEdit={productForm.editProduct}
-            onDelete={(index) => products.removeProduct(index)}
+            onDelete={(index) => {
+              products.removeProduct(index);
+              toast.show(Trash, "Produto removido");
+            }}
           />
 
           <Preview mainForm={mainForm} products={products}/>
