@@ -1,0 +1,26 @@
+.Toast {
+    display: flex;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 50;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    background-color: var(--bg-secondary);
+    border-radius: 10px;
+    border: 1px solid var(--border-input);
+    box-shadow: var(--black-shadow);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    svg { color: #65d68a; }
+    p { color: var(--text-primary); }
+}
+
+.Visible {
+    opacity: 1;
+    transform: none;
+}
