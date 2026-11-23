@@ -45,7 +45,7 @@ export default function Modal({
     return (
         <div className={`${style.Backdrop} ${show ? style.show : ""}`}>
             <div
-                role={onDismiss ? "alertdialog" : "alert"}
+                role={dismissText ? "alertdialog" : "alert"}
                 aria-modal="true"
                 className={style.Modal}
             >
