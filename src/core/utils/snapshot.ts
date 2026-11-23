@@ -17,10 +17,53 @@ export type Snapshot = {
     products: Product[];
 };
 
+function isRecord(v: unknown): v is Record<string, unknown> {
+    return typeof v === "object" && v !== null;
+}
+
+function isProduct(v: unknown): v is Product {
+    if (!isRecord(v)) return false;
+    return (
+        typeof v.id === "string" &&
+        typeof v.description === "string" &&
+        typeof v.freightType === "string" &&
+        typeof v.isClientCap === "boolean" &&
+        (v.asphaltBinderContent === null || typeof v.asphaltBinderContent === "string") &&
+        typeof v.unit === "string" &&
+        typeof v.quantity === "number" &&
+        typeof v.price === "number"
+    );
+}
+
+export function isSnapshot(v: unknown): v is Snapshot {
+    if (!isRecord(v) || !isRecord(v.mainForm)) return false;
+    const m = v.mainForm;
+    return (
+        typeof m.companyName === "string" &&
+        typeof m.cnpj === "string" &&
+        typeof m.representative === "string" &&
+        typeof m.observations === "string" &&
+        typeof m.date === "string" &&
+        typeof m.paymentCondition === "string" &&
+        typeof m.showTotal === "boolean" &&
+        typeof m.showPS === "boolean" &&
+        Array.isArray(v.products) &&
+        v.products.every(isProduct)
+    );
+}
+
 export function loadSnapshot(): Snapshot | null {
     try {
         const dataSaved = localStorage.getItem(STORAGE_KEY);
-        return dataSaved === null ? null : JSON.parse(dataSaved) as Snapshot;
+        if (dataSaved === null) return null;
+
+        const parsed: unknown = JSON.parse(dataSaved);
+        if (!isSnapshot(parsed)) {
+            console.warn("Snapshot salvo em formato inválido ou comrrompido. Ignorando.");
+            return null;
+        }
+
+        return parsed;
     } catch (error) {
         console.error("Não foi possível carregar dados salvos", error);
         return null;
