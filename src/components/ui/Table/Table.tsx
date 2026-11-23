@@ -1,5 +1,5 @@
 import { Card } from '../Card/Card';
-import type { ProductsState } from '../../../core/hooks/useProducts';
+import type { ProductsState, Product } from '../../../core/hooks/useProducts';
 import type { ElementType } from 'react';
 import style from './Table.module.css';
 import { ChevronDown, ChevronUp, Sheet, SquarePen, Trash } from 'lucide-react';
@@ -9,7 +9,7 @@ interface TableProps {
     products: ProductsState;
     onMoveUp: (index: number) => void;
     onMoveDown: (index: number) => void;
-    onEdit: (id: string) => void;
+    onEdit: (p: Product) => void;
     onDelete: (index: number) => void;
 }
 
@@ -45,7 +45,7 @@ export function Table({
                         <ActionButton
                             icon={SquarePen}
                             label="Editar"
-                            onClick={() => onEdit(p.id)}
+                            onClick={() => onEdit(p)}
                         />
 
                         <ActionButton
