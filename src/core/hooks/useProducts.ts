@@ -36,9 +36,36 @@ export function useProducts(saved?: Product[]) {
             setProducts((prev) => prev.filter((_, i) => i !== index)),
         reorderProducts: (index: number, offset: number) =>
             setProducts((prev) => reorderProducts(prev, index, offset)),
-
         getTotal: () => products.reduce((sum, p) =>
             sum + (p.price * p.quantity), 0),
         reset: () => setProducts([])
+    };
+}
+
+export interface DescriptionParsed {
+    description: string;
+    freightType: string;
+    isClientCap: boolean;
+    asphaltBinderContent: string | null;
+};
+
+export function parseDescription(description: string): DescriptionParsed {
+    let remainder = description;
+    let isClientCap = false;
+    let asphaltBinderContent: string | null = null;
+
+    const capMarch = remainder.match(/ - CAP por conta do cliente - Teor (.+)%$/);
+    if (capMarch) {
+        isClientCap = true;
+        asphaltBinderContent = capMarch[1];
+        remainder = remainder.slice(0, capMarch.index);
+    }
+
+    const sep = remainder.lastIndexOf(' - ');
+    return {
+        description: remainder.slice(0, sep),
+        freightType: remainder.slice(sep + 3),
+        isClientCap,
+        asphaltBinderContent
     };
 }
