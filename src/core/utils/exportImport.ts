@@ -1,6 +1,7 @@
 import type { MainFormState } from "../hooks/useMainForm";
-import type { Product, ProductsState } from "../hooks/useProducts";
+import type { ProductsState } from "../hooks/useProducts";
 import { buildSnapshot, type Snapshot } from "./snapshot";
+import type { Product } from "./types";
 
 export function exportJson(
     mainForm: MainFormState,
