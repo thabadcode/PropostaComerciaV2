@@ -48,12 +48,17 @@ export default function App() {
       productForm.touchAll();
       modal.showModal(
         "Campos inválidos",
-        "Confira os dados do produto antes de adicioná-lo."
+        "Confira os dados do produto antes de adicioná-lo ou editá-lo."
       );
       return;
     }
 
-    products.insertProduct(productForm.toProduct());
+    const product = productForm.toProduct();
+
+    if (productForm.isEditing) {
+      products.updateProduct(product.id, product);
+    } else products.insertProduct(product);
+
     productForm.reset();
   };
 
@@ -106,7 +111,7 @@ export default function App() {
       <main>
         <div className="forms">
           <MainForm form={mainForm} onShowModal={modal.showModal}/>
-          <ProductForm form={productForm} onAddClick={tryAddProduct}/>
+          <ProductForm form={productForm} onClick={tryAddProduct}/>
         </div>
 
         <div className="previews">
@@ -114,7 +119,7 @@ export default function App() {
             products={products}
             onMoveUp={(index) => products.reorderProducts(index, -1)}
             onMoveDown={(index) => products.reorderProducts(index, 1)}
-            onEdit={(index) => alert("Todo: Implementar lógica de edição")}
+            onEdit={productForm.editProduct}
             onDelete={(index) => products.removeProduct(index)}
           />
 
