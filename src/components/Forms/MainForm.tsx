@@ -97,7 +97,7 @@ export default function MainForm(
 
             <FormRow>
                 <Input
-                    label="Representante (opicional)"
+                    label="Representante (opcional)"
                     value={form.representative.value}
                     onChange={(e) => form.representative.setValue(e.target.value)}
                     isValid={true}

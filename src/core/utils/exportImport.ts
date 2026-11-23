@@ -49,7 +49,7 @@ export async function importJson(
     if (!file) {
         showModal(
             "Nenhum arquivo selecionado",
-            "Seleciona um arquivo JSON para realizar a importação."
+            "Selecione um arquivo JSON para realizar a importação."
         );
         return;
     }
