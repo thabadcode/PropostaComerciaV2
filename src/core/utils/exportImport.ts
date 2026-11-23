@@ -1,6 +1,7 @@
+import { CircleCheck, type LucideIcon } from "lucide-react";
 import type { MainFormState } from "../hooks/useMainForm";
 import type { ProductsState } from "../hooks/useProducts";
-import { buildSnapshot, isSnapshot, type Snapshot } from "./snapshot";
+import { buildSnapshot, isSnapshot } from "./snapshot";
 import type { Product } from "./types";
 
 export function exportJson(
@@ -43,7 +44,8 @@ export async function importJson(
     mainForm: MainFormState,
     products: ProductsState,
     event: React.ChangeEvent<HTMLInputElement>,
-    showModal: (title: string, message: string) => void
+    showModal: (title: string, message: string) => void,
+    showToast: (icon: LucideIcon, message: string) => void
 ) {
     const input = event.target;
     const file: File | undefined = input.files?.[0];
@@ -80,6 +82,11 @@ export async function importJson(
 
         products.reset();
         items.forEach((p) => products.insertProduct(p));
+
+        showToast(
+            CircleCheck,
+            "Importação realizada"
+        );
     } catch (error) {
         console.error("Falha ao importar o arquivo", error)
         showInvalidFile();

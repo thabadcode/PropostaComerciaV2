@@ -111,6 +111,7 @@ export default function App() {
             products,
             e,
             modal.showModal,
+            toast.show
           )
         }}
         generatePDF={tryGeneratePdf}
