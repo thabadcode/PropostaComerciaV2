@@ -29,8 +29,16 @@ export function useAutoSave(
                 );
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
-        mainForm,
+        mainForm.date.value,
+        mainForm.cnpj.value,
+        mainForm.companyName.value,
+        mainForm.representative.value,
+        mainForm.paymentCondition.value,
+        mainForm.observations.value,
+        mainForm.showTotal.value,
+        mainForm.showPS.value,
         products
     ]);
 }
