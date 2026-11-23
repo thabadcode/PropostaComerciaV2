@@ -80,7 +80,8 @@ export async function importJson(
 
         products.reset();
         items.forEach((p) => products.insertProduct(p));
-    } catch (_) {
+    } catch (error) {
+        console.error("Falha ao importar o arquivo", error)
         showInvalidFile();
     } finally {
         input.value = "";
