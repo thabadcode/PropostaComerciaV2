@@ -38,7 +38,7 @@ export function useProductForm() {
         };
     };
 
-    const setProdutctToEdit = (p: Product) => {
+    const setProductToEdit = (p: Product) => {
         description.setValue(p.description);
         freightType.setValue(p.freightType);
         isClientCap.setValue(p.isClientCap);
@@ -54,7 +54,7 @@ export function useProductForm() {
         description, freightType, isClientCap,
         asphaltBinderContent, unit, amount, price,
         isValid: fields.every((f) => f.isValid),
-        editProduct: setProdutctToEdit,
+        editProduct: setProductToEdit,
         touchAll: () => fields.forEach((f) => f.touch()),
         reset: () => {
             fields.forEach((f) => f.reset());
