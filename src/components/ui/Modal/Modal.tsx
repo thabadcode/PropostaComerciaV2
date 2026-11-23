@@ -54,7 +54,7 @@ export default function Modal({
                 aria-modal="true"
                 className={style.Modal}
             >
-                <h2><Info className={style.Icon}/>{title}</h2>
+                <h2><Info/>{title}</h2>
                 <p>{message}</p>
                 <div className={style.ModalButtons}>
                     {dismissText && onDismiss && (

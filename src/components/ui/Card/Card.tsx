@@ -7,7 +7,7 @@ export function Card(
     return (
         <div id={id} className={style.Form}>
             <h2><Icon/>{title}</h2>
-            <hr className={style.Divider}/>
+            <hr/>
             {children}
         </div>
     );

@@ -59,8 +59,8 @@ export function Table({
                 <td>{p.description}</td>
                 <td>{p.unit}</td>
                 <td>{p.quantity}</td>
-                <td className={style.RightAlign}>{formatter.money(p.price)}</td>
-                <td className={style.RightAlign}>{formatter.money(p.quantity * p.price)}</td>
+                <td>{formatter.money(p.price)}</td>
+                <td>{formatter.money(p.quantity * p.price)}</td>
             </tr>
         ));
     };
