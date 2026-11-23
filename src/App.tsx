@@ -11,11 +11,11 @@ import { Preview } from "./components/Preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 import { loadSnapshot } from "./core/utils/snapshot";
 import { useAutoSave } from "./core/hooks/useAutoSave";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { exportJson, importJson } from "./core/utils/exportImport";
 import { useToast } from "./core/hooks/useToast";
 import { Toast } from "./components/ui/Toast/Toast";
-import { Plus, RefreshCcw, Trash } from "lucide-react";
+import { CircleCheck, Plus, RefreshCcw, Trash } from "lucide-react";
 
 export default function App() {
   const [snapshot] = useState(loadSnapshot);
@@ -30,6 +30,15 @@ export default function App() {
   useAutoSave(mainForm, products.products, modal.showModal);
 
   useDocumentTitle(companyName ? `Proposta Comercial - ${companyName}` : "Proposta Comercial");
+
+  useEffect (() => {
+    const hasRestoredFromStorage = snapshot !== null;
+    if (hasRestoredFromStorage) {
+      toast.show(CircleCheck, "Rascunho restaurado");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
 
   const clearAll = () => {
     modal.showModal(
