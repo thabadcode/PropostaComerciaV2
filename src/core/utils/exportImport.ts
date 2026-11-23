@@ -54,14 +54,17 @@ export async function importJson(
         );
         return;
     }
+
+    const showInvalidFile = () =>
+        showModal(
+            "Arquivo inválido",
+            "Não foi possível importar. Verifique se o arquivo é um JSON válido e exportado por este sistema."
+        );
     
     try {
         const data: unknown = JSON.parse(await file.text());
         if (!isSnapshot(data)) {
-            showModal(
-                "Arquivo inválido",
-                "Não foi possível importar. Verifique se o arquivo é um JSON válido e exportado por este sistema."
-            );
+            showInvalidFile();
             return;
         }
         const { mainForm: form, products: items } = data;
@@ -78,10 +81,7 @@ export async function importJson(
         products.reset();
         items.forEach((p) => products.insertProduct(p));
     } catch (_) {
-        showModal(
-            "Arquivo inválido",
-            "Não foi possível importar. Verifique se o arquivo é um JSON válido e exportado por este sistema."
-        );
+        showInvalidFile();
     } finally {
         input.value = "";
     }
