@@ -80,8 +80,7 @@ export async function importJson(
         mainForm.showTotal.setValue(form.showTotal);
         mainForm.showPS.setValue(form.showPS);
 
-        products.reset();
-        items.forEach((p) => products.insertProduct(p));
+        products.replaceAll(items.map((p) => ({ ...p, id: crypto.randomUUID() })));
 
         showToast(
             CircleCheck,
