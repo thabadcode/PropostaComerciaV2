@@ -25,7 +25,7 @@ export function Table({
         const length = items.length;
         if (length === 0) return <tr><td colSpan={6}>Nenhum produto adicionado</td></tr>;
         return items.map((p, index) => (
-            <tr key={index}>
+            <tr key={p.id}>
                 <td>
                     <div className={style.Actions}>
                         <ActionButton

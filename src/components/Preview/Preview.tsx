@@ -83,7 +83,7 @@ function TablePdf({mainForm, products} : {mainForm: MainFormState,products: Prod
         const length = items.length;
         if (length === 0) return <tr><td colSpan={6}>Nenhum produto adicionado</td></tr>;
         return items.map((p, index) => (
-            <tr key={index}>
+            <tr key={p.id}>
                 <td>1.{index + 1}</td>
                 <td>{p.description}</td>
                 <td>{p.unit}</td>

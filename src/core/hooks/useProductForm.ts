@@ -1,6 +1,7 @@
 import { useFormField } from "./useFormField";
 import { rules } from "../utils/rules";
 import type { Product } from "./useProducts";
+import { useId } from "react";
 
 export type ProductFormState = ReturnType<typeof useProductForm>;
 
@@ -15,6 +16,7 @@ export function useProductForm() {
     const unit = useFormField<string>("", rules.required);
     const amount = useFormField<string>("", rules.positiveNumber);
     const price = useFormField<string>("", rules.positiveNumber);
+    const id = useId();
 
     const fields = [
         description, freightType, isClientCap, asphaltBinderContent, unit,
@@ -28,6 +30,7 @@ export function useProductForm() {
         }
 
         return {
+            id: id,
             description: finalDescription,
             unit: unit.value,
             quantity: Number(amount.value),
