@@ -1,5 +1,5 @@
 import type { MainFormState } from "../hooks/useMainForm";
-import type { Product } from "../hooks/useProducts";
+import type { Product } from "./types";
 
 const STORAGE_KEY = "proposal:v1";
 
