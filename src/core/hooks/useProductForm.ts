@@ -1,11 +1,14 @@
 import { useFormField } from "./useFormField";
 import { rules } from "../utils/rules";
-import type { Product } from "./useProducts";
-import { useId } from "react";
+import { type DescriptionParsed, parseDescription, type Product } from "./useProducts";
+import { useState } from "react";
 
 export type ProductFormState = ReturnType<typeof useProductForm>;
 
 export function useProductForm() {
+    const [editingId, setEditingId] = useState<string | null>(null);
+    const isEditing = editingId !== null;
+
     const description = useFormField<string>("", rules.required);
     const freightType = useFormField<string>("", rules.required);
     const isClientCap = useFormField<boolean>(false);
@@ -16,7 +19,6 @@ export function useProductForm() {
     const unit = useFormField<string>("", rules.required);
     const amount = useFormField<string>("", rules.positiveNumber);
     const price = useFormField<string>("", rules.positiveNumber);
-    const id = useId();
 
     const fields = [
         description, freightType, isClientCap, asphaltBinderContent, unit,
@@ -30,7 +32,7 @@ export function useProductForm() {
         }
 
         return {
-            id: id,
+            id: editingId ?? crypto.randomUUID(),
             description: finalDescription,
             unit: unit.value,
             quantity: Number(amount.value),
@@ -38,12 +40,29 @@ export function useProductForm() {
         };
     };
 
+    const setProdutctToEdit = (p: Product) => {
+        const descriptionParsed: DescriptionParsed = parseDescription(p.description);
+        description.setValue(descriptionParsed.description);
+        freightType.setValue(descriptionParsed.freightType);
+        isClientCap.setValue(descriptionParsed.isClientCap);
+        asphaltBinderContent.setValue(descriptionParsed.asphaltBinderContent ?? "");
+        unit.setValue(p.unit);
+        amount.setValue(String(p.quantity));
+        price.setValue(String(p.price));
+        setEditingId(p.id);
+    }
+
     return {
+        isEditing,
         description, freightType, isClientCap,
         asphaltBinderContent, unit, amount, price,
         isValid: fields.every((f) => f.isValid),
+        editProduct: setProdutctToEdit,
         touchAll: () => fields.forEach((f) => f.touch()),
-        reset: () => fields.forEach((f) => f.reset()),
+        reset: () => {
+            fields.forEach((f) => f.reset());
+            setEditingId(null);
+        },
         toProduct
     };
 }
