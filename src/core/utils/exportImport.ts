@@ -1,6 +1,6 @@
 import type { MainFormState } from "../hooks/useMainForm";
 import type { ProductsState } from "../hooks/useProducts";
-import { buildSnapshot, type Snapshot } from "./snapshot";
+import { buildSnapshot, isSnapshot, type Snapshot } from "./snapshot";
 import type { Product } from "./types";
 
 export function exportJson(
@@ -56,7 +56,14 @@ export async function importJson(
     }
     
     try {
-        const data = JSON.parse(await file.text()) as Snapshot;
+        const data: unknown = JSON.parse(await file.text());
+        if (!isSnapshot(data)) {
+            showModal(
+                "Arquivo inválido",
+                "Não foi possível importar. Verifique se o arquivo é um JSON válido e exportado por este sistema."
+            );
+            return;
+        }
         const { mainForm: form, products: items } = data;
         
         mainForm.date.setValue(form.date);
