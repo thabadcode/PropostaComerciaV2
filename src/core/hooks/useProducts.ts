@@ -30,8 +30,8 @@ export function useProducts(saved?: Product[]) {
         products,
         insertProduct: (newProduct: Product) =>
             setProducts((prev) => [...prev, newProduct]),
-        updateProduct: (index: number, updated: Product) =>
-            setProducts((prev) => prev.map((p, i) => (i === index ? updated : p))),
+        updateProduct: (id: string, updated: Product) =>
+            setProducts((prev) => prev.map((p) => (p.id === id ? updated : p))),
         removeProduct: (index: number) => 
             setProducts((prev) => prev.filter((_, i) => i !== index)),
         reorderProducts: (index: number, offset: number) =>

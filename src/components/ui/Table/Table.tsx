@@ -9,7 +9,7 @@ interface TableProps {
     products: ProductsState;
     onMoveUp: (index: number) => void;
     onMoveDown: (index: number) => void;
-    onEdit: (index: number) => void;
+    onEdit: (id: string) => void;
     onDelete: (index: number) => void;
 }
 
@@ -45,7 +45,7 @@ export function Table({
                         <ActionButton
                             icon={SquarePen}
                             label="Editar"
-                            onClick={() => onEdit(index)}
+                            onClick={() => onEdit(p.id)}
                         />
 
                         <ActionButton
