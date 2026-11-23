@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { Product } from "./useProducts";
+import type { Product } from "../utils/types";
 import type { MainFormState } from "./useMainForm";
 import { buildSnapshot, describeStorageError, saveSnapshot} from "../utils/snapshot";
 
