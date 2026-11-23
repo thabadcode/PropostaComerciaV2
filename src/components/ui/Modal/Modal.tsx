@@ -29,7 +29,12 @@ export default function Modal({
                 if (onDismiss) onDismiss();
                 else onConfirm();
             }
-            else if (event.key === 'Enter'&& !event.isComposing) {
+            else if (
+                event.key === 'Enter' &&
+                !event.isComposing &&
+                !(event.target instanceof HTMLTextAreaElement) &&
+                !(event.target instanceof HTMLInputElement)
+            ) {
                 event.preventDefault();
                 onConfirm();
             }
