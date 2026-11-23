@@ -11,6 +11,13 @@ export const searchCnpj = (cnpj: string) => {
 };
 
 async function searchCnpjByApi(cnpj: string): Promise<ResultCnpj> {
+    if (cnpj.length === 0) return {
+        companyName: '',
+        isActive: false,
+        hasError: true,
+        errorMsg: "Informe um CNPJ para realizar a busca"
+    };   
+
     try {
         const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
 
