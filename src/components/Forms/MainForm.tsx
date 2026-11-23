@@ -65,25 +65,36 @@ export default function MainForm(
                 />
 
                 <Input
-                    label="Pesquisar pelo CNPJ"
-                    value={formatter.cnpj(form.cnpj.value)}
-                    onChange={(e) => form.cnpj.setValue(e.target.value.replace(/\D/g, "").slice(0, 14))}
-                    onBlur={form.cnpj.onBlur}
-                    onFocus={form.cnpj.onFocus}
-                    isValid={!form.cnpj.showError}
-                    disabled={isLoading}
-                    supportingText={form.cnpj.errorMsg ?? ""}
-                    action={isLoading ? (
-                        <Loading text="Pesquisando"/>
-                    ) : (
-                        <Button
-                            icon={Search}
-                            text="Pesquisar"
-                            onClick={handleSearchCnpj}
-                        />
-                    )}
+                    label="Número da Proposta"
+                    inputMode="numeric"
+                    value={form.proposalNumber.value}
+                    onChange={(e) => form.proposalNumber.setValue(e.target.value)}
+                    onBlur={form.proposalNumber.onBlur}
+                    onFocus={form.proposalNumber.onFocus}
+                    isValid={form.proposalNumber.isValid}
+                    supportingText={form.proposalNumber.errorMsg ?? ""}
                 />
             </FormRow>
+
+            <Input
+                label="Pesquisar pelo CNPJ (opcional)"
+                value={formatter.cnpj(form.cnpj.value)}
+                onChange={(e) => form.cnpj.setValue(e.target.value.replace(/\D/g, "").slice(0, 14))}
+                onBlur={form.cnpj.onBlur}
+                onFocus={form.cnpj.onFocus}
+                isValid={!form.cnpj.showError}
+                disabled={isLoading}
+                supportingText={form.cnpj.errorMsg ?? ""}
+                action={isLoading ? (
+                    <Loading text="Pesquisando"/>
+                ) : (
+                    <Button
+                        icon={Search}
+                        text="Pesquisar"
+                        onClick={handleSearchCnpj}
+                    />
+                )}
+            />
 
             <Input
                 label="Razão social"

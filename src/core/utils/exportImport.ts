@@ -72,6 +72,7 @@ export async function importJson(
         const { mainForm: form, products: items } = data;
         
         mainForm.date.setValue(form.date);
+        mainForm.proposalNumber.setValue(form.proposalNumber);
         mainForm.cnpj.setValue(form.cnpj);
         mainForm.companyName.setValue(form.companyName);
         mainForm.representative.setValue(form.representative);

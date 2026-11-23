@@ -38,6 +38,7 @@ export function useAutoSave(
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         mainForm.date.value,
+        mainForm.proposalNumber.value,
         mainForm.cnpj.value,
         mainForm.companyName.value,
         mainForm.representative.value,

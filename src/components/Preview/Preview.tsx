@@ -15,7 +15,7 @@ export function Preview(
     return (
         <div className={style.Preview}>
             <div id="preview-pdf" className={style.PreviewPdf}>
-                <HeaderPdf date={date}/>
+                <HeaderPdf proposalNumber={mainForm.proposalNumber.value} date={date}/>
                 
                 <div className={style.BodyPdf}>
                         <div className={style.Infos}>
@@ -59,7 +59,7 @@ export function Preview(
     );
 }
 
-function HeaderPdf({date} : {date: Date}) {
+function HeaderPdf({proposalNumber, date} : {proposalNumber: string, date: Date}) {
     return (
         <div className={style.PdfHeader}>
             <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
@@ -70,7 +70,7 @@ function HeaderPdf({date} : {date: Date}) {
             </div>
             <div className={style.LocalDate}>
                 <h3>PROPOSTA COMERCIAL</h3>
-                <h2>001/{date.getFullYear()}</h2>
+                <h2>{proposalNumber}/{date.getFullYear()}</h2>
                 <span>{PROVIDER_INFO.company.address.city}, {formatter.longDate(date)}</span>
             </div>
         </div>

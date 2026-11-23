@@ -9,6 +9,7 @@ const optional = (rule: Validator<string>): Validator<string> =>
 
 export function useMainForm(saved?: Snapshot["mainForm"]) {
     const date = useFormField<string>("", rules.required, saved?.date);
+    const proposalNumber = useFormField<string>("001", rules.required, saved?.date);
     const cnpj = useFormField<string>("", optional(rules.cnpj), saved?.cnpj);
     const companyName = useFormField<string>("", rules.required, saved?.companyName);
     const representative = useFormField<string>("", undefined, saved?.representative);
@@ -18,12 +19,12 @@ export function useMainForm(saved?: Snapshot["mainForm"]) {
     const showPS = useFormField<boolean>(true, undefined, saved?.showPS);
 
     const fields = [
-        date, cnpj, companyName, representative,
+        date, proposalNumber, cnpj, companyName, representative,
         paymentCondition, observations, showTotal, showPS,
     ];
 
     return {
-        date, cnpj, companyName, representative,
+        date, proposalNumber, cnpj, companyName, representative,
         paymentCondition, observations, showTotal, showPS,
         isValid: fields.every((f) => f.isValid),
         touchAll: () => fields.forEach((f) => f.touch()),

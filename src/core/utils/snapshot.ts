@@ -5,12 +5,13 @@ const STORAGE_KEY = "proposal:v1";
 
 export type Snapshot = {
     mainForm: {
-        companyName: string;
-        cnpj: string;
-        representative: string;
-        observations: string;
-        date: string;
-        paymentCondition: string;
+        proposalNumber: string,
+        companyName: string,
+        cnpj: string,
+        representative: string,
+        observations: string,
+        date: string,
+        paymentCondition: string,
         showTotal: boolean,
         showPS: boolean
     },
@@ -39,6 +40,7 @@ export function isSnapshot(v: unknown): v is Snapshot {
     if (!isRecord(v) || !isRecord(v.mainForm)) return false;
     const m = v.mainForm;
     return (
+        typeof m.proposalNumber === "string" &&
         typeof m.companyName === "string" &&
         typeof m.cnpj === "string" &&
         typeof m.representative === "string" &&
@@ -93,6 +95,7 @@ export function buildSnapshot(
     return {
         mainForm: {
             date: mainForm.date.value,
+            proposalNumber: mainForm.proposalNumber.value,
             cnpj: mainForm.cnpj.value,
             companyName: mainForm.companyName.value,
             representative: mainForm.representative.value,
