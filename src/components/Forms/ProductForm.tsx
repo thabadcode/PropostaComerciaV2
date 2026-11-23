@@ -88,6 +88,8 @@ export default function ProductForm(
                     prefix="R$"
                     value={form.price.value}
                     onChange={(e) => form.price.setValue(e.target.value)}
+                    onBlur={form.price.onBlur}
+                    onFocus={form.price.onFocus}
                     isValid={!form.price.showError}
                     supportingText={form.price.errorMsg ?? ""}
                 />
