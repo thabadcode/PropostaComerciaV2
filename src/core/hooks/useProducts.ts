@@ -30,6 +30,7 @@ export function useProducts(saved?: Product[]) {
             setProducts((prev) => prev.filter((_, i) => i !== index)),
         reorderProducts: (index: number, offset: number) =>
             setProducts((prev) => reorderProducts(prev, index, offset)),
+        replaceAll: (products: Product[]) => setProducts(products),
         getFormated: (p: Product) => {
             let text = `${p.description} - ${p.freightType}`;
             if (p.isClientCap) text += ` - CAP por conta do cliente - ${p.asphaltBinderContent}%`;
