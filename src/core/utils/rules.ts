@@ -2,6 +2,13 @@ export const rules = {
     required: (value: string): string | null =>
         value.trim() === ""? "Campo obrigatório" : null,
 
+    proposalNumber: (value: string): string | null => {
+        if (value.trim()) return "Campo obrigatório";
+        const number = Number(value);
+        if (number < 1 || number > 999) return "Informe um número (1 a 999)"
+        return null;
+    },
+
     cnpj: (value: string): string | null => {
         const clean = value.replace(/\D/g, "");
         const isValid =
