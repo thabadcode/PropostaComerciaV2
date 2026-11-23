@@ -1,7 +1,7 @@
 import { useFormField } from "./useFormField";
 import { rules } from "../utils/rules";
-import { type DescriptionParsed, parseDescription, type Product } from "./useProducts";
 import { useState } from "react";
+import type { Product } from "../utils/types";
 
 export type ProductFormState = ReturnType<typeof useProductForm>;
 
@@ -26,14 +26,12 @@ export function useProductForm() {
     ];
 
     const toProduct = (): Product => {
-        let finalDescription = `${description.value} - ${freightType.value}`;
-        if (isClientCap.value) {
-            finalDescription += ` - CAP por conta do cliente - Teor ${asphaltBinderContent.value}%`;
-        }
-
         return {
             id: editingId ?? crypto.randomUUID(),
-            description: finalDescription,
+            description: description.value,
+            freightType: freightType.value,
+            isClientCap: isClientCap.value,
+            asphaltBinderContent: asphaltBinderContent.value,
             unit: unit.value,
             quantity: Number(amount.value),
             price: Number(price.value)
@@ -41,11 +39,10 @@ export function useProductForm() {
     };
 
     const setProdutctToEdit = (p: Product) => {
-        const descriptionParsed: DescriptionParsed = parseDescription(p.description);
-        description.setValue(descriptionParsed.description);
-        freightType.setValue(descriptionParsed.freightType);
-        isClientCap.setValue(descriptionParsed.isClientCap);
-        asphaltBinderContent.setValue(descriptionParsed.asphaltBinderContent ?? "");
+        description.setValue(p.description);
+        freightType.setValue(p.freightType);
+        isClientCap.setValue(p.isClientCap);
+        asphaltBinderContent.setValue(p.asphaltBinderContent ?? "");
         unit.setValue(p.unit);
         amount.setValue(String(p.quantity));
         price.setValue(String(p.price));

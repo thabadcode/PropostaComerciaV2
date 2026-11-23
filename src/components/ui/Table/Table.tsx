@@ -1,9 +1,10 @@
 import { Card } from '../Card/Card';
-import type { ProductsState, Product } from '../../../core/hooks/useProducts';
+import type { ProductsState } from '../../../core/hooks/useProducts';
 import type { ElementType } from 'react';
 import style from './Table.module.css';
 import { ChevronDown, ChevronUp, Sheet, SquarePen, Trash } from 'lucide-react';
 import { formatter } from '../../../core/utils/formatter';
+import type { Product } from '../../../core/utils/types';
 
 interface TableProps {
     products: ProductsState;
