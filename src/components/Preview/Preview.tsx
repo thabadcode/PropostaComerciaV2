@@ -1,19 +1,32 @@
-import { useRef } from 'react';
-import type { MainFormState } from '../../core/hooks/useMainForm';
-import type { ProductsState } from '../../core/hooks/useProducts';
-import { PROVIDER_INFO } from '../../core/constants/providerInfo';
-import { FileText, Hand, Mail, MapPin, MousePointer, Phone, ZoomIn, ZoomOut } from 'lucide-react';
-import bg_pdf from '../../assets/bg_pdf.jpg';
-import style from './Preview.module.css';
-import pdf from './PdfDocument.module.css';
-import { formatter } from '../../core/utils/formatter';
-import Button from '../ui/Button/Button';
-import { Card } from '../ui/Card/Card';
-import { usePanZoom } from '../../core/hooks/usePanZoom';
+import { useRef } from "react";
+import type { MainFormState } from "../../core/hooks/useMainForm";
+import type { ProductsState } from "../../core/hooks/useProducts";
+import { PROVIDER_INFO } from "../../core/constants/providerInfo";
+import {
+    FileText,
+    Hand,
+    Mail,
+    MapPin,
+    MousePointer,
+    Phone,
+    ZoomIn,
+    ZoomOut,
+} from "lucide-react";
+import bg_pdf from "../../assets/bg_pdf.jpg";
+import style from "./Preview.module.css";
+import pdf from "./PdfDocument.module.css";
+import { formatter } from "../../core/utils/formatter";
+import Button from "../ui/Button/Button";
+import { Card } from "../ui/Card/Card";
+import { usePanZoom } from "../../core/hooks/usePanZoom";
 
-export function Preview(
-    {mainForm, products} : {mainForm: MainFormState, products: ProductsState}
-) {
+export function Preview({
+    mainForm,
+    products,
+}: {
+    mainForm: MainFormState;
+    products: ProductsState;
+}) {
     const parsed = new Date(`${mainForm.date.value}T00:00`);
     const date = Number.isNaN(parsed.getTime()) ? new Date() : parsed;
 
@@ -28,10 +41,7 @@ export function Preview(
                     onClick={panZoom.zoomIn}
                     disabled={panZoom.disabledZoomIn}
                 />
-                <Button
-                    text={`${panZoom.zoom}%`}
-                    onClick={panZoom.resetZoom}
-                />
+                <Button text={`${panZoom.zoom}%`} onClick={panZoom.resetZoom} />
                 <Button
                     icon={ZoomOut}
                     onClick={panZoom.zoomOut}
@@ -40,75 +50,112 @@ export function Preview(
                 {panZoom.hasMouse && (
                     <Button
                         icon={panZoom.panMode ? Hand : MousePointer}
-                        text={panZoom.panMode ? "Modo arrastar" : "Modo selecionar"}
+                        text={
+                            panZoom.panMode
+                                ? "Modo arrastar"
+                                : "Modo selecionar"
+                        }
                         onClick={panZoom.togglePanMode}
                     />
                 )}
             </div>
 
             <div
-                className={`${style.Limiter} ${panZoom.panMode ? style.Pan : ''} ${panZoom.dragging ? style.Dragging : ''}`}
+                className={`${style.Limiter} ${panZoom.panMode ? style.Pan : ""} ${panZoom.dragging ? style.Dragging : ""}`}
                 {...panZoom.limiterHandlers}
             >
-                <div
-                    className={style.Sizer}
-                    style={panZoom.sizerStyle}
-                >
+                <div className={style.Sizer} style={panZoom.sizerStyle}>
                     <div
                         id="preview-pdf"
                         style={panZoom.pdfStyle}
                         ref={pdfRef}
-                        className={pdf.PreviewPdf}
+                        className={pdf.Page}
                     >
-                        <HeaderPdf proposalNumber={mainForm.proposalNumber.value} date={date}/>
-                        
-                        <BodyPdf date={date} mainForm={mainForm} products={products}/>
-                        
-                        <FooterPDF/>
+                        <HeaderPdf
+                            proposalNumber={mainForm.proposalNumber.value}
+                            date={date}
+                        />
+
+                        <Body
+                            date={date}
+                            mainForm={mainForm}
+                            products={products}
+                        />
+
+                        <Footer />
                     </div>
                 </div>
             </div>
-            
         </Card>
     );
 }
 
-function HeaderPdf({proposalNumber, date} : {proposalNumber: string, date: Date}) {
+function HeaderPdf({
+    proposalNumber,
+    date,
+}: {
+    proposalNumber: string;
+    date: Date;
+}) {
     return (
-        <div className={pdf.PdfHeader}>
-            <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
+        <div className={pdf.Header}>
+            <img src="/logo-t-oliver.webp" alt={PROVIDER_INFO.company.name} />
             <div className={pdf.ProviderInfo}>
                 <h2>{PROVIDER_INFO.company.name}</h2>
                 <h3>{PROVIDER_INFO.company.slogan}</h3>
-                <span>CNPJ: {PROVIDER_INFO.company.cnpj} • I.E: {PROVIDER_INFO.company.ie}</span>
+                <span>
+                    CNPJ: {PROVIDER_INFO.company.cnpj} • I.E:{" "}
+                    {PROVIDER_INFO.company.ie}
+                </span>
             </div>
-            <div className={pdf.LocalDate}>
+            <div className={pdf.ProposalHeading}>
                 <h3>PROPOSTA COMERCIAL</h3>
-                <b>{formatter.proposalNumber(proposalNumber)}/{date.getFullYear()}</b>
-                <span>{PROVIDER_INFO.company.address.city}, {formatter.longDate(date)}</span>
+                <b>
+                    {formatter.proposalNumber(proposalNumber)}/
+                    {date.getFullYear()}
+                </b>
+                <span>
+                    {PROVIDER_INFO.company.address.city},{" "}
+                    {formatter.longDate(date)}
+                </span>
             </div>
         </div>
     );
 }
 
-function BodyPdf(
-    {date, mainForm, products} : {date: Date, mainForm: MainFormState, products: ProductsState}
-) {
+function Body({
+    date,
+    mainForm,
+    products,
+}: {
+    date: Date;
+    mainForm: MainFormState;
+    products: ProductsState;
+}) {
     return (
-        <div className={pdf.BodyPdf}>
-            <div className={pdf.Infos}>
+        <div className={pdf.Body}>
+            <div className={pdf.InfoRow}>
                 <div className={pdf.ClientInfo}>
                     <h3>CLIENTE</h3>
                     <div>
                         <b>{mainForm.companyName.value || "Nome da empresa"}</b>
                         {mainForm.cnpj.value && (
-                            <p><b>CNPJ.:</b>{formatter.cnpj(mainForm.cnpj.value)}</p>
+                            <p>
+                                <b>CNPJ.:</b>
+                                {formatter.cnpj(mainForm.cnpj.value)}
+                            </p>
                         )}
                         {mainForm.representative.value && (
-                            <p><b>A/C.:</b>{mainForm.representative.value}</p>
+                            <p>
+                                <b>A/C.:</b>
+                                {mainForm.representative.value}
+                            </p>
                         )}
                         {mainForm.observations.value && (
-                            <p><b>Obs.:</b>{mainForm.observations.value}</p>
+                            <p>
+                                <b>Obs.:</b>
+                                {mainForm.observations.value}
+                            </p>
                         )}
                     </div>
                 </div>
@@ -116,19 +163,30 @@ function BodyPdf(
                 <div className={pdf.ProposalInfo}>
                     <h3>CONDIÇÕES DA PROPOSTA</h3>
                     <div>
-                        <p><b>Data:</b>{formatter.shortDate(date)}</p>
-                        <p><b>Validade:</b>{PROVIDER_INFO.proposal.validityDays} dias</p>
-                        <p><b>Pagamento:</b>{mainForm.paymentCondition.value}</p>
-                        {mainForm.showPS.value &&
-                            <p><b>Ps:</b>Produto retirado "in loco"</p>
-                        }
+                        <p>
+                            <b>Data:</b>
+                            {formatter.shortDate(date)}
+                        </p>
+                        <p>
+                            <b>Validade:</b>
+                            {PROVIDER_INFO.proposal.validityDays} dias
+                        </p>
+                        <p>
+                            <b>Pagamento:</b>
+                            {mainForm.paymentCondition.value}
+                        </p>
+                        {mainForm.showPS.value && (
+                            <p>
+                                <b>Ps:</b>Produto retirado "in loco"
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
 
-            <TablePdf mainForm={mainForm} products={products}/>
+            <Table mainForm={mainForm} products={products} />
 
-            <SubscriptionArae/>
+            <SubscriptionArae />
         </div>
     );
 }
@@ -136,11 +194,11 @@ function BodyPdf(
 function SubscriptionArae() {
     const representative = PROVIDER_INFO.representative;
     return (
-        <div className={pdf.SubscriptionArea}>
+        <div className={pdf.SignatureArea}>
             <div className={pdf.Representative}>
                 <div className={pdf.RepresentativeInfo}>
                     <h3>Atenciosamente,</h3>
-                    <div className={pdf.Subscriptionline}/>
+                    <div className={pdf.SignatureLine} />
 
                     <b>{representative.name}</b>
                     <span>{representative.creaNumber}</span>
@@ -151,44 +209,59 @@ function SubscriptionArae() {
                     <h3>Contato</h3>
 
                     <span>
-                        <Phone/>
-                        {representative.tel.number} ({representative.tel.operator})
+                        <Phone />
+                        {representative.tel.number} (
+                        {representative.tel.operator})
                     </span>
                     <span>
-                        <Mail/>
+                        <Mail />
                         {representative.email}
                     </span>
                 </div>
             </div>
 
-            <img src={bg_pdf} alt="Vista aérea da usina"/>
+            <img src={bg_pdf} alt="Vista aérea da usina" />
         </div>
     );
 }
 
-function FooterPDF() {
+function Footer() {
     const address = PROVIDER_INFO.company.address;
-    const companyAddress = (`${address.landmark} - ${address.street}, ${address.kilometer} - ${address.city} - ${address.state}`);
+    const companyAddress = `${address.landmark} - ${address.street}, ${address.kilometer} - ${address.city} - ${address.state}`;
     return (
-        <div className={pdf.FooterPdf}>
+        <div className={pdf.Footer}>
             <span>
-                <MapPin/>
+                <MapPin />
                 {companyAddress}
             </span>
 
             <span>
-                <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
+                <img
+                    src="/logo-t-oliver.webp"
+                    alt={PROVIDER_INFO.company.name}
+                />
                 {PROVIDER_INFO.company.urlSite}
             </span>
         </div>
     );
 }
 
-function TablePdf({mainForm, products} : {mainForm: MainFormState,products: ProductsState}) {
+function Table({
+    mainForm,
+    products,
+}: {
+    mainForm: MainFormState;
+    products: ProductsState;
+}) {
     const { products: items, getTotal } = products;
     const renderProducts = () => {
         const length = items.length;
-        if (length === 0) return <tr><td colSpan={6}>Nenhum produto adicionado</td></tr>;
+        if (length === 0)
+            return (
+                <tr>
+                    <td colSpan={6}>Nenhum produto adicionado</td>
+                </tr>
+            );
         return items.map((p, index) => (
             <tr key={p.id}>
                 <td>1.{index + 1}</td>
@@ -202,8 +275,10 @@ function TablePdf({mainForm, products} : {mainForm: MainFormState,products: Prod
     };
 
     return (
-        <div className={pdf.TablePdf}>
-            <p className={pdf.Instruction}>{PROVIDER_INFO.proposal.instruction}</p>
+        <div className={pdf.Table}>
+            <p className={pdf.TableIntro}>
+                {PROVIDER_INFO.proposal.instruction}
+            </p>
             <table>
                 <thead>
                     <tr>
@@ -224,7 +299,6 @@ function TablePdf({mainForm, products} : {mainForm: MainFormState,products: Prod
                     <b>{formatter.money(getTotal())}</b>
                 </div>
             )}
-            
         </div>
     );
 }

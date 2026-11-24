@@ -1,4 +1,4 @@
-.PreviewPdf {
+.Page {
     --pdf-margin: 12mm;
     --pdf-gap: 5mm;
 
@@ -28,7 +28,7 @@
     box-shadow: var(--black-shadow);
 }
 
-.PdfHeader {
+.Header {
     display: flex;
     width: 100%;
     padding-inline: var(--pdf-margin);
@@ -62,7 +62,7 @@
     }
 }
 
-.LocalDate {
+.ProposalHeading {
     width: 95mm;
     height: 100%;
     display: flex;
@@ -83,7 +83,7 @@
     }
 }
 
-.BodyPdf {
+.Body {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -91,7 +91,7 @@
     gap: var(--pdf-gap);
 }
 
-.Infos {
+.InfoRow {
     display: flex;
     gap: 3mm;
 }
@@ -141,11 +141,11 @@
     width: 36%;
 }
 
-.Instruction {
+.TableIntro {
     font-size: 12.5pt;
 }
 
-.TablePdf {
+.Table {
     display: flex;
     flex-direction: column;
     font-size: 8pt;
@@ -216,7 +216,7 @@
     }
 }
 
-.SubscriptionArea {
+.SignatureArea {
     display: flex;
     margin-top: auto;
     flex-direction: column;
@@ -251,7 +251,7 @@
     }
 }
 
-.Subscriptionline {
+.SignatureLine {
     height: 20mm;
     border-bottom: solid 0.5mm var(--pdf-bg-strong);
 }
@@ -274,7 +274,7 @@
     }
 }
 
-.FooterPdf {
+.Footer {
     display: flex;
     justify-content: space-between;
     padding: 3mm var(--pdf-margin);
