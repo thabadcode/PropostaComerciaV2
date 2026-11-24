@@ -89,7 +89,7 @@ function TablePdf({mainForm, products} : {mainForm: MainFormState,products: Prod
                 <td>{p.unit}</td>
                 <td>{formatter.quantity(p.quantity)}</td>
                 <td>{formatter.money(p.price)}</td>
-                <td>{formatter.money(p.quantity * p.price)}</td>
+                <td>{formatter.money(products.getSubtotal(p))}</td>
             </tr>
         ));
     };

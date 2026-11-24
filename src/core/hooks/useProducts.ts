@@ -36,6 +36,7 @@ export function useProducts(saved?: Product[]) {
             if (p.isClientCap) text += ` - CAP por conta do cliente - ${p.asphaltBinderContent}%`;
             return text;
         },
+        getSubtotal: (p: Product) => p.quantity * p.price,
         getTotal: () => products.reduce((sum, p) =>
             sum + (p.price * p.quantity), 0),
         reset: () => setProducts([])
