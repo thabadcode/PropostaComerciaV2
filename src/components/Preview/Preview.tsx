@@ -5,6 +5,7 @@ import { PROVIDER_INFO } from '../../core/constants/providerInfo';
 import { FileText, Hand, Mail, MapPin, MousePointer, Phone, ZoomIn, ZoomOut } from 'lucide-react';
 import bg_pdf from '../../assets/bg_pdf.jpg';
 import style from './Preview.module.css';
+import pdf from './PdfDocument.module.css';
 import { formatter } from '../../core/utils/formatter';
 import Button from '../ui/Button/Button';
 import { Card } from '../ui/Card/Card';
@@ -57,7 +58,7 @@ export function Preview(
                         id="preview-pdf"
                         style={panZoom.pdfStyle}
                         ref={pdfRef}
-                        className={style.PreviewPdf}
+                        className={pdf.PreviewPdf}
                     >
                         <HeaderPdf proposalNumber={mainForm.proposalNumber.value} date={date}/>
                         
@@ -74,14 +75,14 @@ export function Preview(
 
 function HeaderPdf({proposalNumber, date} : {proposalNumber: string, date: Date}) {
     return (
-        <div className={style.PdfHeader}>
+        <div className={pdf.PdfHeader}>
             <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
-            <div className={style.ProviderInfo}>
+            <div className={pdf.ProviderInfo}>
                 <h2>{PROVIDER_INFO.company.name}</h2>
                 <h3>{PROVIDER_INFO.company.slogan}</h3>
                 <span>CNPJ: {PROVIDER_INFO.company.cnpj} • I.E: {PROVIDER_INFO.company.ie}</span>
             </div>
-            <div className={style.LocalDate}>
+            <div className={pdf.LocalDate}>
                 <h3>PROPOSTA COMERCIAL</h3>
                 <b>{formatter.proposalNumber(proposalNumber)}/{date.getFullYear()}</b>
                 <span>{PROVIDER_INFO.company.address.city}, {formatter.longDate(date)}</span>
@@ -94,9 +95,9 @@ function BodyPdf(
     {date, mainForm, products} : {date: Date, mainForm: MainFormState, products: ProductsState}
 ) {
     return (
-        <div className={style.BodyPdf}>
-            <div className={style.Infos}>
-                <div className={style.ClientInfo}>
+        <div className={pdf.BodyPdf}>
+            <div className={pdf.Infos}>
+                <div className={pdf.ClientInfo}>
                     <h3>CLIENTE</h3>
                     <div>
                         <h2>{mainForm.companyName.value || "Nome da empresa"}</h2>
@@ -112,7 +113,7 @@ function BodyPdf(
                     </div>
                 </div>
 
-                <div className={style.ProposalInfo}>
+                <div className={pdf.ProposalInfo}>
                     <h3>CONDIÇÕES DA PROPOSTA</h3>
                     <div>
                         <p><b>Data:</b>{formatter.shortDate(date)}</p>
@@ -135,18 +136,18 @@ function BodyPdf(
 function SubscriptionArae() {
     const representative = PROVIDER_INFO.representative;
     return (
-        <div className={style.SubscriptionArea}>
-            <div className={style.Representative}>
-                <div className={style.RepresentativeInfo}>
+        <div className={pdf.SubscriptionArea}>
+            <div className={pdf.Representative}>
+                <div className={pdf.RepresentativeInfo}>
                     <h3>Atenciosamente,</h3>
-                    <div className={style.Subscriptionline}/>
+                    <div className={pdf.Subscriptionline}/>
 
                     <b>{representative.name}</b>
                     <span>{representative.creaNumber}</span>
                     <span>{representative.department}</span>
                 </div>
 
-                <div className={style.RepresentativeContact}>
+                <div className={pdf.RepresentativeContact}>
                     <h3>Contato</h3>
 
                     <span>
@@ -169,7 +170,7 @@ function FooterPDF() {
     const address = PROVIDER_INFO.company.address;
     const companyAddress = (`${address.landmark} - ${address.street}, ${address.kilometer} - ${address.city} - ${address.state}`);
     return (
-        <div className={style.FooterPdf}>
+        <div className={pdf.FooterPdf}>
             <span>
                 <MapPin/>
                 {companyAddress}
@@ -201,8 +202,8 @@ function TablePdf({mainForm, products} : {mainForm: MainFormState,products: Prod
     };
 
     return (
-        <div className={style.TablePdf}>
-            <p className={style.Instruction}>{PROVIDER_INFO.proposal.instruction}</p>
+        <div className={pdf.TablePdf}>
+            <p className={pdf.Instruction}>{PROVIDER_INFO.proposal.instruction}</p>
             <table>
                 <thead>
                     <tr>
@@ -218,7 +219,7 @@ function TablePdf({mainForm, products} : {mainForm: MainFormState,products: Prod
                 <tbody>{renderProducts()}</tbody>
             </table>
             {mainForm.showTotal.value && (
-                <div className={style.TableTotal}>
+                <div className={pdf.TableTotal}>
                     <span>VALOR TOTAL DA PROPOSTA</span>
                     <b>{formatter.money(getTotal())}</b>
                 </div>
