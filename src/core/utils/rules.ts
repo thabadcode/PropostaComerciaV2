@@ -3,7 +3,7 @@ export const rules = {
         value.trim() === ""? "Campo obrigatório" : null,
 
     proposalNumber: (value: string): string | null => {
-        if (value.trim()) return "Campo obrigatório";
+        if (value.trim() === "") return "Campo obrigatório";
         const number = Number(value);
         if (number < 1 || number > 999) return "Informe um número (1 a 999)"
         return null;
