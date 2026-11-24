@@ -40,8 +40,8 @@ body {
 main {
     display: flex;
     flex-direction: row;
-    height: calc(100svh - var(--height-header) - 10px);
-    margin-top: 80px;
+    height: calc(100svh - var(--height-header));
+    margin-top: var(--height-header);
     margin-inline: 10px;
     gap: 10px;
 }
@@ -51,6 +51,7 @@ input[inputmode="decimal"] {
 }
 
 .forms {
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     width: 90vw;
@@ -62,6 +63,7 @@ input[inputmode="decimal"] {
 }
 
 .previews {
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     flex: 1;
