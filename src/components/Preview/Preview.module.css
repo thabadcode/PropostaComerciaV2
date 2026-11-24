@@ -18,6 +18,7 @@
     align-self: center;
     overflow-x: auto;
     background-color: var(--bg-main);
+    box-shadow: inset var(--black-shadow);
 }
 
 .Pan {
