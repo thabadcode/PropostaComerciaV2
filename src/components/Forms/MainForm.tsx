@@ -99,7 +99,7 @@ export default function MainForm(
             <Input
                 label="Razão social"
                 value={form.companyName.value}
-                onChange={(e) => form.companyName.setValue(e.target.value)}
+                onChange={(e) => form.companyName.setValue(e.target.value.toUpperCase())}
                 onBlur={form.companyName.onBlur}
                 onFocus={form.companyName.onFocus}
                 isValid={!form.companyName.showError}

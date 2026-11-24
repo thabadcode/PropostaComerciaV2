@@ -25,7 +25,7 @@ export default function App() {
   const mainForm = useMainForm(snapshot?.mainForm);
   const productForm = useProductForm();
   const products = useProducts(snapshot?.products);
-  const companyName = mainForm.companyName.value.trim().toUpperCase();
+  const companyName = mainForm.companyName.value.trim();
 
   useAutoSave(mainForm, products.products, modal.showModal);
 
