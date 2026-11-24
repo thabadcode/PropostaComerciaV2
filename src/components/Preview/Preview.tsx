@@ -70,7 +70,7 @@ function HeaderPdf({proposalNumber, date} : {proposalNumber: string, date: Date}
             </div>
             <div className={style.LocalDate}>
                 <h3>PROPOSTA COMERCIAL</h3>
-                <h2>{proposalNumber}/{date.getFullYear()}</h2>
+                <h2>{formatter.proposalNumber(proposalNumber)}/{date.getFullYear()}</h2>
                 <span>{PROVIDER_INFO.company.address.city}, {formatter.longDate(date)}</span>
             </div>
         </div>

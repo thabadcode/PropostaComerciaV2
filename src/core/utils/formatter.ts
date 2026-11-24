@@ -17,6 +17,11 @@ export const formatter = {
         Number.isNaN(value.getTime()) ? "" : longDateFormatter.format(value),
     shortDate: (value: Date): string => 
         Number.isNaN(value.getTime()) ? "" : shortDateFormatter.format(value),
+    proposalNumber: (value: string) => {
+        const digits = value.replace(/\D/g, "");
+        if (!digits) return "000";
+        return digits.slice(-3).padStart(3, "0");
+    },
     cnpj: (value: string): string =>  {
         const d = value.replace(/\D/g, "").slice(0, 14);
         const parts = [
