@@ -1,6 +1,35 @@
 .Preview {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Controller {
+    display: flex;
+    align-self: center;
+    gap: 10px;
+    svg { height: 16px; }
+}
+
+.Limiter {
+    display: flex;
+    width: 95%;
+    padding: 10px;
+    align-self: center;
+    overflow-x: auto;
+    background-color: var(--bg-main);
+}
+
+.Pan {
+    cursor: grab;
+    user-select: none;
+}
+
+.Dragging { cursor: grabbing; }
+
+.Sizer {
+    flex-shrink: 0;
+    margin-inline: auto;
 }
 
 .PreviewPdf {
@@ -19,8 +48,7 @@
     min-height: 297mm;
     flex-direction: column;
     flex-shrink: 0;
-    transform: scale(1.4);
-    transform-origin: top center;
+    transform-origin: top left;
     background-color: var(--bg-white);
     box-sizing: border-box;
     box-shadow: var(--black-shadow);
