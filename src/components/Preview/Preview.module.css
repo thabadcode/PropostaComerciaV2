@@ -46,7 +46,7 @@
 
     display: flex;
     width: 210mm;
-    min-height: 297mm;
+    height: 297mm;
     flex-direction: column;
     flex-shrink: 0;
     transform-origin: top left;
@@ -92,10 +92,9 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     text-align: right;
 
-    h2 {
+    b {
         font-size: 25pt;
         color: var(--color-brand);
     }
@@ -111,15 +110,15 @@
 
 .BodyPdf {
     display: flex;
+    flex: 1;
     flex-direction: column;
-    margin-top: var(--gap);
+    margin: var(--gap) var(--margin-pdf) var(--gap) var(--margin-pdf);
     gap: var(--gap);
 }
 
 .Infos {
     display: flex;
     gap: 3mm;
-    margin-inline: var(--margin-pdf);
 }
 
 .ClientInfo, .ProposalInfo {
@@ -162,15 +161,14 @@
 .ProposalInfo { width: 36%; }
 
 .Instruction {
-    margin-inline: var(--margin-pdf);
     font-size: 12.5pt;
 }
 
 .TablePdf{
     display: flex;
     flex-direction: column;
-    margin-inline: var(--margin-pdf);
     font-size: 8pt;
+    color: var(--text-secondary);
     gap: var(--gap);
 
     table {
@@ -229,14 +227,14 @@
     b { font-size: 12pt; }
 }
 
-.FooterPdf {
+.SubscriptionArea {
     display: flex;
-    flex-direction: column;
     margin-top: auto;
+    flex-direction: column;
     gap: var(--gap);
 
     img {
-        margin-inline: var(--margin-pdf);
+        width: 100%;
         border-top: var(--border);
         border-bottom: var(--border);
     }
@@ -245,8 +243,8 @@
 .Representative {
     display: flex;
     flex-direction: row;
-    margin-inline: var(--margin-pdf);
     align-items: end;
+    color: var(--text-secondary);
 
     h3 {
         font-size: 10pt;
@@ -262,12 +260,12 @@
     span { color: var(--text-tertiary); }
 }
 
-.Subscriptionline{
+.Subscriptionline {
     height: 20mm;
     border-bottom: solid 0.5mm var(--bg-black);
 }
 
-.RepresentativeContact{
+.RepresentativeContact {
     display: flex;
     flex-direction: column;
     margin-left: auto;
@@ -285,17 +283,13 @@
     }
 }
 
-.MarginFooter {
-    padding: 3mm 0;
+.FooterPdf {
+    display: flex;
+    justify-content: space-between;
+    padding: 3mm var(--margin-pdf);
     color: var(--text-primary);
     background-color: var(--bg-black);
     border-top: var(--border);
-
-    div {
-        display: flex;
-        justify-content: space-between;
-        margin-inline: var(--margin-pdf);
-    }
 
     span {
         display: flex;

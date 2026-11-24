@@ -61,42 +61,8 @@ export function Preview(
                     >
                         <HeaderPdf proposalNumber={mainForm.proposalNumber.value} date={date}/>
                         
-                        <div className={style.BodyPdf}>
-                                <div className={style.Infos}>
-                                <div className={style.ClientInfo}>
-                                    <h3>CLIENTE</h3>
-                                    <div>
-                                        <h2>{mainForm.companyName.value || "Nome da empresa"}</h2>
-                                        {mainForm.cnpj.value && (
-                                            <p><b>CNPJ.:</b>{formatter.cnpj(mainForm.cnpj.value)}</p>
-                                        )}
-                                        {mainForm.representative.value && (
-                                            <p><b>A/C.:</b>{mainForm.representative.value}</p>
-                                        )}
-                                        {mainForm.observations.value && (
-                                            <p><b>Obs.:</b>{mainForm.observations.value}</p>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className={style.ProposalInfo}>
-                                    <h3>CONDIÇÕES DA PROPOSTA</h3>
-                                    <div>
-                                        <p><b>Data:</b>{formatter.shortDate(date)}</p>
-                                        <p><b>Validade:</b>{PROVIDER_INFO.proposal.validityDays} dias</p>
-                                        <p><b>Pagamento:</b>{mainForm.paymentCondition.value}</p>
-                                        {mainForm.showPS.value &&
-                                            <p><b>Ps:</b>Produto retirado "in loco"</p>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p className={style.Instruction}>{PROVIDER_INFO.proposal.instruction}</p>
-
-                            <TablePdf mainForm={mainForm} products={products}/>
-                        </div>
-
+                        <BodyPdf date={date} mainForm={mainForm} products={products}/>
+                        
                         <FooterPDF/>
                     </div>
                 </div>
@@ -117,65 +83,59 @@ function HeaderPdf({proposalNumber, date} : {proposalNumber: string, date: Date}
             </div>
             <div className={style.LocalDate}>
                 <h3>PROPOSTA COMERCIAL</h3>
-                <h2>{formatter.proposalNumber(proposalNumber)}/{date.getFullYear()}</h2>
+                <b>{formatter.proposalNumber(proposalNumber)}/{date.getFullYear()}</b>
                 <span>{PROVIDER_INFO.company.address.city}, {formatter.longDate(date)}</span>
             </div>
         </div>
     );
 }
 
-function TablePdf({mainForm, products} : {mainForm: MainFormState,products: ProductsState}) {
-    const { products: items, getTotal } = products;
-    const renderProducts = () => {
-        const length = items.length;
-        if (length === 0) return <tr><td colSpan={6}>Nenhum produto adicionado</td></tr>;
-        return items.map((p, index) => (
-            <tr key={p.id}>
-                <td>1.{index + 1}</td>
-                <td>{p.description}</td>
-                <td>{p.unit}</td>
-                <td>{formatter.quantity(p.quantity)}</td>
-                <td>{formatter.money(p.price)}</td>
-                <td>{formatter.money(products.getSubtotal(p))}</td>
-            </tr>
-        ));
-    };
-
+function BodyPdf(
+    {date, mainForm, products} : {date: Date, mainForm: MainFormState, products: ProductsState}
+) {
     return (
-        <div className={style.TablePdf}>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ITEM</th>
-                        <th>DESCRIÇÃO</th>
-                        <th>UNID.</th>
-                        <th>QUANT.</th>
-                        <th>VALOR UNIT.</th>
-                        <th>SUBTOTAL</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {renderProducts()}
-                </tbody>
-            </table>
-            {mainForm.showTotal.value &&
-                <div className={style.TableTotal}>
-                    <span>VALOR TOTAL DA PROPOSTA</span>
-                    <b>{formatter.money(getTotal())}</b>
+        <div className={style.BodyPdf}>
+            <div className={style.Infos}>
+                <div className={style.ClientInfo}>
+                    <h3>CLIENTE</h3>
+                    <div>
+                        <h2>{mainForm.companyName.value || "Nome da empresa"}</h2>
+                        {mainForm.cnpj.value && (
+                            <p><b>CNPJ.:</b>{formatter.cnpj(mainForm.cnpj.value)}</p>
+                        )}
+                        {mainForm.representative.value && (
+                            <p><b>A/C.:</b>{mainForm.representative.value}</p>
+                        )}
+                        {mainForm.observations.value && (
+                            <p><b>Obs.:</b>{mainForm.observations.value}</p>
+                        )}
+                    </div>
                 </div>
-            }
-            
+
+                <div className={style.ProposalInfo}>
+                    <h3>CONDIÇÕES DA PROPOSTA</h3>
+                    <div>
+                        <p><b>Data:</b>{formatter.shortDate(date)}</p>
+                        <p><b>Validade:</b>{PROVIDER_INFO.proposal.validityDays} dias</p>
+                        <p><b>Pagamento:</b>{mainForm.paymentCondition.value}</p>
+                        {mainForm.showPS.value &&
+                            <p><b>Ps:</b>Produto retirado "in loco"</p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <TablePdf mainForm={mainForm} products={products}/>
+
+            <SubscriptionArae/>
         </div>
     );
 }
 
-function FooterPDF() {
+function SubscriptionArae() {
     const representative = PROVIDER_INFO.representative;
-    const address = PROVIDER_INFO.company.address;
-    const companyAddress = (`${address.landmark} - ${address.street}, ${address.kilometer} - ${address.city} - ${address.state}`);
     return (
-        <div className={style.FooterPdf}>
+        <div className={style.SubscriptionArea}>
             <div className={style.Representative}>
                 <div className={style.RepresentativeInfo}>
                     <h3>Atenciosamente,</h3>
@@ -201,20 +161,69 @@ function FooterPDF() {
             </div>
 
             <img src={bg_pdf} alt="Vista aérea da usina"/>
-            
-            <div className={style.MarginFooter}>
-                <div>
-                    <span>
-                        <MapPin/>
-                        {companyAddress}
-                    </span>
+        </div>
+    );
+}
 
-                    <span>
-                        <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
-                        {PROVIDER_INFO.company.urlSite}
-                    </span>
+function FooterPDF() {
+    const address = PROVIDER_INFO.company.address;
+    const companyAddress = (`${address.landmark} - ${address.street}, ${address.kilometer} - ${address.city} - ${address.state}`);
+    return (
+        <div className={style.FooterPdf}>
+            <span>
+                <MapPin/>
+                {companyAddress}
+            </span>
+
+            <span>
+                <img src='/logo-t-oliver.webp' alt={PROVIDER_INFO.company.name}/>
+                {PROVIDER_INFO.company.urlSite}
+            </span>
+        </div>
+    );
+}
+
+function TablePdf({mainForm, products} : {mainForm: MainFormState,products: ProductsState}) {
+    const { products: items, getTotal } = products;
+    const renderProducts = () => {
+        const length = items.length;
+        if (length === 0) return <tr><td colSpan={6}>Nenhum produto adicionado</td></tr>;
+        return items.map((p, index) => (
+            <tr key={p.id}>
+                <td>1.{index + 1}</td>
+                <td>{p.description}</td>
+                <td>{p.unit}</td>
+                <td>{formatter.quantity(p.quantity)}</td>
+                <td>{formatter.money(p.price)}</td>
+                <td>{formatter.money(products.getSubtotal(p))}</td>
+            </tr>
+        ));
+    };
+
+    return (
+        <div className={style.TablePdf}>
+            <p className={style.Instruction}>{PROVIDER_INFO.proposal.instruction}</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ITEM</th>
+                        <th>DESCRIÇÃO</th>
+                        <th>UNID.</th>
+                        <th>QUANT.</th>
+                        <th>VALOR UNIT.</th>
+                        <th>SUBTOTAL</th>
+                    </tr>
+                </thead>
+
+                <tbody>{renderProducts()}</tbody>
+            </table>
+            {mainForm.showTotal.value && (
+                <div className={style.TableTotal}>
+                    <span>VALOR TOTAL DA PROPOSTA</span>
+                    <b>{formatter.money(getTotal())}</b>
                 </div>
-            </div>
+            )}
+            
         </div>
     );
 }
