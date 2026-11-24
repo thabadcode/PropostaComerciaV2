@@ -1,13 +1,21 @@
 .PreviewPdf {
-    --margin-pdf: 12mm;
-    --bg-tertiary: #f5f5f0;
-    --text-tertiary: #6e6e69;
-    --bg-white: #FFFFFF;
-    --bg-black: #000000;
-    --bg-table-secondary: #fafaf5;
-    --table-border-color: #d9d9d1;
-    --gap: 5mm;
-    --border: solid 1.5mm var(--color-brand);
+    --pdf-margin: 12mm;
+    --pdf-gap: 5mm;
+
+    --pdf-bg: #ffffff;
+    --pdf-bg-strong: #000000;
+    --pdf-bg-muted: #f5f5f0;
+    --pdf-bg-stripe: #fafaf5;
+
+    --pdf-accent: var(--color-brand);
+
+    --pdf-ink-on-dark: #ffffff;
+    --pdf-ink-body: #000000;
+    --pdf-ink-muted: #6e6e69;
+
+    --pdf-line: #d9d9d1;
+
+    --pdf-accent-border: solid 1.5mm var(--pdf-accent);
 
     display: flex;
     width: 210mm;
@@ -15,7 +23,7 @@
     flex-direction: column;
     flex-shrink: 0;
     transform-origin: top left;
-    background-color: var(--bg-white);
+    background-color: var(--pdf-bg);
     box-sizing: border-box;
     box-shadow: var(--black-shadow);
 }
@@ -23,12 +31,12 @@
 .PdfHeader {
     display: flex;
     width: 100%;
-    padding-inline: var(--margin-pdf);
-    gap: var(--gap);
+    padding-inline: var(--pdf-margin);
+    gap: var(--pdf-gap);
     align-items: center;
-    background-color: var(--bg-black);
-    color: var(--text-primary);
-    border-bottom: var(--border);
+    background-color: var(--pdf-bg-strong);
+    color: var(--pdf-ink-on-dark);
+    border-bottom: var(--pdf-accent-border);
 
     img {
         height: 27mm;
@@ -46,10 +54,12 @@
     h3 {
         font-size: 8pt;
         font-weight: bold;
-        color: var(--color-brand);
+        color: var(--pdf-accent);
     }
 
-    span { font-size: 8pt; }
+    span {
+        font-size: 8pt;
+    }
 }
 
 .LocalDate {
@@ -61,7 +71,7 @@
 
     b {
         font-size: 25pt;
-        color: var(--color-brand);
+        color: var(--pdf-accent);
     }
 
     h3 {
@@ -77,8 +87,8 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    margin: var(--gap) var(--margin-pdf) var(--gap) var(--margin-pdf);
-    gap: var(--gap);
+    margin: var(--pdf-gap) var(--pdf-margin) var(--pdf-gap) var(--pdf-margin);
+    gap: var(--pdf-gap);
 }
 
 .Infos {
@@ -86,17 +96,20 @@
     gap: 3mm;
 }
 
-.ClientInfo, .ProposalInfo {
+.ClientInfo,
+.ProposalInfo {
     padding: 3mm;
-    background-color: var(--bg-tertiary);
-    border-left: var(--border);
+    background-color: var(--pdf-bg-muted);
+    border-left: var(--pdf-accent-border);
 
     h3 {
-        color: var(--text-tertiary);
+        color: var(--pdf-ink-muted);
         font-size: 8pt;
     }
 
-    b { color: var(--text-tertiary); }
+    b {
+        color: var(--pdf-ink-muted);
+    }
 
     div {
         display: flex;
@@ -117,24 +130,27 @@
 .ClientInfo {
     flex: 1;
 
-    h2 {
+    b {
+        color: var(--pdf-ink-body);
         text-transform: uppercase;
         font-size: 13pt;
     }
 }
 
-.ProposalInfo { width: 36%; }
+.ProposalInfo {
+    width: 36%;
+}
 
 .Instruction {
     font-size: 12.5pt;
 }
 
-.TablePdf{
+.TablePdf {
     display: flex;
     flex-direction: column;
     font-size: 8pt;
-    color: var(--text-secondary);
-    gap: var(--gap);
+    color: var(--pdf-ink-body);
+    gap: var(--pdf-gap);
 
     table {
         table-layout: fixed;
@@ -142,10 +158,12 @@
         width: 100%;
     }
 
-    td, th {
+    td,
+    th {
         padding: 2mm;
 
-        &:nth-child(1), &:nth-child(3) {
+        &:nth-child(1),
+        &:nth-child(3) {
             width: 15mm;
             text-align: center;
         }
@@ -168,15 +186,19 @@
     }
 
     thead {
-        color: var(--text-primary);
-        background-color: var(--bg-black);
+        color: var(--pdf-ink-on-dark);
+        background-color: var(--pdf-bg-strong);
     }
 
     tbody tr {
-        border-bottom: solid 0.5mm var(--table-border-color);
+        border-bottom: solid 0.5mm var(--pdf-line);
 
-        &:nth-child(odd) { background-color: var(--bg-white); }
-        &:nth-child(even) { background-color: var(--bg-table-secondary); }
+        &:nth-child(odd) {
+            background-color: var(--pdf-bg);
+        }
+        &:nth-child(even) {
+            background-color: var(--pdf-bg-stripe);
+        }
     }
 }
 
@@ -186,22 +208,24 @@
     margin-left: auto;
     align-items: center;
     padding: 5mm;
-    gap: var(--gap);
-    background-color: var(--color-brand);
+    gap: var(--pdf-gap);
+    background-color: var(--pdf-accent);
 
-    b { font-size: 12pt; }
+    b {
+        font-size: 12pt;
+    }
 }
 
 .SubscriptionArea {
     display: flex;
     margin-top: auto;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--pdf-gap);
 
     img {
         width: 100%;
-        border-top: var(--border);
-        border-bottom: var(--border);
+        border-top: var(--pdf-accent-border);
+        border-bottom: var(--pdf-accent-border);
     }
 }
 
@@ -209,11 +233,11 @@
     display: flex;
     flex-direction: row;
     align-items: end;
-    color: var(--text-secondary);
+    color: var(--pdf-ink-body);
 
     h3 {
         font-size: 10pt;
-        color: var(--text-tertiary);
+        color: var(--pdf-ink-muted);
     }
 }
 
@@ -222,12 +246,14 @@
     flex-direction: column;
     gap: 1mm;
 
-    span { color: var(--text-tertiary); }
+    span {
+        color: var(--pdf-ink-muted);
+    }
 }
 
 .Subscriptionline {
     height: 20mm;
-    border-bottom: solid 0.5mm var(--bg-black);
+    border-bottom: solid 0.5mm var(--pdf-bg-strong);
 }
 
 .RepresentativeContact {
@@ -251,10 +277,10 @@
 .FooterPdf {
     display: flex;
     justify-content: space-between;
-    padding: 3mm var(--margin-pdf);
-    color: var(--text-primary);
-    background-color: var(--bg-black);
-    border-top: var(--border);
+    padding: 3mm var(--pdf-margin);
+    color: var(--pdf-ink-on-dark);
+    background-color: var(--pdf-bg-strong);
+    border-top: var(--pdf-accent-border);
 
     span {
         display: flex;

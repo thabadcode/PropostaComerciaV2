@@ -100,7 +100,7 @@ function BodyPdf(
                 <div className={pdf.ClientInfo}>
                     <h3>CLIENTE</h3>
                     <div>
-                        <h2>{mainForm.companyName.value || "Nome da empresa"}</h2>
+                        <b>{mainForm.companyName.value || "Nome da empresa"}</b>
                         {mainForm.cnpj.value && (
                             <p><b>CNPJ.:</b>{formatter.cnpj(mainForm.cnpj.value)}</p>
                         )}
