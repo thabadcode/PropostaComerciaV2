@@ -222,7 +222,7 @@
 }
 
 .SignatureLine {
-    height: 20mm;
+    height: 10mm;
     border-bottom: solid 0.5mm var(--pdf-bg-strong);
 }
 
