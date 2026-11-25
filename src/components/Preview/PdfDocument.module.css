@@ -132,7 +132,7 @@
 .ClientInfo { flex: 1; }
 .ProposalInfo { width: 36%; }
 
-.TableIntro { font-size: 12.5pt; }
+.TableIntro { font-size: 11pt; }
 
 .Table {
     display: flex;
@@ -176,7 +176,7 @@
     width: fit-content;
     margin-left: auto;
     align-items: center;
-    padding: 5mm;
+    padding: 4mm;
     gap: var(--pdf-gap);
     background-color: var(--pdf-accent);
 
