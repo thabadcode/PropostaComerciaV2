@@ -71,7 +71,7 @@ export default function MainForm(
                     onChange={(e) => form.proposalNumber.setValue(e.target.value)}
                     onBlur={form.proposalNumber.onBlur}
                     onFocus={form.proposalNumber.onFocus}
-                    isValid={form.proposalNumber.isValid}
+                    isValid={!form.proposalNumber.showError}
                     supportingText={form.proposalNumber.errorMsg ?? ""}
                 />
             </FormRow>
