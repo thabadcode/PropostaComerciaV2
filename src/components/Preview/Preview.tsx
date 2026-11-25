@@ -76,11 +76,11 @@ export function Preview({
                             proposalNumber={mainForm.proposalNumber.value}
                             date={date}
                         >
-                            <InfoRow date={date} mainForm={mainForm}/>
+                            <InfoRow date={date} mainForm={mainForm} />
 
-                            <Table mainForm={mainForm} products={products}/>
+                            <Table mainForm={mainForm} products={products} />
 
-                            <SignatureArea/>
+                            <SignatureArea />
                         </Page>
                     </div>
                 </div>
@@ -89,16 +89,20 @@ export function Preview({
     );
 }
 
-function Page({proposalNumber, date, children}: {
+function Page({
+    proposalNumber,
+    date,
+    children,
+}: {
     proposalNumber: string;
     date: Date;
     children: React.ReactNode;
 }) {
     return (
         <div className={pdf.Page}>
-            <Header proposalNumber={proposalNumber} date={date}/>
+            <Header proposalNumber={proposalNumber} date={date} />
             <div className={pdf.Body}>{children}</div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
@@ -112,10 +116,18 @@ function Header({
 }) {
     return (
         <div className={pdf.Header}>
-            <img className={pdf.Logo} src="/logo-t-oliver.webp" alt={PROVIDER_INFO.company.name} />
+            <img
+                className={pdf.Logo}
+                src={`${import.meta.env.BASE_URL}logo-t-oliver.webp`}
+                alt={PROVIDER_INFO.company.name}
+            />
             <div>
-                <h2 className={pdf.CompanyName}>{PROVIDER_INFO.company.name}</h2>
-                <h3 className={pdf.CompanySlogan}>{PROVIDER_INFO.company.slogan}</h3>
+                <h2 className={pdf.CompanyName}>
+                    {PROVIDER_INFO.company.name}
+                </h2>
+                <h3 className={pdf.CompanySlogan}>
+                    {PROVIDER_INFO.company.slogan}
+                </h3>
                 <span className={pdf.CompanyDocs}>
                     CNPJ: {PROVIDER_INFO.company.cnpj} • I.E:{" "}
                     {PROVIDER_INFO.company.ie}
@@ -148,7 +160,7 @@ function Footer() {
 
             <span>
                 <img
-                    src="/logo-t-oliver.webp"
+                    src={`${import.meta.env.BASE_URL}logo-t-oliver.webp`}
                     alt={PROVIDER_INFO.company.name}
                 />
                 {PROVIDER_INFO.company.urlSite}
@@ -157,19 +169,15 @@ function Footer() {
     );
 }
 
-function InfoRow({
-    date,
-    mainForm,
-}: {
-    date: Date;
-    mainForm: MainFormState;
-}) {
+function InfoRow({ date, mainForm }: { date: Date; mainForm: MainFormState }) {
     return (
         <div className={pdf.InfoRow}>
             <div className={`${pdf.InfoCard} ${pdf.ClientInfo}`}>
                 <h3 className={pdf.InfoTitle}>CLIENTE</h3>
                 <div className={pdf.InfoList}>
-                    <h2 className={pdf.ClientName}>{mainForm.companyName.value || "Nome da empresa"}</h2>
+                    <h2 className={pdf.ClientName}>
+                        {mainForm.companyName.value || "Nome da empresa"}
+                    </h2>
                     {mainForm.cnpj.value && (
                         <p className={pdf.InfoItem}>
                             <b className={pdf.InfoLabel}>CNPJ.:</b>
@@ -227,12 +235,42 @@ function Table({
 }) {
     const { products: items, getTotal } = products;
     const columns = [
-        { label: 'ITEM', align: pdf.Center, col: pdf.ColItem, value: (_p: Product, i: number) => `1.${i + 1}` },
-        { label: 'DESCRIÇÃO', align: pdf.Left, col: pdf.ColText, value: (p: Product) => products.getFormated(p) },
-        { label: 'UNID.', align: pdf.Center, col: pdf.ColUnit, value: (p: Product) => p.unit },
-        { label: 'QUANT.', align: pdf.Right, col: pdf.ColQty, value: (p: Product) => formatter.quantity(p.quantity) },
-        { label: 'VALOR UNIT.', align: pdf.Right, col: pdf.ColPrice, value: (p: Product) => formatter.money(p.price) },
-        { label: 'SUBTOTAL', align: pdf.Right, col: pdf.ColSubtotal, value: (p: Product) => formatter.money(products.getSubtotal(p)) },
+        {
+            label: "ITEM",
+            align: pdf.Center,
+            col: pdf.ColItem,
+            value: (_p: Product, i: number) => `1.${i + 1}`,
+        },
+        {
+            label: "DESCRIÇÃO",
+            align: pdf.Left,
+            col: pdf.ColText,
+            value: (p: Product) => products.getFormated(p),
+        },
+        {
+            label: "UNID.",
+            align: pdf.Center,
+            col: pdf.ColUnit,
+            value: (p: Product) => p.unit,
+        },
+        {
+            label: "QUANT.",
+            align: pdf.Right,
+            col: pdf.ColQty,
+            value: (p: Product) => formatter.quantity(p.quantity),
+        },
+        {
+            label: "VALOR UNIT.",
+            align: pdf.Right,
+            col: pdf.ColPrice,
+            value: (p: Product) => formatter.money(p.price),
+        },
+        {
+            label: "SUBTOTAL",
+            align: pdf.Right,
+            col: pdf.ColSubtotal,
+            value: (p: Product) => formatter.money(products.getSubtotal(p)),
+        },
     ];
 
     return (
@@ -242,25 +280,38 @@ function Table({
             </p>
             <table>
                 <colgroup>
-                    {columns.map(c => <col key={c.label} className={c.col}/>)}
+                    {columns.map((c) => (
+                        <col key={c.label} className={c.col} />
+                    ))}
                 </colgroup>
 
                 <thead>
                     <tr>
-                        {columns.map(c => (
-                            <th key={c.label} className={c.align}>{c.label}</th>
+                        {columns.map((c) => (
+                            <th key={c.label} className={c.align}>
+                                {c.label}
+                            </th>
                         ))}
                     </tr>
                 </thead>
 
                 <tbody>
                     {items.length === 0 ? (
-                        <tr><td colSpan={columns.length} style={{textAlign: "center"}}>Nenhum produto adicionado</td></tr>
+                        <tr>
+                            <td
+                                colSpan={columns.length}
+                                style={{ textAlign: "center" }}
+                            >
+                                Nenhum produto adicionado
+                            </td>
+                        </tr>
                     ) : (
                         items.map((p, i) => (
                             <tr key={p.id}>
-                                {columns.map(c => (
-                                    <td key={c.label} className={c.align}>{c.value(p, i)}</td>
+                                {columns.map((c) => (
+                                    <td key={c.label} className={c.align}>
+                                        {c.value(p, i)}
+                                    </td>
                                 ))}
                             </tr>
                         ))

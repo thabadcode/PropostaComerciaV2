@@ -1,6 +1,13 @@
 import style from "./Header.module.css";
 import Button from "../ui/Button/Button";
-import { BrushCleaning, Download, FileText, Import, Menu, X } from "lucide-react";
+import {
+    BrushCleaning,
+    Download,
+    FileText,
+    Import,
+    Menu,
+    X,
+} from "lucide-react";
 import { useRef, useState } from "react";
 import { PROVIDER_INFO } from "../../core/constants/providerInfo";
 
@@ -11,7 +18,12 @@ interface HeaderProps {
     generatePDF: () => void;
 }
 
-export default function Header({ clearAll, exportJson, importJson, generatePDF }: HeaderProps) {
+export default function Header({
+    clearAll,
+    exportJson,
+    importJson,
+    generatePDF,
+}: HeaderProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [showMenu, setShowMenu] = useState(false);
 
@@ -22,31 +34,37 @@ export default function Header({ clearAll, exportJson, importJson, generatePDF }
                 aria-label="Menu"
                 onClick={() => setShowMenu((v) => !v)}
                 className={style.HamburgerButton}
-            >{showMenu ? <X/> : <Menu/>}</button>
-            
+            >
+                {showMenu ? <X /> : <Menu />}
+            </button>
+
             <img
-                src="/logo-t-oliver.webp"
+                src={`${import.meta.env.BASE_URL}logo-t-oliver.webp`}
                 alt={PROVIDER_INFO.company.name}
                 className={style.Logo}
             />
-            
+
             <h1 className={style.CompanyName}>Proposta Comercial</h1>
 
             {showMenu && (
-                <div className={style.Overlay} onClick={() => setShowMenu(false)} />
+                <div
+                    className={style.Overlay}
+                    onClick={() => setShowMenu(false)}
+                />
             )}
 
-            <div 
+            <div
                 className={`${style.Menu} ${showMenu ? style.Open : ""}`}
                 onClick={(e) => {
-                    if ((e.target as Element).closest("a, button")) setShowMenu(false);
+                    if ((e.target as Element).closest("a, button"))
+                        setShowMenu(false);
                 }}
             >
                 <nav className={style.Navigation}>
                     <a href="#products-table">Tabela</a>
                     <a href="#preview-pdf">Pré-Visualização</a>
                 </nav>
-                
+
                 <div className={style.Actions}>
                     <Button
                         icon={BrushCleaning}
