@@ -131,7 +131,7 @@ export function Carousel({
 
                         <button
                             type="button"
-                            arial-label="Próximo item"
+                            aria-label="Próximo item"
                             onClick={() => goTo(currentIndex + 1)}
                             disabled={currentIndex === length - 1}
                             className={`${style.NavButton} ${style.Next}`}
