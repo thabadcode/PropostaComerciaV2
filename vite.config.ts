@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/Proposta_Comercial_v2/',
   plugins: [react(), basicSsl()],
   server: {
     host: true,
