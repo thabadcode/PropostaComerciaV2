@@ -1,1 +1,5 @@
-.Action { margin-inline: auto; }
+.Action {
+    display: flex;
+    margin-inline: auto;
+    gap: 10px;
+}

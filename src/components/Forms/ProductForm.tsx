@@ -3,7 +3,7 @@ import Button from '../ui/Button/Button';
 import Checkbox from '../ui/Checkbox/Checkbox';
 import Input from '../ui/Input/Input';
 import Select from '../ui/Select/Select';
-import { Edit, PackagePlus, Plus } from 'lucide-react';
+import { Edit, PackagePlus, Plus, X } from 'lucide-react';
 import { FREIGHT_TYPES, PRODUCT_SUGGESTIONS, UNIT_OPTIONS } from '../../core/constants/formOptions';
 import type { ProductFormState } from '../../core/hooks/useProductForm';
 import style from './ProductForm.module.css';
@@ -98,11 +98,18 @@ export default function ProductForm(
 
             <div className={style.Action}>
                 {form.isEditing ? (
-                    <Button
-                        icon={Edit}
-                        text="Editar produto/serviço"
-                        onClick={onClick}
-                    />
+                    <>
+                        <Button
+                            icon={Edit}
+                            text="Editar produto/serviço"
+                            onClick={onClick}
+                        />
+                        <Button
+                            icon={X}
+                            text="Cancelar edição"
+                            onClick={() => form.reset()}
+                        />
+                    </>
                 ) : (
                     <Button
                         icon={Plus}
