@@ -19,7 +19,7 @@ export default function Header({ clearAll, exportJson, importJson, generatePDF }
         <header className={style.Header}>
             <button
                 type="button"
-                arial-label="Menu"
+                aria-label="Menu"
                 onClick={() => setShowMenu((v) => !v)}
                 className={style.HamburgerButton}
             >{showMenu ? <X/> : <Menu/>}</button>

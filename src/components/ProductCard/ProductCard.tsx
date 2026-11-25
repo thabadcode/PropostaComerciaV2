@@ -56,7 +56,7 @@ export function Carousel({
                     <div className={style.Carousel}>
                         <button
                             type="button"
-                            arial-label="Item anterior"
+                            aria-label="Item anterior"
                             onClick={() => goTo(currentIndex - 1)}
                             disabled={currentIndex === 0}
                             className={`${style.NavButton} ${style.Prev}`}
