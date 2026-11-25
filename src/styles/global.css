@@ -55,7 +55,7 @@ input[inputmode="decimal"] {
     display: flex;
     flex-direction: column;
     width: 90vw;
-    max-width: 600px;
+    width: 450px;
     gap: 10px;
     min-height: 0;
     overflow: auto;
@@ -76,5 +76,26 @@ input[inputmode="decimal"] {
 @media (prefers-reduced-motion: no-preference) {
     html, .forms, .previews {
         scroll-behavior: smooth;
+    }
+}
+
+@media (max-width: 1500px) {
+    main {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .forms {
+        width: 100%;
+        flex-direction: row;
+        overflow: visible;
+        align-items: start;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 910px) {
+    .forms {
+        flex-direction: column;
     }
 }

@@ -1,5 +1,6 @@
 .Form {
     display: flex;
+    width: 100%;
     padding: 20px 10px;
     flex-direction: column;
     justify-content: center;
@@ -22,4 +23,8 @@
 .Row {
     display: flex;
     gap: 10px;
+}
+
+@media (max-width: 450px) {
+    .Row { flex-direction: column; }
 }

@@ -20,5 +20,6 @@
         left: 0;
         transform: none !important;
         box-shadow: none;
+        gap: 0;
     }
 }
