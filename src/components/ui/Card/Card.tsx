@@ -5,7 +5,7 @@ export function Card(
     {id, icon: Icon, title, children}:
     {id?: string, icon: LucideIcon; title: string; children: React.ReactNode}) {
     return (
-        <div id={id} className={style.Form}>
+        <div id={id} className={style.Card}>
             <h2 className={style.Title}><Icon/>{title}</h2>
             <hr/>
             {children}
