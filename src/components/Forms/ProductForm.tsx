@@ -6,6 +6,7 @@ import Select from '../ui/Select/Select';
 import { Edit, PackagePlus, Plus } from 'lucide-react';
 import { FREIGHT_TYPES, PRODUCT_SUGGESTIONS, UNIT_OPTIONS } from '../../core/constants/formOptions';
 import type { ProductFormState } from '../../core/hooks/useProductForm';
+import style from './ProductForm.module.css';
 
 export default function ProductForm(
     {form, onClick}: {form: ProductFormState, onClick: () => void}
@@ -94,9 +95,9 @@ export default function ProductForm(
                     supportingText={form.price.errorMsg ?? ""}
                 />
             </FormRow>
-            
-            {form.isEditing ?
-                (
+
+            <div className={style.Action}>
+                {form.isEditing ? (
                     <Button
                         icon={Edit}
                         text="Editar produto/serviço"
@@ -108,9 +109,8 @@ export default function ProductForm(
                         text="Adicionar produto/serviço"
                         onClick={onClick}
                     />
-                )
-            }
-            
+                )}
+            </div>
         </Card>
     );
 }
