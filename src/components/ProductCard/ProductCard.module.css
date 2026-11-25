@@ -1,0 +1,114 @@
+.Carousel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    box-shadow: inset var(--black-shadow);
+    padding: 10px 0;
+}
+
+.Track {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    padding-inline: 30px;
+    scroll-padding-inline: 30px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.Slide {
+    display: flex;
+    flex: 0 0 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.ProductCard {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 15px;
+    gap: 15px;
+    background-color: var(--bg-input);
+    box-shadow: var(--black-shadow);
+}
+
+.ProductDescription {
+    text-align: center;
+
+}
+
+.InfoList {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: end;
+    margin-inline: auto;
+    gap: 5px;
+    flex: 1;
+}
+
+.InfoItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Pagination {
+    margin-inline: auto;
+    font-size: 15px;
+}
+
+.Actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ActionButton {
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--text-primary);
+
+    &:disabled {
+        color: var(--text-primary);
+        opacity: 0.4;
+    }
+
+    &:active {
+        color: var(--color-brand);
+        opacity: 0.7;
+    }
+}
+
+.NavButton {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 35px;
+    z-index: 1;
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--text-primary);
+
+    &:active {
+        color: var(--color-brand);
+        opacity: 0.7;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: -2px;
+    }
+
+    &:disabled { display: none; }
+}
+
+.Prev { left: 0; }
+.Next { right: 0; }
