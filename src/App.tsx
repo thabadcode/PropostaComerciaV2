@@ -16,10 +16,13 @@ import { exportJson, importJson } from "./core/utils/exportImport";
 import { useToast } from "./core/hooks/useToast";
 import { Toast } from "./components/ui/Toast/Toast";
 import { CircleCheck, Plus, RefreshCcw, Trash } from "lucide-react";
+import { Carousel } from "./components/ProductCard/ProductCard";
+import { useMediaQuery } from "./core/hooks/useMediaQuery";
 
 export default function App() {
   const [snapshot] = useState(loadSnapshot);
 
+  const isLargeScreen = useMediaQuery("(min-width: 901px)");
   const modal = useModal();
   const toast = useToast();
   const mainForm = useMainForm(snapshot?.mainForm);
@@ -140,16 +143,29 @@ export default function App() {
         </div>
 
         <div className="previews">
-          <Table
-            products={products}
-            onMoveUp={(index) => products.reorderProducts(index, -1)}
-            onMoveDown={(index) => products.reorderProducts(index, 1)}
-            onEdit={productForm.editProduct}
-            onDelete={(index) => {
-              products.removeProduct(index);
-              toast.show(Trash, "Produto removido");
-            }}
-          />
+          {isLargeScreen ? (
+              <Table
+              products={products}
+              onMoveUp={(index) => products.reorderProducts(index, -1)}
+              onMoveDown={(index) => products.reorderProducts(index, 1)}
+              onEdit={productForm.editProduct}
+              onDelete={(index) => {
+                products.removeProduct(index);
+                toast.show(Trash, "Produto removido");
+              }}
+            />
+          ) : (
+              <Carousel
+              products={products}
+              onMoveLeft={(index) => products.reorderProducts(index, -1)}
+              onMoveRight={(index) => products.reorderProducts(index, 1)}
+              onEdit={productForm.editProduct}
+              onDelete={(index) => {
+                products.removeProduct(index);
+                toast.show(Trash, "Produto removido");
+              }}
+            />
+          )}
 
           <Preview mainForm={mainForm} products={products}/>
         </div>
