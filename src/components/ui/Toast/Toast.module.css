@@ -1,7 +1,7 @@
 .Toast {
     display: flex;
     position: fixed;
-    top: var(--height-header);
+    top: calc(var(--height-header) + 10px);
     left: 0;
     right: 0;
     width: fit-content;
