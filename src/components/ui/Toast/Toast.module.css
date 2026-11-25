@@ -1,8 +1,11 @@
 .Toast {
     display: flex;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    top: var(--height-header);
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin-inline: auto;
     z-index: 50;
     align-items: center;
     gap: 5px;
