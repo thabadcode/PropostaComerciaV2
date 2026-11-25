@@ -6,7 +6,7 @@
     right: 0;
     width: fit-content;
     margin-inline: auto;
-    z-index: 50;
+    z-index: 49;
     align-items: center;
     gap: 5px;
     padding: 10px;
@@ -16,7 +16,7 @@
     box-shadow: var(--black-shadow);
     pointer-events: none;
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(-1rem);
     transition: opacity 0.3s ease, transform 0.3s ease;
 
     svg { color: #65d68a; }
