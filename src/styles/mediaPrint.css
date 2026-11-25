@@ -4,22 +4,34 @@
 }
 
 @media print {
-    body * {
-        visibility: hidden;
+    body { background: #fff !important; }
+
+    body *:not(:has(#preview-pdf)):not(#preview-pdf):not(#preview-pdf *) {
+        display: none !important;
     }
 
-    #preview-pdf, #preview-pdf * {
-        visibility: visible;
+    body *:has(#preview-pdf) {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    #preview-pdf {
+        transform: none !important;
+        gap: 0;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
-    #preview-pdf {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: none !important;
-        box-shadow: none;
-        gap: 0;
+    #preview-pdf * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
+
+    #preview-pdf > * { box-shadow: none; }
 }
