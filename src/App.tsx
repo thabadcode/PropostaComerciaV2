@@ -103,6 +103,17 @@ export default function App() {
     window.print();
   };
 
+  const moveBack = (index: number) => products.reorderProducts(index, -1);
+  const moveForward = (index: number) => products.reorderProducts(index, 1);
+  const deleteProduct = (index: number) => {
+    const removed = products.products[index];
+    if (productForm.isEditing && productForm.toProduct().id === removed.id) {
+      productForm.reset();
+    }
+    products.removeProduct(index);
+    toast.show(Trash, "Produto removido");
+  };
+
   return (
     <>
       <Header
@@ -146,24 +157,18 @@ export default function App() {
           {isLargeScreen ? (
               <Table
               products={products}
-              onMoveUp={(index) => products.reorderProducts(index, -1)}
-              onMoveDown={(index) => products.reorderProducts(index, 1)}
+              onMoveUp={moveBack}
+              onMoveDown={moveForward}
               onEdit={productForm.editProduct}
-              onDelete={(index) => {
-                products.removeProduct(index);
-                toast.show(Trash, "Produto removido");
-              }}
+              onDelete={deleteProduct}
             />
           ) : (
               <Carousel
               products={products}
-              onMoveLeft={(index) => products.reorderProducts(index, -1)}
-              onMoveRight={(index) => products.reorderProducts(index, 1)}
+              onMoveLeft={moveBack}
+              onMoveRight={moveForward}
               onEdit={productForm.editProduct}
-              onDelete={(index) => {
-                products.removeProduct(index);
-                toast.show(Trash, "Produto removido");
-              }}
+              onDelete={deleteProduct}
             />
           )}
 
