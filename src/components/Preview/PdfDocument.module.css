@@ -1,3 +1,12 @@
+.Document {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 210mm;
+    gap: 5mm;
+    transform-origin: top left;
+}
+
 .Page {
     --pdf-margin: 12mm;
     --pdf-gap: 5mm;
@@ -22,7 +31,6 @@
     height: 297mm;
     flex-direction: column;
     flex-shrink: 0;
-    transform-origin: top left;
     background-color: var(--pdf-bg);
     box-sizing: border-box;
     box-shadow: var(--black-shadow);
@@ -37,51 +45,42 @@
     background-color: var(--pdf-bg-strong);
     color: var(--pdf-ink-on-dark);
     border-bottom: var(--pdf-accent-border);
-
-    img {
-        height: 27mm;
-        width: auto;
-        margin: 3mm 0;
-    }
 }
 
-.ProviderInfo {
-    h2 {
-        font-size: 17pt;
-        font-weight: bold;
-    }
-
-    h3 {
-        font-size: 8pt;
-        font-weight: bold;
-        color: var(--pdf-accent);
-    }
-
-    span {
-        font-size: 8pt;
-    }
+.Logo {
+    height: 27mm;
+    width: auto;
+    margin: 3mm 0;
 }
+
+.CompanyName {
+    font-size: 17pt;
+    font-weight: bold;
+}
+
+.CompanySlogan {
+    font-size: 8pt;
+    font-weight: bold;
+    color: var(--pdf-accent);
+}
+
+.CompanyDocs { font-size: 8pt; }
 
 .ProposalHeading {
     width: 95mm;
-    height: 100%;
     display: flex;
     flex-direction: column;
     text-align: right;
-
-    b {
-        font-size: 25pt;
-        color: var(--pdf-accent);
-    }
-
-    h3 {
-        font-size: 12.5pt;
-    }
-
-    span {
-        font-size: 8pt;
-    }
 }
+
+.ProposalLabel { font-size: 12.5pt; }
+
+.ProposalNumber {
+    font-size: 25pt;
+    color: var(--pdf-accent);
+}
+
+.ProposalPlace { font-size: 8pt; }
 
 .Body {
     display: flex;
@@ -94,56 +93,46 @@
 .InfoRow {
     display: flex;
     gap: 3mm;
+    color: var(--pdf-ink-body);
 }
 
-.ClientInfo,
-.ProposalInfo {
+.InfoCard {
     padding: 3mm;
     background-color: var(--pdf-bg-muted);
     border-left: var(--pdf-accent-border);
-
-    h3 {
-        color: var(--pdf-ink-muted);
-        font-size: 8pt;
-    }
-
-    b {
-        color: var(--pdf-ink-muted);
-    }
-
-    div {
-        display: flex;
-        flex-direction: column;
-        margin-top: 3mm;
-        gap: 3mm;
-        width: 100%;
-        font-size: 10pt;
-
-        p {
-            display: flex;
-            gap: 3mm;
-            justify-content: space-between;
-        }
-    }
 }
 
-.ClientInfo {
-    flex: 1;
-
-    b {
-        color: var(--pdf-ink-body);
-        text-transform: uppercase;
-        font-size: 13pt;
-    }
+.InfoTitle {
+    color: var(--pdf-ink-muted);
+    font-size: 8pt;
 }
 
-.ProposalInfo {
-    width: 36%;
+.ClientName {
+    color: var(--pdf-ink-body);
+    font-size: 13pt;
+    justify-content: left;
 }
 
-.TableIntro {
-    font-size: 12.5pt;
+.InfoList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3mm;
+    gap: 3mm;
+    width: 100%;
+    font-size: 10pt;
 }
+
+.InfoItem {
+    display: flex;
+    gap: 3mm;
+    justify-content: space-between;
+}
+
+.InfoLabel { color: var(--pdf-ink-muted); }
+.ClientInfo { flex: 1; }
+.ProposalInfo { width: 36%; }
+
+.TableIntro { font-size: 12.5pt; }
 
 .Table {
     display: flex;
@@ -157,33 +146,7 @@
         border-collapse: collapse;
         width: 100%;
     }
-
-    td,
-    th {
-        padding: 2mm;
-
-        &:nth-child(1),
-        &:nth-child(3) {
-            width: 15mm;
-            text-align: center;
-        }
-        &:nth-child(2) {
-            overflow-wrap: anywhere;
-            text-align: left;
-        }
-        &:nth-child(4) {
-            width: 20mm;
-            text-align: right;
-        }
-        &:nth-child(5) {
-            width: 22mm;
-            text-align: right;
-        }
-        &:nth-child(6) {
-            width: 27mm;
-            text-align: right;
-        }
-    }
+    td, th { padding: 2mm; }
 
     thead {
         color: var(--pdf-ink-on-dark);
@@ -193,14 +156,20 @@
     tbody tr {
         border-bottom: solid 0.5mm var(--pdf-line);
 
-        &:nth-child(odd) {
-            background-color: var(--pdf-bg);
-        }
-        &:nth-child(even) {
-            background-color: var(--pdf-bg-stripe);
-        }
+        &:nth-child(odd) { background-color: var(--pdf-bg); }
+        &:nth-child(even) { background-color: var(--pdf-bg-stripe); }
     }
 }
+
+.ColItem, .ColUnit { width: 15mm; }
+.ColText { overflow-wrap: anywhere; }
+.ColQty { width: 20mm; }
+.ColPrice { width: 22mm; }
+.ColSubtotal { width: 27mm; }
+
+.Left { text-align: left; }
+.Center { text-align: center; }
+.Right { text-align: right; }
 
 .TableTotal {
     display: flex;
@@ -234,11 +203,12 @@
     flex-direction: row;
     align-items: end;
     color: var(--pdf-ink-body);
+}
 
-    h3 {
-        font-size: 10pt;
-        color: var(--pdf-ink-muted);
-    }
+.SignatureTitle {
+    margin-bottom: 2mm;
+    font-size: 10pt;
+    color: var(--pdf-ink-muted);
 }
 
 .RepresentativeInfo {
