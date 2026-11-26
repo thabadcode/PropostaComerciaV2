@@ -38,7 +38,7 @@ export default function App() {
 
   useAutoSave(mainForm, products.products, modal.showModal);
 
-  useDocumentTitle(companyName ? `Proposta Comercial - ${companyName}` : "Proposta Comercial");
+  useDocumentTitle(companyName ? `Proposta Comercial - ${companyName.trim()}` : "Proposta Comercial");
 
   useEffect (() => {
     const hasRestoredFromStorage = snapshot !== null;
