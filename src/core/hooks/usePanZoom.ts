@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState, useSyncExternalStore , type PointerEvent, type RefObject } from "react";
+import {
+    useEffect,
+    useRef,
+    useState,
+    useSyncExternalStore,
+    type DragEvent,
+    type PointerEvent,
+    type RefObject,
+} from "react";
 
 const query = "(pointer: fine)";
 
@@ -17,24 +25,38 @@ function subscribe(callback: () => void) {
 const getSnapshot = () => window.matchMedia(query).matches;
 
 export function usePanZoom(pdfRef: RefObject<HTMLDivElement | null>) {
+    const limiterRef = useRef<HTMLDivElement>(null);
     const [zoom, setZoom] = useState(100);
+    const [containerWidth, setContainerWidth] = useState(0);
     const [dragging, setDragging] = useState(false);
     const [pdfHeight, setPdfHeight] = useState(297 * MM_TO_PX);
     const [panMode, setPanMode] = useState(true);
     const drag = useRef<{ x: number; y: number; left: number } | null>(null);
-    const scale = zoom / 100;
     const hasMouse = useSyncExternalStore(subscribe, getSnapshot, () => true);
 
+    const fitScale = containerWidth > 0
+        ? Math.min(1, containerWidth / PDF_WIDTH_PX)
+        : 1;
+    const scale = fitScale * (zoom / 100);
+
     useEffect(() => {
-        const el = pdfRef.current;
-        if (!el) return;
-        const observer = new ResizeObserver(() => setPdfHeight(el.offsetHeight));
-        observer.observe(el);
+        const pdf = pdfRef.current;
+        const limiter = limiterRef.current;
+        if (!pdf || !limiter) return;
+
+        const observer = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                if (entry.target === limiter) setContainerWidth(entry.contentRect.width);
+                else setPdfHeight(pdf.offsetHeight);
+            }
+        });
+        observer.observe(pdf);
+        observer.observe(limiter);
         return () => observer.disconnect();
     }, [pdfRef]);
 
     const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
-        if (!panMode || e.pointerType !== 'mouse' || e.button !== 0) return;
+        if (!panMode || e.pointerType !== "mouse" || e.button !== 0) return;
         drag.current = { x: e.clientX, y: e.clientY, left: e.currentTarget.scrollLeft };
         e.currentTarget.setPointerCapture(e.pointerId);
         setDragging(true);
@@ -59,9 +81,9 @@ export function usePanZoom(pdfRef: RefObject<HTMLDivElement | null>) {
         setDragging(false);
         setPanMode((v) => !v);
     };
-    
+
     return {
-        zoom, panMode, dragging, pdfRef, hasMouse,
+        zoom, panMode, dragging, pdfRef, limiterRef, hasMouse,
         disabledZoomIn: zoom >= MAX_ZOOM,
         disabledZoomOut: zoom <= MIN_ZOOM,
         sizerStyle: { width: PDF_WIDTH_PX * scale, height: pdfHeight * scale },
@@ -75,7 +97,7 @@ export function usePanZoom(pdfRef: RefObject<HTMLDivElement | null>) {
             onPointerMove,
             onPointerUp: endDrag,
             onPointerCancel: endDrag,
-            onDragStart: (e: React.DragEvent) => panMode && e.preventDefault()
-        } 
+            onDragStart: (e: DragEvent) => panMode && e.preventDefault(),
+        },
     };
 }

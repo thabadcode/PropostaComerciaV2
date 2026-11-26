@@ -32,7 +32,7 @@ export function Preview({
 }) {
     const parsed = new Date(`${mainForm.date.value}T00:00`);
     const date = Number.isNaN(parsed.getTime()) ? new Date() : parsed;
-    const panZoom = usePanZoom(pdfRef);
+    const { limiterRef, ...panZoom } = usePanZoom(pdfRef);
 
     return (
         <Card id="preview-pdf" icon={FileText} title="Pré-visualização">
@@ -62,6 +62,7 @@ export function Preview({
             </div>
 
             <div
+                ref={limiterRef}
                 className={`${style.Limiter} ${panZoom.panMode ? style.Pan : ""} ${panZoom.dragging ? style.Dragging : ""}`}
                 {...panZoom.limiterHandlers}
             >
