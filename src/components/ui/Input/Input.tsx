@@ -75,6 +75,7 @@ export default function Input({
                     className={getClassName()}
                     aria-invalid={!isValid}
                     aria-describedby={showError ? errorId : undefined}
+                    style={prefix ? { paddingLeft: 30 } : undefined}
                 />
                 {action && (<span ref={actionRef}>{action}</span>)}
             </div>
