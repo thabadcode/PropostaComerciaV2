@@ -44,7 +44,10 @@ export default function ProductForm(
                 <Checkbox
                     label="Cap do cliente"
                     checked={form.isClientCap.value}
-                    onCheck={(e) => form.isClientCap.setValue(e.target.checked)}
+                    onCheck={(e) => {
+                        form.asphaltBinderContent.reset();
+                        form.isClientCap.setValue(e.target.checked);
+                    }}
                 />
 
                 <Input
