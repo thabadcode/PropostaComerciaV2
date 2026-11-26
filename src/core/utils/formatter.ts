@@ -38,6 +38,18 @@ export const formatter = {
         if (parts[4]) out += `-${parts[4]}`;
         return out;
     },
+    parseDecimal: (value: string) => {
+        const hasDot = value.includes(".");
+        const hasComma = value.includes(",");
+
+        if (hasComma && hasDot) {
+            return value.replaceAll(".", "").replace(",", ".");
+        }
+
+        if (hasComma) return value.replace(",", ".");
+
+        return value;
+    },
     quantity: (value: number): string => quantityFormatter.format(value),
     money: (value: number): string => moneyFormatter.format(value)
 };

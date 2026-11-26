@@ -7,6 +7,7 @@ import { Edit, PackagePlus, Plus, X } from 'lucide-react';
 import { FREIGHT_TYPES, PRODUCT_SUGGESTIONS, UNIT_OPTIONS } from '../../core/constants/formOptions';
 import type { ProductFormState } from '../../core/hooks/useProductForm';
 import style from './ProductForm.module.css';
+import { formatter } from '../../core/utils/formatter';
 
 export default function ProductForm(
     {form, onClick}: {form: ProductFormState, onClick: () => void}
@@ -54,7 +55,7 @@ export default function ProductForm(
                     label="Teor de CAP (%)"
                     inputMode="decimal"
                     value={form.asphaltBinderContent.value}
-                    onChange={(e) => form.asphaltBinderContent.setValue(e.target.value)}
+                    onChange={(e) => form.asphaltBinderContent.setValue(formatter.parseDecimal(e.target.value))}
                     onBlur={form.asphaltBinderContent.onBlur}
                     onFocus={form.asphaltBinderContent.onFocus}
                     disabled={!form.isClientCap.value}
@@ -79,7 +80,7 @@ export default function ProductForm(
                     label="Quantidade"
                     inputMode="decimal"
                     value={form.amount.value}
-                    onChange={(e) => form.amount.setValue(e.target.value)}
+                    onChange={(e) => form.amount.setValue(formatter.parseDecimal(e.target.value))}
                     onBlur={form.amount.onBlur}
                     onFocus={form.amount.onFocus}
                     isValid={!form.amount.showError}
@@ -91,7 +92,7 @@ export default function ProductForm(
                     inputMode="decimal"
                     prefix="R$"
                     value={form.price.value}
-                    onChange={(e) => form.price.setValue(e.target.value)}
+                    onChange={(e) => form.price.setValue(formatter.parseDecimal(e.target.value))}
                     onBlur={form.price.onBlur}
                     onFocus={form.price.onFocus}
                     isValid={!form.price.showError}
