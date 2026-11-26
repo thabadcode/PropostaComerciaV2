@@ -34,7 +34,7 @@ export function Preview({
     const panZoom = usePanZoom(pdfRef);
 
     return (
-        <Card icon={FileText} title="Pré-visualização">
+        <Card id="preview-pdf" icon={FileText} title="Pré-visualização">
             <div className={style.Controller}>
                 <Button
                     icon={ZoomIn}
@@ -66,7 +66,7 @@ export function Preview({
             >
                 <div className={style.Sizer} style={panZoom.sizerStyle}>
                     <div
-                        id="preview-pdf"
+                        id="pdf"
                         ref={pdfRef}
                         style={panZoom.pdfStyle}
                         className={pdf.Document}

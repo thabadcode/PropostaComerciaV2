@@ -6,11 +6,11 @@
 @media print {
     body { background: #fff !important; }
 
-    body *:not(:has(#preview-pdf)):not(#preview-pdf):not(#preview-pdf *) {
+    body *:not(:has(#pdf)):not(#pdf):not(#pdf *) {
         display: none !important;
     }
 
-    body *:has(#preview-pdf) {
+    body *:has(#pdf) {
         display: block !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -21,17 +21,17 @@
         background: none !important;
     }
 
-    #preview-pdf {
+    #pdf {
         transform: none !important;
         gap: 0;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
-    #preview-pdf * {
+    #pdf * {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
-    #preview-pdf > * { box-shadow: none; }
+    #pdf > * { box-shadow: none; }
 }
