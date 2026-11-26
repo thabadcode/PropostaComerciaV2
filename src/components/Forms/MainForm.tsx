@@ -44,7 +44,7 @@ export default function MainForm(
     };
 
     return (
-        <Card icon={Info} title="Informações gerais">
+        <Card id="forms" icon={Info} title="Informações gerais">
             <FormRow>
                 <Input
                     label="Data"

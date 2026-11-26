@@ -62,6 +62,7 @@ export default function Header({
                 }}
             >
                 <nav className={style.Navigation}>
+                    <a href="#forms">Formulários</a>
                     <a href="#products-table">Tabela</a>
                     <a href="#preview-pdf">Pré-Visualização</a>
                 </nav>
