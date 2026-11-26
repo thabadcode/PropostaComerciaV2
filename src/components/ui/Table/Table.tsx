@@ -56,7 +56,7 @@ export function Table({
                         />
                     </div>
                 </td>
-                <td>{p.description}</td>
+                <td>{products.getFormated(p)}</td>
                 <td>{p.unit}</td>
                 <td>{p.quantity}</td>
                 <td>{formatter.money(p.price)}</td>
