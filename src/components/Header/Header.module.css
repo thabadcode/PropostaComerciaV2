@@ -29,7 +29,10 @@
     height: auto;
 }
 
-.CompanyName { font-size: 20px; }
+.CompanyName {
+    margin-right: 30px;
+    font-size: 20px;
+}
 
 .Overlay { display: none; }
 
