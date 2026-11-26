@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import type { MainFormState } from "../../core/hooks/useMainForm";
 import type { ProductsState } from "../../core/hooks/useProducts";
 import { PROVIDER_INFO } from "../../core/constants/providerInfo";
@@ -24,14 +23,14 @@ import type { Product } from "../../core/utils/types";
 export function Preview({
     mainForm,
     products,
+    pdfRef
 }: {
     mainForm: MainFormState;
     products: ProductsState;
+    pdfRef: React.RefObject<HTMLDivElement | null>;
 }) {
     const parsed = new Date(`${mainForm.date.value}T00:00`);
     const date = Number.isNaN(parsed.getTime()) ? new Date() : parsed;
-
-    const pdfRef = useRef<HTMLDivElement>(null);
     const panZoom = usePanZoom(pdfRef);
 
     return (

@@ -11,13 +11,14 @@ import { Preview } from "./components/Preview/Preview";
 import { useDocumentTitle } from "./core/hooks/useDocumentTitle";
 import { loadSnapshot } from "./core/utils/snapshot";
 import { useAutoSave } from "./core/hooks/useAutoSave";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { exportJson, importJson } from "./core/utils/exportImport";
 import { useToast } from "./core/hooks/useToast";
 import { Toast } from "./components/ui/Toast/Toast";
 import { CircleCheck, Plus, RefreshCcw, Trash } from "lucide-react";
 import { Carousel } from "./components/ProductCard/ProductCard";
 import { useMediaQuery } from "./core/hooks/useMediaQuery";
+import { useReactToPrint } from "react-to-print";
 
 export default function App() {
   const [snapshot] = useState(loadSnapshot);
@@ -29,6 +30,11 @@ export default function App() {
   const productForm = useProductForm();
   const products = useProducts(snapshot?.products);
   const companyName = mainForm.companyName.value.trim();
+  const pdfRef = useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({ 
+    contentRef: pdfRef,
+    documentTitle: document.title
+  });
 
   useAutoSave(mainForm, products.products, modal.showModal);
 
@@ -99,8 +105,8 @@ export default function App() {
       );
       return;
     }
-
-    window.print();
+    
+    handlePrint();
   };
 
   const moveBack = (index: number) => products.reorderProducts(index, -1);
@@ -172,7 +178,7 @@ export default function App() {
             />
           )}
 
-          <Preview mainForm={mainForm} products={products}/>
+          <Preview mainForm={mainForm} products={products} pdfRef={pdfRef}/>
         </div>
       </main>
     </>
