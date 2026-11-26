@@ -61,7 +61,7 @@ export function loadSnapshot(): Snapshot | null {
 
         const parsed: unknown = JSON.parse(dataSaved);
         if (!isSnapshot(parsed)) {
-            console.warn("Snapshot salvo em formato inválido ou comrrompido. Ignorando.");
+            console.warn("Snapshot salvo em formato inválido ou corrompido. Ignorando.");
             return null;
         }
 
