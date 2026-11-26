@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { PROVIDER_INFO } from "../../core/constants/providerInfo";
+import logo from "../../assets/logo.webp";
 
 interface HeaderProps {
     clearAll: () => void;
@@ -39,7 +40,7 @@ export default function Header({
             </button>
 
             <img
-                src={`${import.meta.env.BASE_URL}logo-t-oliver.webp`}
+                src={logo}
                 alt={PROVIDER_INFO.company.name}
                 className={style.Logo}
             />

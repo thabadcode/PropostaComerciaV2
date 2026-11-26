@@ -19,6 +19,7 @@ import Button from "../ui/Button/Button";
 import { Card } from "../ui/Card/Card";
 import { usePanZoom } from "../../core/hooks/usePanZoom";
 import type { Product } from "../../core/utils/types";
+import logo from "../../assets/logo.webp";
 
 export function Preview({
     mainForm,
@@ -117,7 +118,7 @@ function Header({
         <div className={pdf.Header}>
             <img
                 className={pdf.Logo}
-                src={`${import.meta.env.BASE_URL}logo-t-oliver.webp`}
+                src={logo}
                 alt={PROVIDER_INFO.company.name}
             />
             <div>
@@ -159,7 +160,7 @@ function Footer() {
 
             <span>
                 <img
-                    src={`${import.meta.env.BASE_URL}logo-t-oliver.webp`}
+                    src={logo}
                     alt={PROVIDER_INFO.company.name}
                 />
                 {PROVIDER_INFO.company.urlSite}
