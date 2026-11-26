@@ -19,6 +19,7 @@
     overflow-x: auto;
     background-color: var(--bg-main);
     box-shadow: inset var(--black-shadow);
+    touch-action: pan-x pan-y;
 }
 
 .Pan {
